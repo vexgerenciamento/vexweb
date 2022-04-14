@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="pag_ini.css"/>
+</head>
+<body>
+
+    <!--AQUI ESTÁ TODO O CONTEÚDO DO SITE-->
+    <section>
+        <!--AQUI ESTÁ AS DUAS FOTOS E OS DOIS FORMULÁRIOS-->
+        <div class="container">
+            <!--AQUI ESTÁ O FORMULÁRIO DE LOGIN-->
+            <div class="usuario login">
+                <!--AQUI ESTÁ A IMAGEM DO FORMULÁRIO DE LOGIN-->
+                <div class="imgBx">
+                    <img src="https://www.jornalcontabil.com.br/wp-content/uploads/2020/05/tecnologia-financeira-com-design-de-ilustracao-de-icone-de-desktop_24908-62516.jpg" alt="Login">
+                </div>
+                <!--AQUI ESTÁ OS INPUTS DO FORMULÁRIO DE LOGIN-->
+                <div class="formulario">
+                    <h2>Login</h2>
+                    <input type="text" placeholder="Nome" id="nome_login"/>
+                    <input type="password" placeholder="Senha" id="senha_login"/>
+                    <button id="btn_entrar">ENTRAR</button>
+                    <!--AQUI ESTÁ A PERGUNTA QUE CHAMA A FUNÇÃO MUDANCA-->
+                    <p class="signup">Não tem conta? <a href="#" onclick="mudanca();">Cadastre-se.</a></p>
+                </div>
+            </div>
+            <!--AQUI ESTÁ O FORMULÁRIO DE CADASTRO-->
+            <div class="usuario cadastro">
+                
+                <div class="formulario">
+                    <!--AQUI ESTÁ OS INPUTS DO FORMULÁRIO DE CADASTRO-->
+                    <h2>Crie sua conta</h2>
+                    <input type="text" placeholder="Nome" id="nome_cadastro">
+                    <input type="text" placeholder="E-mail" id="email_cadastro"/>
+                    <input type="password" placeholder="Crie sua Senha" id="senha_cadastro"/>
+                    <input type="password" placeholder="Digite a senha novamente" id="senha_repitida"/>
+                    <button id="bt_cadastrar" onclick="geral();"> CADASTRAR </button>
+                    <!--AQUI ESTÁ A PERGUNTA QUE CHAMA A FUNÇÃO MUDANCA-->
+                    <p class="signup">Quer entrar no site? <a href="#" onclick="mudanca();">Entre.</a></p>
+                </div>
+                <!--AQUI ESTÁ A IMAGEM DO FORMULÁRIO DE CADASTRO-->
+                <div class="imgBx">
+                    <img src="https://assets.blu365.com.br/uploads/sites/4/2019/09/planejamento-financeiro-semanal.jpg" alt="Cadastro">
+                </div>
+            </div>
+            
+        </div>    
+    </section>
+    <script>
+        function enviar()
+        {
+            window.open('main.html');
+        }
+        function mudanca()
+        {
+            document.querySelector('.container').classList.toggle('active'); //seleciona a class e adiciona um boolenao(toogle), com isso, se a class não obter o active ele adiciona, se obter ele remove.
+        }
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js"></script>
+
+
+  
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-analytics.js";
+
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyCd8BHepAbgzsZF0Ig8NRgsnTPRKvYkO4g",
+          authDomain: "vexv1-adc55.firebaseapp.com",
+          databaseURL: "https://vexv1-adc55-default-rtdb.firebaseio.com",
+          projectId: "vexv1-adc55",
+          storageBucket: "vexv1-adc55.appspot.com",
+          messagingSenderId: "827882444760",
+          appId: "1:827882444760:web:3b65498f6fe2161d1244ad",
+          measurementId: "G-FBJX3WSQDX"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        import{getDatabase, ref, get, set, child, update, remove, onValue}
+        from "https://www.gstatic.com/firebasejs/9.6.8/firebase-database.js";
+
+        const db = getDatabase();
+
+        var nome = document.getElementById("nome_cadastro");
+        var email = document.getElementById("email_cadastro");
+        var senha = document.getElementById("senha_cadastro");
+        var repitasenha = document.getElementById("senha_repitida");
+        var cadastros = document.getElementById("bt_cadastrar");
+        var nome_login = document.getElementById("nome_login");
+        var senha_login = document.getElementById("senha_login");
+
+        function GetAllDataRT(){
+
+const dbRef = ref(db,"users/"+nome_login.value);
+    onValue(dbRef,(snapshot)=>{
+    var usuario = [];
+    snapshot.forEach(childSnapshot =>{
+    usuario.push(childSnapshot.val());
+});
+
+if (senha_login.value == usuario[8] && nome_login.value == usuario[3])
+    {
+       // window.open('main.html');
+       var text = nome_login.value;
+        localStorage.setItem('valueText', text);
+        localStorage.setItem('nome', text);
+        localStorage.setItem('senha', senha_login.value);
+        window.location.href = 'main.html';
+
+
+
+    } else {
+        alert('SENHA OU USUARIO INCORRETOS');
+        console.log(usuario[8]);
+        console.log(usuario[3]);
+    }
+});
+
+
+}
+  
+        function cadastro(){
+            if((nome.value == "")||(email.value == "")||(senha.value == "")){
+                alert('preencha todos os campos');
+            }else if(senha.value != repitasenha.value){
+                alert('As senhas estão diferentes');
+            }
+             else{
+            set(ref(db, "users/"+nome.value),
+            {
+                fullname:nome.value,
+                email: email.value,
+                password: senha.value
+            }
+            )
+            .then(()=>{
+                alert('Cadastro realizado com sucesso!')
+                mudanca();
+
+                document.getElementById("nome_cadastro").value = "";
+                document.getElementById("email_cadastro").value = "";
+                document.getElementById("senha_cadastro").value = "";
+                document.getElementById("senha_repitida").value = "";
+            })
+            .catch((error)=>{
+                alert("NÃO FOI");
+            })}
+            
+        }
+        function mes(){
+            var meses = ["jan", "fev", "mar", "abril", "maio", "jun"];
+            for (var i=0; i<meses.length; i++){
+            set(ref(db, "users/"+nome.value+"/"+meses[i]),
+            {
+                metas: "",
+                gastos:""
+            }
+            )}}
+            
+        
+        function geral(){
+            cadastro();
+            
+            mes();
+        
+        }
+
+      
+
+        
+           
+        
+        cadastros.addEventListener('click', geral);
+        document.getElementById('btn_entrar').addEventListener('click', GetAllDataRT);
+
+
+      </script>
+</body>
+</html>

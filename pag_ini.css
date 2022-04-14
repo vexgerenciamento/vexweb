@@ -1,0 +1,189 @@
+/* AQUI FICA AS FONTES */
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200&family=Licorice&family=Poppins:wght@100;200;300&display=swap');
+
+/* AQUI FICA TODO CONTEÚDO */
+*
+{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+/* AQUI FICA A SESSÃO ONDE TUDO ESTÁ INSRIDO- DEFINIMOS A COR, TAMANHO MINIMO, POSIÇÃO, DISPLAY E TRANSIÇÕES*/
+section
+{
+    position: relative;
+    min-height: 100vh;
+    background: radial-gradient(#1f241f, #282828);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transition: 0.5s;
+}
+/* AQUI FICA O ESPAÇO ONDE ATUAM OS DOIS FORMULÁRIOS QUANDO ESTÃO OU NÃO APARECENDO*/
+section .container
+{
+    position: relative;
+    width: 800px;
+    height: 500px;
+    background: #FFF;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.1);   
+    overflow: hidden;
+}
+/* AQUI FICA A CLASS USUARIO QUE DEFINE O TAMANHO EFETIVO DO USUARIO*/
+section .container .usuario
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+/* AQUI FICA O COMPORTAMENTO DO ESPAÇO ONDE FICA AS IMAGENS DOS FORMULÁRIOS*/
+section .container .usuario .imgBx
+{
+    position: relative;
+    width: 50%;
+    height: 100%;
+    transition: 0.5s;
+}
+/* AQUI FICA O COMPORTAMENTO DAS IMAGENS DOS FORMULÁRIOS*/
+section .container .usuario .imgBx img
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* AQUI FICA O COMPORTAMENTO DO ESPAÇO DOS FORMULÁRIOS*/
+section .container .usuario .formulario
+{
+    position: relative;
+    width: 50%;
+    height: 100%;
+    background: #FFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px;
+    transition: 0.5s;
+}
+/* AQUI FICA O TITULO DOS FORMULÁRIOS*/
+section .container .usuario .formulario h2
+{
+    font-size: 25px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 10px;
+    color: #555;
+}
+/* AQUI FICA OS INPUTS DOS FORMULÁRIOS*/
+section .container .usuario .formulario input
+{
+    width: 100%;
+    padding: 10px;
+    background-color: #f5f5f5;
+    color: #333;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    font-size: 14px;
+    margin: 8px 0;
+    letter-spacing: 1px;
+    font-weight: 300;
+}
+/* AQUI FICA O BOTÃO DOS FORMULÁRIOS*/
+section .container .usuario .formulario input[type="submit"]
+{
+ max-width: 100%;
+ background-color: #ffb327;
+ color: #fff;
+ cursor: pointer;
+ font-size: 14px;
+ font-weight: 500;
+ letter-spacing: 1px;
+ transition: 0.5s;
+}
+/* AQUI FICA O BOTÃO DO FORMULÁRIO DE LOGIN*/
+section .container .usuario.cadastro .formulario input[type="submit"]
+{
+background: #ffb327;
+}
+/* AQUI FICA O O FOMULÁRIO DE LOGIN*/
+section .container .usuario .formulario .signup
+{
+    position: relative;
+    margin-top: 20px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: #555;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+/* AQUI FICA O LINK DO FORMUARIO DE LOGIN*/
+section .container .usuario .formulario .signup a
+{
+    font-weight: 600;
+    text-decoration: none;
+    color: #ffb327;
+}
+/* AQUI FICA RETIRA-SE AS AÇÕES DO FORUMLÁRIO DE CADASTRO*/
+section .container .cadastro
+{
+pointer-events: none;
+}
+/* AQUI FICA ADICIONA-SE AS AÇÕES DO FORUMLÁRIO DE CADASTRO AO SER CHAMADO*/
+section .container.active .cadastro
+{
+pointer-events: initial;
+}
+/* AQUI FICA O FORMULÁRIO DE LOGIN*/
+section .container .usuario.cadastro .formulario 
+{
+    top: 100%;
+}
+/* AQUI FICA A IMAGEM DE LOGIN*/
+section .container .usuario.cadastro .imgBx 
+{
+    top: -100%;
+    transition: 0.5s;
+}
+/* AQUI FICA O FORMULÁRIO DE LOGIN AO SER CHAMADO*/
+section .container.active .usuario.cadastro .formulario 
+{
+    top: 0;
+}
+/* AQUI FICA A IMAGEM DE LOGIN AO SER CHAMADO*/
+section .container.active .usuario.cadastro .imgBx 
+{
+    top: 0;
+}
+/* AQUI FICA O FORMULÁRIO DE CADASTRO*/
+section .container .login.formulario
+{
+    top:0;
+}
+/* AQUI FICA O FORMULÁRIO DE CADASTRO AO SER CHAMADO*/
+section .container.active .login.formulario
+{
+    top:100%;
+}
+/* AQUI FICA A IMAGEM DE CADASTRO*/
+section .container .login.imgBx
+{
+    top:0;
+    transition: 0.5s;
+}
+/* AQUI FICA A IMAGEM DE CADASTRO AO SER CHAMADO*/
+section .container.active .login.imgBx
+{
+    top:-100%;
+}
