@@ -213,6 +213,10 @@ switch(mes){
 }
 }
 
+function calculos()
+{
+  alert('Calculado!');
+};
 
 var nomeMes = datas();
 
@@ -234,7 +238,9 @@ const createClient = (client) => {
     var anos = String(data.getFullYear());
     var id = anos+meses+dias+'_'+horas+minutos+segundos;
 
-   
+   if((nome=="") || (tipo=="") || (valor=="") ||(periodo=="")){
+     alert('preencha todos os campos');
+   }else{
     
     localStorage.setItem('db_client', client);
         set(ref(db, "users/"+user_final+"/"+nomeMes+"/gastos/"+id),
@@ -252,11 +258,13 @@ const createClient = (client) => {
               document.getElementById('categoria').value = "";
               document.getElementById('valor').value = "";
               document.getElementById('periodo').value = "";
+
+              calculos();
             
             })
             .catch((error)=>{
 
-            })}
+            })}}
 
 
 //------------------------------DECLARANDO AÇÕES DOS BOTÕES------------------------------//
