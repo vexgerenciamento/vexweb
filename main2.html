@@ -1,10 +1,9 @@
 <html lang="en"><head>
     <meta charset="utf-8">
-    <link rel="icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#000000">
     <meta name="description" content="Web site created using create-react-app">
-    <link rel="apple-touch-icon" href="/logo192.png">
+    <script src="autenticar.js"></script>
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -21,7 +20,7 @@
       Learn how to configure a non-CORPO public URL by running `npm run build`.
     -->
     <title>VEX GERENCIAMENTO</title>
-  <script defer="" src="/static/js/bundle.js"></script>
+
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   
 
@@ -58,29 +57,37 @@
                 </div>
                 <div class="sc-fodVek fgloXw">
                     <label class="sc-fFucqa hmyJIQ">
-                        <div class="sc-bkzYnD kLxSip">Data</div>
-                        <input type="date" class="sc-idOiZg rwnMw" value="">
+                        <div class="sc-bkzYnD kLxSip">Titulo</div>
+                        <input type="text" class="sc-idOiZg rwnMw" value=""  id="titulo">
                     </label>
                     <label class="sc-fFucqa hmyJIQ">
                         <div class="sc-bkzYnD kLxSip">Categoria</div>
-                        <select class="sc-dIUeWJ gesRgG">
+                        <select class="sc-dIUeWJ gesRgG" id="categoria">
                             <option>
 
                             </option>
-                            <option value="food">Alimentação</option>
-                            <option value="rent">Aluguel</option>
-                            <option value="salary">Salário</option>
+                            <option value="Alimentação">Alimentação</option>
+                            <option value="Aluguel">Aluguel</option>
+                            <option value="Salário">Salário</option>
                         </select>
                     </label>
                     <label class="sc-fFucqa hmyJIQ">
-                        <div class="sc-bkzYnD kLxSip">Título</div>
-                        <input type="text" class="sc-idOiZg rwnMw" value=""></label>
+                      <div class="sc-bkzYnD kLxSip">Periodo</div>
+                      <select class="sc-dIUeWJ gesRgG" id="periodo">
+
+                          <option>
+                            
+                          </option>
+                          <option value="Fixo">Fixo</option>
+                          <option value="Esporádico">Esporádico</option>
+                      </select>
+                  </label>
                         <label class="sc-fFucqa hmyJIQ">
                             <div class="sc-bkzYnD kLxSip">Valor</div>
-                            <input type="number" class="sc-idOiZg rwnMw" value="0"></label>
+                            <input type="number" class="sc-idOiZg rwnMw" value="0" id="valor"></label>
                             <label class="sc-fFucqa hmyJIQ">
                                 <div class="sc-bkzYnD kLxSip">&nbsp;</div>
-                                <button class="sc-hHfuMS dcAQVR">Adicionar</button>
+                                <button class="sc-hHfuMS dcAQVR" id="adicionar">Adicionar</button>
                             </label>
                         </div>
                         <table class="sc-eCstlR bkasyz">
@@ -128,283 +135,137 @@
                                 </div>
                             </div>
                         </div>
-                        <script>
-                            /*
- * Copyright 2017 SideeX committers
- *
- *  Licensed under the Apache License, Version 2.0 (the "License");
- *  you may not use this file except in compliance with the License.
- *  You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- *  Unless required by applicable law or agreed to in writing, software
- *  distributed under the License is distributed on an "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *  See the License for the specific language governing permissions and
- *  limitations under the License.
- *
- */
+                        <script type="module">
+                            var user_final = localStorage.getItem('valueText');
+        
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-analytics.js";
 
-const originalPrompt = window.prompt
-let nextPromptResult = false
-let recordedPrompt = null
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+    
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+        apiKey: "AIzaSyCd8BHepAbgzsZF0Ig8NRgsnTPRKvYkO4g",
+        authDomain: "vexv1-adc55.firebaseapp.com",
+        databaseURL: "https://vexv1-adc55-default-rtdb.firebaseio.com",
+        projectId: "vexv1-adc55",
+        storageBucket: "vexv1-adc55.appspot.com",
+        messagingSenderId: "827882444760",
+        appId: "1:827882444760:web:3b65498f6fe2161d1244ad",
+        measurementId: "G-FBJX3WSQDX"
+        };
 
-const originalConfirmation = window.confirm
-let nextConfirmationResult = false
-let recordedConfirmation = null
+        const firebaseApp = initializeApp(firebaseConfig);
+    
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        import{getDatabase, ref, get, set, child, update, remove, onValue}
+        from "https://www.gstatic.com/firebasejs/9.6.8/firebase-database.js";
 
-const originalAlert = window.alert
-let recordedAlert = null
+        const db = getDatabase();
 
-function getFrameLocation() {
-  let frameLocation = ''
-  let currentWindow = window
-  let currentParentWindow
-  while (currentWindow !== window.top) {
-    currentParentWindow = currentWindow.parent
-    for (let idx = 0; idx < currentParentWindow.frames.length; idx++)
-      if (currentParentWindow.frames[idx] === currentWindow) {
-        frameLocation = ':' + idx + frameLocation
-        currentWindow = currentParentWindow
-        break
-      }
-  }
-  frameLocation = 'root' + frameLocation
-  return frameLocation
+//------------------------------DECLARANDO VÁRIAVEIS GLOBAIS------------------------------//
+var btn_adicionar = document.getElementById("adicionar");
+
+function datas(){
+
+var data = new Date()
+
+var mes = String(data.getMonth() + 1);
+
+
+switch(mes){
+    case '1':
+        nomeMes = "jan"; 
+
+    return nomeMes;
+
+    break;
+    case '2':
+    nomeMes = "fev"; 
+
+    break;
+    case '3':
+    nomeMes = "mar"; 
+
+        return nomeMes;
+    break;
+    case '4':
+    nomeMes = "abril"; 
+
+        return nomeMes;
+    break;
+    case '5':
+    nomeMes = "maio"; 
+
+        return nomeMes;
+    break;
+    case '6':
+    nomeMes = "jun"; 
+
+        return nomeMes;
+    break;
+    
+}
 }
 
-//before record prompt
 
-// Not a top window
-if (window !== window.top) {
-  window.prompt = function(text, defaultText) {
-    if (document.body.hasAttribute('SideeXPlayingFlag')) {
-      return window.top.prompt(text, defaultText)
-    } else {
-      let result = originalPrompt(text, defaultText)
-      let frameLocation = getFrameLocation()
-      window.top.postMessage(
-        {
-          direction: 'from-page-script',
-          recordedType: 'prompt',
-          recordedMessage: text,
-          recordedResult: result,
-          frameLocation: frameLocation,
-        },
-        '*'
-      )
-      return result
-    }
-  }
+var nomeMes = datas();
 
-  window.confirm = function(text) {
-    if (document.body.hasAttribute('SideeXPlayingFlag')) {
-      return window.top.confirm(text)
-    } else {
-      let result = originalConfirmation(text)
-      let frameLocation = getFrameLocation()
-      window.top.postMessage(
-        {
-          direction: 'from-page-script',
-          recordedType: 'confirm',
-          recordedMessage: text,
-          recordedResult: result,
-          frameLocation: frameLocation,
-        },
-        '*'
-      )
-      return result
-    }
-  }
+//---------------------------CRIAR DADOS---------------------------\\
+const createClient = (client) => {
+    
+    var nome = document.getElementById('titulo').value;
+    var tipo = document.getElementById('categoria').value;
+    var valor = document.getElementById('valor').value;
+    var periodo =document.getElementById('periodo').value;
 
-  window.alert = function(text) {
-    if (document.body.hasAttribute('SideeXPlayingFlag')) {
-      recordedAlert = text
-      // Response directly
-      window.top.postMessage(
-        {
-          direction: 'from-page-script',
-          response: 'alert',
-          value: recordedAlert,
-        },
-        '*'
-      )
-      return
-    } else {
-      let result = originalAlert(text)
-      let frameLocation = getFrameLocation()
-      window.top.postMessage(
-        {
-          direction: 'from-page-script',
-          recordedType: 'alert',
-          recordedMessage: text,
-          recordedResult: result,
-          frameLocation: frameLocation,
-        },
-        '*'
-      )
-      return result
-    }
-  }
-} else {
-  // top window
+    var nomeMes = datas();
+    var data = new Date();
+    var segundos = data.getSeconds();
+    var minutos = data.getMinutes();
+    var horas = data.getHours();
+    var dias =  data.getDate();
+    var meses = data.getMonth()+1;
+    var anos = String(data.getFullYear());
+    var id = anos+meses+dias+'_'+horas+minutos+segundos;
 
-  window.prompt = function(text, defaultText) {
-    recordedPrompt = text
-    if (document.body.hasAttribute('setPrompt')) {
-      document.body.removeAttribute('setPrompt')
-      return nextPromptResult
-    } else {
-      let result = originalPrompt(text, defaultText)
-      let frameLocation = getFrameLocation()
-      window.top.postMessage(
-        {
-          direction: 'from-page-script',
-          recordedType: 'prompt',
-          recordedMessage: text,
-          recordedResult: result,
-          frameLocation: frameLocation,
-        },
-        '*'
-      )
-      return result
-    }
-  }
-  window.confirm = function(text) {
-    recordedConfirmation = text
-    if (document.body.hasAttribute('setConfirm')) {
-      document.body.removeAttribute('setConfirm')
-      return nextConfirmationResult
-    } else {
-      let result = originalConfirmation(text)
-      let frameLocation = getFrameLocation()
-      window.top.postMessage(
-        {
-          direction: 'from-page-script',
-          recordedType: 'confirm',
-          recordedMessage: text,
-          recordedResult: result,
-          frameLocation: frameLocation,
-        },
-        '*'
-      )
-      return result
-    }
-  }
-  window.alert = function(text) {
-    recordedAlert = text
-    if (document.body.hasAttribute('SideeXPlayingFlag')) {
-      // Response directly
-      window.top.postMessage(
-        {
-          direction: 'from-page-script',
-          response: 'alert',
-          value: recordedAlert,
-        },
-        '*'
-      )
-      return
-    } else {
-      let result = originalAlert(text)
-      let frameLocation = getFrameLocation()
-      window.top.postMessage(
-        {
-          direction: 'from-page-script',
-          recordedType: 'alert',
-          recordedMessage: text,
-          recordedResult: result,
-          frameLocation: frameLocation,
-        },
-        '*'
-      )
-      return result
-    }
-  }
-}
-
-//play window methods
-if (window == window.top) {
-  window.addEventListener('message', handler)
-}
-
-function handler(event) {
-  if (
-    event.source == window &&
-    event.data &&
-    event.data.direction == 'from-content-script'
-  ) {
-    if (event.data.detach) {
-      window.removeEventListener('message', handler)
-      window.prompt = originalPrompt
-      window.confirm = originalConfirmation
-      window.alert = originalAlert
-      return
-    }
-    let result = undefined
-    switch (event.data.command) {
-      case 'setNextPromptResult':
-        nextPromptResult = event.data.target
-        document.body.setAttribute('setPrompt', true)
-        window.postMessage(
-          {
-            direction: 'from-page-script',
-            response: 'prompt',
-          },
-          '*'
-        )
-        break
-      case 'getPromptMessage':
-        result = recordedPrompt
-        recordedPrompt = null
-        window.postMessage(
-          {
-            direction: 'from-page-script',
-            response: 'prompt',
-            value: result,
-          },
-          '*'
-        )
-        break
-      case 'setNextConfirmationResult':
-        nextConfirmationResult = event.data.target
-        document.body.setAttribute('setConfirm', true)
-        window.postMessage(
-          {
-            direction: 'from-page-script',
-            response: 'confirm',
-          },
-          '*'
-        )
-        break
-      case 'getConfirmationMessage':
-        result = recordedConfirmation
-        recordedConfirmation = null
-        try {
-          window.postMessage(
+   
+    
+    localStorage.setItem('db_client', client);
+        set(ref(db, "users/"+user_final+"/"+nomeMes+"/gastos/"+id),
             {
-              direction: 'from-page-script',
-              response: 'confirm',
-              value: result,
-            },
-            '*'
-          )
-        } catch (e) {} // eslint-disable-line no-empty
-        break
+                id: id,
+                titulo: nome,
+                tipo: tipo,
+                valor: valor,
+                periodo: periodo
+            }
+            )
+            .then(()=>{
 
-      case 'setNextAlertResult':
-        document.body.setAttribute('setAlert', true)
-        window.postMessage(
-          {
-            direction: 'from-page-script',
-            response: 'alert',
-          },
-          '*'
-        )
-        break
-    }
-  }
-}
+              document.getElementById('titulo').value = "";
+              document.getElementById('categoria').value = "";
+              document.getElementById('valor').value = "";
+              document.getElementById('periodo').value = "";
+            
+            })
+            .catch((error)=>{
 
-                        </script>
+            })}
+
+
+//------------------------------DECLARANDO AÇÕES DOS BOTÕES------------------------------//
+  
+     btn_adicionar.addEventListener('click', createClient);
+    
+    
+    
+    
+    
+</script>
 </body></html>
