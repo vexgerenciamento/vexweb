@@ -1,0 +1,469 @@
+body {
+background-color: #202020;
+margin: 0;
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+position: absolute;
+min-width: 1000px;
+width: 100%;
+}
+
+.setleft{
+margin-left: 320px;
+}
+
+.setright{
+margin-right: 320px;
+}
+
+code {
+font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  monospace;
+}
+.body {
+  background-color: #000;
+  height: 150px;
+  text-align: center;
+}
+.tulo {
+  margin: 0;
+  padding: 0;
+  color: #FFF;
+  padding-top: 30px;
+}
+.frdCTY {
+  margin: auto;
+  max-width: 980px;
+  margin-bottom: 50px;
+}
+.eqoOME {
+  background-color: #202020;
+  box-shadow: 0px 0px 5px rgb(0, 0, 0);
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: -40px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.fuVdYh {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.jklSBJ {
+  width: 40px;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  font-size: 25px;
+  cursor: pointer;
+}
+.cPfwyB {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  text-align: center;
+}
+.jklSBJ {
+  width: 40px;
+  text-align: center;
+  font-size: 25px;
+  cursor: pointer;
+}
+.klQxRK {
+  -webkit-flex: 2;
+  -ms-flex: 2;
+  flex: 2;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.fXEhmA {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.bQkMyN {
+  text-align: center;
+  font-weight: bold;
+  color: #f5c116;
+  margin-bottom: 5px;
+  margin-top: 20px;
+  font-size: x-large;
+}
+.hZHyLH {
+  text-align: center;
+  font-weight: bold;
+  color: rgb(10, 233, 10);
+  font-size: x-large;
+}
+
+.fXEhmA {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.bQkMyN {
+  text-align: center;
+  font-weight: bold;
+  color: #f5c116;
+  margin-bottom: 5px;
+}
+.hZHyLH {
+  text-align: center;
+  font-weight: bold;
+  
+}
+.fXEhmA {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.bQkMyN {
+  text-align: center;
+  font-weight: bold;
+  color: #f5c116;
+  margin-bottom: 5px;
+}
+.ftQMvP {
+  text-align: center;
+  font-weight: bold;
+  color: rgb(10, 233, 10);
+  font-size: x-large;
+}
+.fgloXw {
+  background-color: #202020;
+  box-shadow: 0px 0px 5px rgb(0, 0, 0);
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+.hmyJIQ {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  margin: 10px;
+}
+.kLxSip {
+  font-weight: bold;
+  margin-bottom: 5px;
+  
+}
+.rwnMw {
+  width: 100%;
+  height: 30px;
+  padding: 0 5px;
+  border: 1px solid #f5c116;
+  border-radius: 5px;
+}
+.gesRgG {
+  width: 100%;
+  height: 30px;
+  padding: 0 5px;
+  border: 1px solid #f5c116;
+  border-radius: 5px;
+}
+option {
+  font-weight: normal;
+  display: block;
+  white-space: nowrap;
+  min-height: 1.2em;
+  padding: 0px 2px 1px;
+}
+.kLxSip {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.dcAQVR {
+  width: 100%;
+  height: 30px;
+  padding: 0 5px;
+  border: 1px solid #f5c116;
+  border-radius: 5px;
+  background-color: #f5c116;
+  color: black;
+  cursor: pointer;
+}
+.bkasyz {
+  width: 100%;
+  background-color: #202020;
+  padding: 20px;
+  box-shadow: 0px 0px 5px rgb(0, 0, 0);
+  border-radius: 10px;
+  margin-top: 20px;
+}
+thead {
+  display: table-header-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+.gyieuF {
+  color: white;
+  width: 100px;
+  padding: 10px 0;
+  text-align: left;
+}
+tbody {
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+.gZUaaB {
+  padding: 10px 0;
+}
+.kuaJPV {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: rgb(0, 0, 0);
+  background-color: blue;
+}
+.gZUaaB {
+  padding: 10px 0;
+}
+.fZFMZi {
+  color: red;
+}
+.hiVCco {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: rgb(0, 0, 0);
+  background-color: green;
+}
+.fbeSIK {
+  color: rgb(10, 233, 10);
+}
+.jaAmsI {
+  width: 150px;
+  padding: 10px 0;
+  text-align: left;
+}
+.fouaSj {
+  width: auto;
+  padding: 10px 0;
+  text-align: left;
+}
+.jaAmsI {
+  width: 150px;
+  padding: 10px 0;
+  text-align: left;
+}
+.kLxSip {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.dcAQVR:hover {
+  background-color: #ffffff;
+  transition: 0.5s;
+  color: rgb(0, 0, 0);
+}
+
+
+
+
+.fcmwIe {
+color: white;
+padding-left: 47px;
+}
+
+.fouaSj {
+color: white;
+}
+
+.jaAmsI {
+color: white;
+}
+
+.gZUaaB {
+color: white;
+}
+
+.cPfwyB {
+color: white;
+font-size: x-large;
+}
+
+.kLxSip {
+color: white;
+}
+
+.kuaJPV {
+color: white;
+font-weight: bold;
+}
+
+.hiVCco {
+color: white;
+font-weight: bold;
+}
+
+
+/*
+referente aos botões do ações
+*/
+.butao_teste {
+display: flex;
+}
+
+/*
+referente aos botões do ações
+*/
+
+.butao_teste button {
+background-color:#474545;
+border-radius: 8px;
+width: 40px;
+cursor: pointer;
+margin-left: 3px;
+border: none;
+}
+
+/*
+hover do botão adicionar
+*/
+.butao:hover {
+background-color: #f5c116;
+transition: 0.5s;
+}
+
+
+/*
+input referente ao cadastro de informações de Data, Título e Valor
+*/
+input{
+size: fixed;
+}
+
+
+/*
+alignData foi criado para alinhar "Data" e os valores correspondentes a Data quando é feito o registro
+*/
+.alignData{
+padding-left: 7px;
+position: static;
+}
+
+
+/*
+alignCategoria foi criado para alinhar "Categoria" e os valores correspondentes a Categoria quando é feito o registro
+*/
+.alignCategoria{
+margin-left: 85px;
+position: static;
+}
+
+
+/*
+aligTitulo foi criado para alinhar "Título" e os valores correspondentes a Título quando é feito o registro
+*/
+.alignTitulo{
+padding-left: 78px;
+position: static;
+}
+
+
+/*
+alignValor foi criado para alinhar "Valor" e os valores correspondentes a Valor quando é feito o registro
+*/
+.alignValor{
+margin-right: 190px;
+width: 40px;
+position:static;
+}
+
+/*
+referente SOMENTE aos botões do ações
+*/
+.alignAcoes{
+position: relative;
+right: 5px;
+}
+
+@media (max-width:500px) {
+
+.tulo {
+  margin: 0;
+  padding: 0;
+  color: #FFF;
+  padding-top: 30px;
+  display: table;
+  margin-left: 2.25px;
+}
+
+
+.setleft{
+margin-left: 0;
+}
+
+.setright{
+margin-right: 0;
+}
+
+.fuVdYh {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-left: 0;
+}
+
+.eqoOME{
+  display: flow-root;
+  width: 440px;
+}
+
+.fgloXw{
+  display: inline-grid;
+  width: 440px;
+}
+
+.bkasyz{
+  max-width: 440px;
+  position: fixed;
+  overflow-x: auto;
+}
+
+}
