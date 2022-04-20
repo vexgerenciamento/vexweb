@@ -3,34 +3,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#000000">
     <meta name="description" content="Web site created using create-react-app">
-    <script type="module">
-        function GetAllDataRT(){
-
-const dbRef = ref(db,"users/"+nome_login.value);
-    onValue(dbRef,(snapshot)=>{
-    var usuario = [];
-    snapshot.forEach(childSnapshot =>{
-    usuario.push(childSnapshot.val());
-});
-
-if (senha_login.value == usuario[8] && nome_login.value == usuario[3])
-    {
-       // window.open('main.html');
-       var text = nome_login.value;
-        localStorage.setItem('valueText', text);
-        localStorage.setItem('nome', text);
-        localStorage.setItem('senha', senha_login.value);
-        window.location.href = 'main.html';
-
-
-
-    } else {
-        alert('SENHA OU USUARIO INCORRETOS');
-        console.log(usuario[8]);
-        console.log(usuario[3]);
-    }
-});}
-    </script>
     <script src="autenticar.js"></script>
     <script src="logout.js"></script>
     <!--
@@ -329,6 +301,26 @@ function calculos()
     }
 };
 
+function calculosDelete(valor_final, transferencia_final, despesaInicialFloat, ganhoInicialFloat){
+      
+      if(transferencia_final == "Receita"){
+      console.log('ALTERA A RECEITA');
+         var resultado = ganhoInicialFloat - valor_final ;
+         document.getElementById('ganhoInicial').textContent = `R$${resultado}`;
+         console.log(resultado);
+          balanco();
+
+          
+}else
+{ console.log('ALTERA A DESPESA');
+var resultado = despesaInicialFloat - valor_final ;
+console.log(resultado);
+document.getElementById('despesaInicial').textContent = `R$${resultado}`;
+balanco();
+}
+}
+
+
 var nomeMes = datas();
 
 //---------------------------CRIAR DADOS---------------------------\\
@@ -491,8 +483,7 @@ tbody.appendChild(trow);
 
 function deleteData(){
     var num = String(document.getElementById('teste').value).trim();
-    
-    console.log(num);
+    selectData(num);
     remove(ref(db,"users/"+user_final+"/"+nomeMes+"/gastos/"+num),{
     })
     .then(()=>{
@@ -528,31 +519,34 @@ function alterData(id){
             });
         }
 
-//---------------------------LER E MOSTRAR DADOS NOS MODAIS---------------------------\\
+//---------------------------LER---------------------------\\
 
-function selectData(){
-    
-    var id = document.getElementById('idEditar').value;
-    console.log('carregou antes do tempo');
-    
-        const dbref = ref(db);
-        get(child(dbref,"users/"+user_final+"/"+nomeMes+"/gastos/"+id)).then((snapshot)=>{
-            if(snapshot.exists()){
-                document.getElementById('titulo').value = snapshot.val().titulo;
-                document.getElementById('categoria').value = snapshot.val().tipo;
-                document.getElementById('valor').value = snapshot.val().valor;
-                document.getElementById('periodo').value = snapshot.val().periodo;
-                document.getElementById('transferencia').value = snapshot.val().transferencia; 
+function selectData(id){
+       
+       const dbref = ref(db);
+       get(child(dbref,"users/"+user_final+"/"+nomeMes+"/gastos/"+id)).then((snapshot)=>{
+           if(snapshot.exists()){
+               var valor_final = parseFloat(snapshot.val().valor);
+               var transferencia_final = snapshot.val().transferencia; 
+               var despesaInicial = document.getElementById('despesaInicial').textContent;   
+               var despesaInicialNum = despesaInicial.replace(/[^0-9]/g, '');
+               var despesaInicialFloat = parseFloat(despesaInicialNum);
+               var ganhoInicial = document.getElementById('ganhoInicial').textContent;
+               var ganhoInicialNum = ganhoInicial.replace(/[^0-9]/g, '');
+               var ganhoInicialFloat = parseFloat(ganhoInicialNum);
 
-            }else{
-              
-            }
-        })
-        .catch((error)=>{
-          
-        });
-    }
-    
+             calculosDelete(valor_final, transferencia_final, despesaInicialFloat, ganhoInicialFloat);
+           }else{
+               calculosDelete(valor_final, transferencia_final, despesaInicialFloat, ganhoInicialFloat);
+           }
+       })
+       .catch((error)=>{
+         
+       });
+   }
+   
+   
+
     
 
 
