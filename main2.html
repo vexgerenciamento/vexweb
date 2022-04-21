@@ -3,6 +3,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#000000">
     <meta name="description" content="Web site created using create-react-app">
+    <style>
+        .sumiu{
+            display: none;
+        }
+    </style>
+    <script type="module">
+        function GetAllDataRT(){
+
+const dbRef = ref(db,"users/"+nome_login.value);
+    onValue(dbRef,(snapshot)=>{
+    var usuario = [];
+    snapshot.forEach(childSnapshot =>{
+    usuario.push(childSnapshot.val());
+});
+
+if (senha_login.value == usuario[8] && nome_login.value == usuario[3])
+    {
+       // window.open('main.html');
+       var text = nome_login.value;
+        localStorage.setItem('valueText', text);
+        localStorage.setItem('nome', text);
+        localStorage.setItem('senha', senha_login.value);
+        window.location.href = 'main.html';
+
+
+
+    } else {
+        alert('SENHA OU USUARIO INCORRETOS');
+        console.log(usuario[8]);
+        console.log(usuario[3]);
+    }
+});}
+    </script>
     <script src="autenticar.js"></script>
     <script src="logout.js"></script>
     <!--
@@ -57,15 +90,15 @@
                     <div class="sc-dQoVA klQxRK">
                         <div class="sc-bqyKOL fXEhmA">
                             <div class="sc-kstqJO bQkMyN">Ganhos</div>
-                            <div class="sc-hBEYId hZHyLH" id="ganhoInicial">R$ 00</div>
+                            <div class="sc-hBEYId hZHyLH" id="ganhoInicial">R$00</div>
                         </div>
                         <div class="sc-bqyKOL fXEhmA">
                             <div class="sc-kstqJO bQkMyN">Despesas</div>
-                            <div class="sc-hBEYId hZHyLH" style="color:rgb(255, 0, 0);" id="despesaInicial">R$ 00</div>
+                            <div class="sc-hBEYId hZHyLH" style="color:rgb(255, 0, 0);" id="despesaInicial">R$00 </div>
                         </div>
                         <div class="sc-bqyKOL fXEhmA">
                             <div class="sc-kstqJO bQkMyN">Balanço</div>
-                            <div color="green" class="sc-hBEYId ftQMvP" id="balanco">R$ 00</div>
+                            <div color="green" class="sc-hBEYId ftQMvP" id="balanco">R$00 </div>
                         </div>
                     </div>
                 </div>
@@ -110,9 +143,10 @@
                         <label class="sc-fFucqa hmyJIQ">
                             <div class="sc-bkzYnD kLxSip">Valor</div>
                             <input type="number" class="sc-idOiZg rwnMw" value="0" id="valor"></label>
-                            <label class="sc-fFucqa hmyJIQ" id="editar">
+                            <label class="sc-fFucqa hmyJIQ">
                                 <div class="sc-bkzYnD kLxSip">&nbsp;</div>
                                 <button class="sc-hHfuMS dcAQVR" id="adicionar">Adicionar</button>
+                                <button class="sc-hHfuMS dcAQVR sumiu" id="editar">Editar</button>
                             </label>
                         </div>
                         <table class="sc-eCstlR bkasyz">
@@ -300,7 +334,6 @@ function calculos()
        
     }
 };
-
 function calculosDelete(valor_final, transferencia_final, despesaInicialFloat, ganhoInicialFloat){
       
       if(transferencia_final == "Receita"){
@@ -319,18 +352,16 @@ document.getElementById('despesaInicial').textContent = `R$${resultado}`;
 balanco();
 }
 }
-
-
 var nomeMes = datas();
 
 //---------------------------CRIAR DADOS---------------------------\\
 const createClient = (client) => {
-    
     var nome = document.getElementById('titulo').value;
     var tipo = document.getElementById('categoria').value;
     var valor = document.getElementById('valor').value;
     var periodo =document.getElementById('periodo').value;
     var transferencia = document.getElementById('transferencia').value;
+    var ganhos = document.getElementById('ganhosInicial')
 
     var nomeMes = datas();
     var data = new Date();
@@ -340,7 +371,7 @@ const createClient = (client) => {
     var dias =  data.getDate();
     var meses = data.getMonth()+1;
     var anos = String(data.getFullYear());
-    var id = anos+meses+dias+'_'+horas+minutos+segundos;
+    var id = anos+meses+dias+horas+minutos+segundos;
 
    if((nome=="") || (tipo=="") || (valor=="") ||(periodo=="") ||(transferencia=="")){
      alert('preencha todos os campos');
@@ -372,7 +403,11 @@ const createClient = (client) => {
             })
             .catch((error)=>{
 
-            })}}
+            })}{
+
+            }
+        }
+
 
 //---------------------------LER E MOSTRAR DADOS---------------------------\\
 var valores = [];      
@@ -467,23 +502,26 @@ td5.classList.add("alignValor");
   
 var Controle = document.createElement("div");
 var Editar = document.createElement("div");
-td6.innerHTML = '<div class="butao_teste alignAcoes"><button type="button" class="butao" id = "'+id+'" onclick="pegaId(id)" ><img src="outline_delete_white_24dp.png"></button><button type="button" class="butao" id = "'+id+'"  onclick="pegaIdEditar(id)"><img src="outline_edit_white_24dp.png"></button></div>'
+
+
+console.log(id);
+td6.innerHTML = '<div class="butao_teste alignAcoes"><button type="button" class="butao" onclick="pegaId('+id+')" ><img src="outline_delete_white_24dp.png"></button><button type="button" class="butao" id = "'+id+'"  onclick="pegaIdEditar(id)"><img src="outline_edit_white_24dp.png"></button></div>'
 //Controle.innerHTML = '<div class="butao_teste alignAcoes"><button type="button" class="butao" id = "'+id+'" onclick="pegaId(id)" ><img src="outline_delete_white_24dp.png"></button></div>'
 //Editar.innerHTML = '<div class="butao_teste alignAcoes"><button type="button" class="butao" id = "'+id+'"  onclick="pegaIdEditar(id);" ><img src="outline_edit_white_24dp.png"></button></div>'
 
 trow.appendChild(td6);
     
-tbody.appendChild(trow);                    
+tbody.appendChild(trow);
+
+document.getElementById(id).addEventListener('click',selectData);
 
 }
 
-
-
 //---------------------------EXLUIR DADOS---------------------------\\
-
 function deleteData(){
     var num = String(document.getElementById('teste').value).trim();
-    selectData(num);
+    DadosParaOCalculoExcluir(num);
+    console.log(num);
     remove(ref(db,"users/"+user_final+"/"+nomeMes+"/gastos/"+num),{
     })
     .then(()=>{
@@ -496,32 +534,7 @@ function deleteData(){
     });
 }
 
-//função do update
-function alterData(id){
-    var nome = document.getElementById('titulo').value;
-    var tipo = document.getElementById('categoria').value;
-    var valor = document.getElementById('valor').value;
-    var periodo =document.getElementById('periodo').value;
-    var transferencia = document.getElementById('transferencia').value;
-            update(ref(db,"users/"+user_final+"/"+nomeMes+"/gastos/"+id),{
-                id: id,
-                titulo: nome,
-                tipo: tipo,
-                valor: valor,
-                periodo: periodo,
-                transferencia: transferencia
-            })
-            .then(()=>{
-                alert("FOI");
-            })
-            .catch((error)=>{
-                alert("NÃO FOI");
-            });
-        }
-
-//---------------------------LER---------------------------\\
-
-function selectData(id){
+function DadosParaOCalculoExcluir(id){
        
        const dbref = ref(db);
        get(child(dbref,"users/"+user_final+"/"+nomeMes+"/gastos/"+id)).then((snapshot)=>{
@@ -544,18 +557,68 @@ function selectData(id){
          
        });
    }
-   
-   
 
+//função do update
+function alterData(){
+    
+    var nome = document.getElementById('titulo').value;
+    var tipo = document.getElementById('categoria').value;
+    var valor = document.getElementById('valor').value;
+    var periodo =document.getElementById('periodo').value;
+    var transferencia = document.getElementById('transferencia').value;
+    var num = String(document.getElementById('idEditar').value).trim();
+    
+            update(ref(db,"users/"+user_final+"/"+nomeMes+"/gastos/"+num),{
+                titulo: nome,
+                tipo: tipo,
+                valor: valor,
+                periodo: periodo,
+                transferencia: transferencia
+            })
+            .then(()=>{
+               
+            })
+            .catch((error)=>{
+                
+            });
+        }
+
+//---------------------------LER E MOSTRAR DADOS NOS MODAIS---------------------------\\
+
+function selectData(){
+    
+    var num = String(document.getElementById('idEditar').value).trim();
+    console.log('carregou antes do tempo');
+    
+        const dbref = ref(db);
+        get(child(dbref,"users/"+user_final+"/"+nomeMes+"/gastos/"+num)).then((snapshot)=>{
+            if(snapshot.exists()){
+                document.getElementById('titulo').value = snapshot.val().titulo;
+                document.getElementById('categoria').value = snapshot.val().tipo;
+                document.getElementById('valor').value = snapshot.val().valor;
+                document.getElementById('periodo').value = snapshot.val().periodo;
+                document.getElementById('transferencia').value = snapshot.val().transferencia; 
+               document.querySelector('#editar').classList.remove('sumiu');
+               document.querySelector('#adicionar').classList.add('sumiu');
+               
+            }else{
+              
+            }
+        })
+        .catch((error)=>{
+          
+        });
+    }
+    
     
 
 
 
 //------------------------------DECLARANDO AÇÕES DOS BOTÕES------------------------------//
   
-     btn_adicionar.addEventListener('click', createClient);
-     document.getElementById('excluir').addEventListener('click', deleteData);
-    // document.getElementById('editar').addEventListener('click', selectData);
+    btn_adicionar.addEventListener('click', createClient);
+    document.getElementById('excluir').addEventListener('click', deleteData);
+    document.getElementById('editar').addEventListener('click', alterData);
 
      
     
@@ -567,8 +630,8 @@ function selectData(id){
    //---------------------------PEGAR ID PARA EDITAR---------------------------\\    
    function pegaIdEditar(num){
 
-document.getElementById('IdVerdadeiro').innerHTML = `<input id="idEditar" value="${num}"> </input>`;
-document.getElementById("editar").innerHTML = '<div class="sc-bkzYnD kLxSip">&nbsp;</div><button class="sc-hHfuMS dcAQVR" id="editarFinal">Editar</button>'
+document.getElementById('IdVerdadeiro').innerHTML = `<input id="idEditar" value="${num}" hidden> </input>`;
+//document.getElementById("editar").innerHTML = '<div class="sc-bkzYnD kLxSip">&nbsp;</div><button class="sc-hHfuMS dcAQVR" id="editarFinal">Editar</button>'
 return num;
 
 }
