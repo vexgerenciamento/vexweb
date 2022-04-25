@@ -8,34 +8,6 @@
             display: none;
         }
     </style>
-    <script type="module">
-        function GetAllDataRT(){
-
-const dbRef = ref(db,"users/"+nome_login.value);
-    onValue(dbRef,(snapshot)=>{
-    var usuario = [];
-    snapshot.forEach(childSnapshot =>{
-    usuario.push(childSnapshot.val());
-});
-
-if (senha_login.value == usuario[8] && nome_login.value == usuario[3])
-    {
-       // window.open('main.html');
-       var text = nome_login.value;
-        localStorage.setItem('valueText', text);
-        localStorage.setItem('nome', text);
-        localStorage.setItem('senha', senha_login.value);
-        window.location.href = 'main.html';
-
-
-
-    } else {
-        alert('SENHA OU USUARIO INCORRETOS');
-        console.log(usuario[8]);
-        console.log(usuario[3]);
-    }
-});}
-    </script>
     <script src="autenticar.js"></script>
     <script src="logout.js"></script>
     <!--
@@ -248,8 +220,21 @@ switch(mes){
 }
 
 //---------------------------------CÁLCULOS---------------------------------//
+function GetGanho(){
 
+const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/ganhoMensal/");
 
+    onValue(dbRef,(snapshot)=>{    
+        var ganhos = [];
+    snapshot.forEach(childSnapshot =>{
+    ganhos.push(childSnapshot.val());
+    document.getElementById('ganhoInicial').textContent = `R$ ${ganhos}`;        
+    });
+ 
+    });
+            }
+
+       
 function balanco()
 {
 
@@ -308,7 +293,18 @@ function calculos()
 
         var ganhoFinal = valorFloat + ganhoInicialFloat;
 
+        set(ref(db, "users/"+user_final+"/"+nomeMes+"/ganhoMensal/"),
+            {
+               ganhoMensal: ganhoFinal
+            }
+            )
+            .then(()=>{
+                GetGanho();
+            });
+
 //-----------MUDANÇA DE VALORES E CORES NA TELA-----------//
+
+
 
         document.getElementById('ganhoInicial').textContent = `R$${ganhoFinal}`;
         balanco();
@@ -326,7 +322,14 @@ function calculos()
 //-----------CÁLCULO FINAL-----------//
 
         var despesaFinal = despesaInicialFloat + valorFloat;
+        set(ref(db, "users/"+user_final+"/"+nomeMes+"/despesaMensal/"),
+            {
+                despesaFinal: despesaFinal
+            }
+            )
+            .then(()=>{});
 
+       
 //-----------MUDANÇA DE VALORES E CORES NA TELA-----------//
  
         document.getElementById('despesaInicial').textContent = `R$${despesaFinal}`;
@@ -423,7 +426,7 @@ const dbRef = ref(db,"users/"+user_final+"/"+nomeMes+"/gastos/");
     var gastos = [];
     snapshot.forEach(childSnapshot =>{
     gastos.push(childSnapshot.val());
-    console.log(gastos);
+
     });
     AddAll(gastos);
     });
@@ -473,7 +476,7 @@ td1.classList.add("alignTitulo");
 trow.appendChild(td2);
 //
 td2.classList.add("sc-fubCzh");
-console.log(tipo);
+
 if (tipo == "Aluguel")
 {
 td2.classList.add("vermelho");
@@ -504,7 +507,6 @@ var Controle = document.createElement("div");
 var Editar = document.createElement("div");
 
 
-console.log(id);
 td6.innerHTML = '<div class="butao_teste alignAcoes"><button type="button" class="butao" onclick="pegaId('+id+')" ><img src="outline_delete_white_24dp.png"></button><button type="button" class="butao" id = "'+id+'"  onclick="pegaIdEditar(id)"><img src="outline_edit_white_24dp.png"></button></div>'
 //Controle.innerHTML = '<div class="butao_teste alignAcoes"><button type="button" class="butao" id = "'+id+'" onclick="pegaId(id)" ><img src="outline_delete_white_24dp.png"></button></div>'
 //Editar.innerHTML = '<div class="butao_teste alignAcoes"><button type="button" class="butao" id = "'+id+'"  onclick="pegaIdEditar(id);" ><img src="outline_edit_white_24dp.png"></button></div>'
@@ -515,13 +517,15 @@ tbody.appendChild(trow);
 
 document.getElementById(id).addEventListener('click',selectData);
 
+GetGanho();
+
 }
 
 //---------------------------EXLUIR DADOS---------------------------\\
 function deleteData(){
     var num = String(document.getElementById('teste').value).trim();
     DadosParaOCalculoExcluir(num);
-    console.log(num);
+
     remove(ref(db,"users/"+user_final+"/"+nomeMes+"/gastos/"+num),{
     })
     .then(()=>{
@@ -588,7 +592,7 @@ function alterData(){
 function selectData(){
     
     var num = String(document.getElementById('idEditar').value).trim();
-    console.log('carregou antes do tempo');
+
     
         const dbref = ref(db);
         get(child(dbref,"users/"+user_final+"/"+nomeMes+"/gastos/"+num)).then((snapshot)=>{
