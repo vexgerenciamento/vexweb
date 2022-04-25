@@ -232,8 +232,21 @@ const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/ganhoMensal/");
     });
  
     });
-            }
+}
 
+function GetDespesa(){
+
+const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/despesaMensal/");
+
+    onValue(dbRef,(snapshot)=>{    
+        var despesas = [];
+    snapshot.forEach(childSnapshot =>{
+    despesas.push(childSnapshot.val());
+    document.getElementById('despesaInicial').textContent = `R$ ${despesas}`;        
+    });
+ 
+    });
+}
        
 function balanco()
 {
@@ -518,6 +531,7 @@ tbody.appendChild(trow);
 document.getElementById(id).addEventListener('click',selectData);
 
 GetGanho();
+GetDespesa();
 
 }
 
