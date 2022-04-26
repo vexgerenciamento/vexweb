@@ -8,6 +8,7 @@
             display: none;
         }
     </style>
+
     <script src="autenticar.js"></script>
     <script src="logout.js"></script>
     <!--
@@ -174,6 +175,8 @@
 
         const db = getDatabase();
 
+        
+
 //------------------------------DECLARANDO VÁRIAVEIS GLOBAIS------------------------------//
 var btn_adicionar = document.getElementById("adicionar");
 
@@ -228,7 +231,23 @@ const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/ganhoMensal/");
         var ganhos = [];
     snapshot.forEach(childSnapshot =>{
     ganhos.push(childSnapshot.val());
-    document.getElementById('ganhoInicial').textContent = `R$ ${ganhos}`;        
+    document.getElementById('ganhoInicial').textContent = `R$ ${ganhos}`;      
+ 
+    });
+ 
+    });
+}
+
+function GetBalanco(){
+
+const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/balancoMensal/");
+
+    onValue(dbRef,(snapshot)=>{    
+        var balancoMensal = [];
+        balancoMensal.forEach(childSnapshot =>{
+            balancoMensal.push(childSnapshot.val());
+    document.getElementById('balanco').textContent = `R$ ${balancoMensal}`;      
+ 
     });
  
     });
@@ -258,8 +277,8 @@ function balanco()
 
 //-----------RECEBENDO APENAS OS NÚMEROS DAS VARIÁVEIS-----------//
 
-    var ganhoInicialNum = ganhoInicial.replace(/[^0-9]/g, '');
-    var despesaInicialNum = despesaInicial.replace(/[^0-9]/g, '');
+    var ganhoInicialNum = ganhoInicial.replace(',', '.').replace('R$', '');
+    var despesaInicialNum = despesaInicial.replace(',', '.').replace('R$', '');
 
 //-----------PASSANDO PARA FLOAT-----------//
 
@@ -269,6 +288,18 @@ function balanco()
 //-----------CONTA FINAL-----------//
 
     var balanco = ganhoInicialFloat - despesaInicialFloat;
+
+    set(ref(db, "users/"+user_final+"/"+nomeMes+"/balancoMensal/"),
+            {
+                balancoMensal: balanco
+            }
+            )
+            .then(()=>{
+                
+            });
+
+
+
     
 //-----------MUDANÇA DE VALORES E CORES NA TELA-----------//
 
@@ -299,7 +330,7 @@ function calculos()
 //-----------TRANSFORMANDO EM FLOAT E RECEBENDO APENAS NÚMEROS NAS VARIÁVEIS-----------//
 
         var valorFloat = parseFloat(valor);
-        var ganhoInicialNum = ganhoInicial.replace(/[^0-9]/g, '');
+        var ganhoInicialNum = ganhoInicial.replace(',', '.').replace('R$', '');
         var ganhoInicialFloat = parseFloat(ganhoInicialNum);
 
 //-----------CÁLCULO FINAL-----------//
@@ -317,9 +348,6 @@ function calculos()
 
 //-----------MUDANÇA DE VALORES E CORES NA TELA-----------//
 
-
-
-        document.getElementById('ganhoInicial').textContent = `R$${ganhoFinal}`;
         balanco();
 
     } else 
@@ -329,7 +357,7 @@ function calculos()
 //-----------TRANSFORMANDO EM FLOAT E RECEBENDO APENAS NÚMEROS NAS VARIÁVEIS-----------//
 
         var valorFloat = parseFloat(valor);
-        var despesaInicialNum = despesaInicial.replace(/[^0-9]/g, '');
+        var despesaInicialNum = despesaInicial.replace(',', '.').replace('R$', '');
         var despesaInicialFloat = parseFloat(despesaInicialNum);
 
 //-----------CÁLCULO FINAL-----------//
@@ -337,10 +365,12 @@ function calculos()
         var despesaFinal = despesaInicialFloat + valorFloat;
         set(ref(db, "users/"+user_final+"/"+nomeMes+"/despesaMensal/"),
             {
-                despesaFinal: despesaFinal
+                despesaMensal: despesaFinal
             }
             )
-            .then(()=>{});
+            .then(()=>{
+                
+            });
 
        
 //-----------MUDANÇA DE VALORES E CORES NA TELA-----------//
@@ -350,21 +380,54 @@ function calculos()
        
     }
 };
-function calculosDelete(valor_final, transferencia_final, despesaInicialFloat, ganhoInicialFloat){
+
+function calculosDelete(valor_final, transferencia_final, valorDB){
       
       if(transferencia_final == "Receita"){
+    
       console.log('ALTERA A RECEITA');
-         var resultado = ganhoInicialFloat - valor_final ;
+    //funçao get para pegar do REALTIME DB
+
+     console.log(teste);
+      
+         var resultado = valorDB - valor_final ;
+    //document.getElementById('ganhoInicial').textContent = `R$${resultado}`;
+
+    //set para o banco de Dados
+        
          document.getElementById('ganhoInicial').textContent = `R$${resultado}`;
+         set(ref(db, "users/"+user_final+"/"+nomeMes+"/ganhoMensal/"),
+            {
+               ganhoMensal: resultado
+            }
+            )
+            .then(()=>{
+                GetGanho();
+            
+            });
          console.log(resultado);
           balanco();
 
           
 }else
 { console.log('ALTERA A DESPESA');
-var resultado = despesaInicialFloat - valor_final ;
+
+var resultado = valorDB - valor_final ;
+
 console.log(resultado);
+
 document.getElementById('despesaInicial').textContent = `R$${resultado}`;
+
+set(ref(db, "users/"+user_final+"/"+nomeMes+"/despesaMensal/"),
+            {
+               despesaMensal: resultado
+            }
+            )
+            .then(()=>{
+                GetDespesa();
+                balanco();
+            });
+
 balanco();
 }
 }
@@ -444,6 +507,7 @@ const dbRef = ref(db,"users/"+user_final+"/"+nomeMes+"/gastos/");
     AddAll(gastos);
     });
             }
+
     window.onload = GetAllDataRT;
 //-------------------RECEBENDO DADOS DO SNAPCHOT-------------------\\
 
@@ -457,7 +521,7 @@ users.forEach(element => {
 
 //-------------------CRIANDO LINHAS DA TABELA-------------------\\
 function AddItemTb(titulo, tipo, periodo ,transferencia, valor, id){
-
+    
 let trow = document.createElement('tr');
 
 let td1 = document.createElement('td');
@@ -478,7 +542,7 @@ td1.innerHTML=titulo;
 td2.innerHTML=tipo; 
 td3.innerHTML=periodo;
 td4.innerHTML=transferencia;
-td5.innerHTML= 'R$ '+valor+',00';
+td5.innerHTML= 'R$ '+valor;
 
 trow.appendChild(td1);
 trow.classList.add("sc-gKseQn");
@@ -532,6 +596,7 @@ document.getElementById(id).addEventListener('click',selectData);
 
 GetGanho();
 GetDespesa();
+GetBalanco();
 
 }
 
@@ -559,16 +624,22 @@ function DadosParaOCalculoExcluir(id){
            if(snapshot.exists()){
                var valor_final = parseFloat(snapshot.val().valor);
                var transferencia_final = snapshot.val().transferencia; 
-               var despesaInicial = document.getElementById('despesaInicial').textContent;   
-               var despesaInicialNum = despesaInicial.replace(/[^0-9]/g, '');
-               var despesaInicialFloat = parseFloat(despesaInicialNum);
-               var ganhoInicial = document.getElementById('ganhoInicial').textContent;
-               var ganhoInicialNum = ganhoInicial.replace(/[^0-9]/g, '');
-               var ganhoInicialFloat = parseFloat(ganhoInicialNum);
 
-             calculosDelete(valor_final, transferencia_final, despesaInicialFloat, ganhoInicialFloat);
+               if(transferencia_final == "Receita"){
+                get(child(dbref,"users/"+user_final+"/"+nomeMes+"/ganhoMensal/")).then((snapshot)=>{
+                    var valorDB = snapshot.val().ganhoMensal;
+                    console.log(valorDB);
+
+                    calculosDelete(valor_final, transferencia_final, valorDB);
+                });
+               }else{
+                   get(child(dbref,"users/"+user_final+"/"+nomeMes+"/despesaMensal/")).then((snapshot)=>{
+                    var valorDB = snapshot.val().despesaMensal;
+                    console.log(valorDB);
+
+                    calculosDelete(valor_final, transferencia_final, valorDB);
+                });}
            }else{
-               calculosDelete(valor_final, transferencia_final, despesaInicialFloat, ganhoInicialFloat);
            }
        })
        .catch((error)=>{
