@@ -12,9 +12,10 @@
 
 }
 
-.short-text {
-    display: none;
-    overflow-y: hidden;
+#mario{
+    text-align: center; 
+    margin-top:140px; 
+    position:absolute;
 }
 
 /*AQUI É CLASS QUE DEFINE O TAMANHO, O MINIMO DE ALTURA, O TIPO DE DISPLAY E O PADDING DE TODOS OS LAYOUTS*/
@@ -511,21 +512,19 @@ header
             /*AQUI FICA A FORMATAÇÃO DO TÍTULO TÍTULO DO CARD*/
             .box .content h3{
                 margin-bottom: 10px;
-                padding: 1%;
-                font-size: 25px;
+                font-size: 30px;
             }
             /*AQUI FICA A FORMATAÇÃO DOS PARÁGRAFOS TÍTULO DO CARD*/
             .box .content p{
                 margin: 10px 0 0;
                 padding-bottom: 40%;
-                font-size: 23px;
+                font-size: 38px;
                 max-width: 70%;
                 text-align: center;
                 opacity: 0;
                 line-height: 1.2em;
                 transition: 0.5s;
                 text-align: justify;
-            
             }
             /*AQUI FICA A FORMATAÇÃO DOS PARÁGRAFOS TÍTULO DO CARD QUANDO O MOUSE ESTÁ SOBRE ELE*/
             .box:hover .content p {
@@ -628,10 +627,6 @@ header
 .full-text {
     display: none;
     overflow-y: hidden;
-}
-
-#servico{
-    
 }
 
 p{
@@ -950,6 +945,7 @@ header
     {
         flex-direction: column;
         margin: 120px 0 40px;
+        text-align: center;
     }
     .content .text
     {
@@ -1080,6 +1076,12 @@ header
 }
 
 
+#mario{
+    text-align: center; 
+    margin-top:77px; 
+    position:absolute;
+}
+
 /*FIM DO SOBRE*/
 
 
@@ -1158,7 +1160,7 @@ header
             .box .content h3{
                 margin: 0;
                 padding: 0;
-                font-size: 20px;
+                font-size: 26px;
             }
             /*AQUI FICA A FORMATAÇÃO DOS PARÁGRAFOS TÍTULO DO CARD*/
             .box .content p{
@@ -1168,8 +1170,9 @@ header
                 line-height: 1.2em;
                 transition: 0.5s;
                 text-align: left;
-                font-size: 17px;
+                font-size: 25px;
                 display: none;
+                margin-bottom: 70px;
             }
             /*AQUI FICA A FORMATAÇÃO DOS PARÁGRAFOS TÍTULO DO CARD QUANDO O MOUSE ESTÁ SOBRE ELE*/
             .box:hover .content p {
@@ -1177,6 +1180,9 @@ header
                 transition-delay: 0.5s;
                 display: flex;
             }
+
+
+            
             /*AQUI FICA A FORMATAÇÃO DOS LINKS*/
             .content p a:-webkit-any-link {
                 color:#ffffff;
