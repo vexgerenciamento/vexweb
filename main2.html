@@ -115,7 +115,7 @@
                 </label>
                         <label class="sc-fFucqa hmyJIQ">
                             <div class="sc-bkzYnD kLxSip">Valor</div>
-                            <input type="number" class="sc-idOiZg rwnMw" value="0" id="valor"></label>
+                            <input type="number" class="sc-idOiZg rwnMw" value="" id="valor"></label>
                             <label class="sc-fFucqa hmyJIQ">
                                 <div class="sc-bkzYnD kLxSip">&nbsp;</div>
                                 <button class="sc-hHfuMS dcAQVR" id="adicionar">Adicionar</button>
@@ -223,8 +223,9 @@ switch(mes){
 }
 
 //---------------------------------CÁLCULOS---------------------------------//
-function GetGanho(){
 
+function GetGanho(){
+ 
 const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/ganhoMensal/");
 
     onValue(dbRef,(snapshot)=>{    
@@ -243,10 +244,10 @@ function GetBalanco(){
 const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/balancoMensal/");
 
     onValue(dbRef,(snapshot)=>{    
-        var balancoMensal = [];
-        balancoMensal.forEach(childSnapshot =>{
-            balancoMensal.push(childSnapshot.val());
-    document.getElementById('balanco').textContent = `R$ ${balancoMensal}`;      
+        var balanco = [];
+        snapshot.forEach(childSnapshot =>{
+            balanco.push(childSnapshot.val());
+    document.getElementById('balanco').textContent = `R$ ${balanco}`;      
  
     });
  
@@ -325,7 +326,7 @@ function calculos()
 
 
     if(transferencia == "Receita"){
-        console.log('É uma conta de mais');
+
 
 //-----------TRANSFORMANDO EM FLOAT E RECEBENDO APENAS NÚMEROS NAS VARIÁVEIS-----------//
 
@@ -352,7 +353,7 @@ function calculos()
 
     } else 
     {
-        console.log(despesaInicial, '-', valor);
+
 
 //-----------TRANSFORMANDO EM FLOAT E RECEBENDO APENAS NÚMEROS NAS VARIÁVEIS-----------//
 
@@ -385,10 +386,10 @@ function calculosDelete(valor_final, transferencia_final, valorDB){
       
       if(transferencia_final == "Receita"){
     
-      console.log('ALTERA A RECEITA');
+
     //funçao get para pegar do REALTIME DB
 
-     console.log(teste);
+
       
          var resultado = valorDB - valor_final ;
     //document.getElementById('ganhoInicial').textContent = `R$${resultado}`;
@@ -405,16 +406,15 @@ function calculosDelete(valor_final, transferencia_final, valorDB){
                 GetGanho();
             
             });
-         console.log(resultado);
+ 
           balanco();
 
           
 }else
-{ console.log('ALTERA A DESPESA');
-
+{ 
 var resultado = valorDB - valor_final ;
 
-console.log(resultado);
+
 
 document.getElementById('despesaInicial').textContent = `R$${resultado}`;
 
@@ -432,7 +432,24 @@ balanco();
 }
 }
 var nomeMes = datas();
+function calculosEditar(){
 
+
+//1 - Pegar dados - Ganho Mensal, Despesa Mensal, transferencia, valorInicial
+var num = String(document.getElementById('idEditar').value).trim();
+get(child(db,"users/"+user_final+"/"+nomeMes+"/gastos/"+num)).then((snapshot)=>{
+    var transferenciaInicial = snapshot.val().transferencia;
+    var valorInicial = snapshot.val().valor;
+
+
+});
+//2 - Subtra
+
+//3
+
+//4
+
+}
 //---------------------------CRIAR DADOS---------------------------\\
 const createClient = (client) => {
     var nome = document.getElementById('titulo').value;
@@ -628,14 +645,14 @@ function DadosParaOCalculoExcluir(id){
                if(transferencia_final == "Receita"){
                 get(child(dbref,"users/"+user_final+"/"+nomeMes+"/ganhoMensal/")).then((snapshot)=>{
                     var valorDB = snapshot.val().ganhoMensal;
-                    console.log(valorDB);
+   
 
                     calculosDelete(valor_final, transferencia_final, valorDB);
                 });
                }else{
                    get(child(dbref,"users/"+user_final+"/"+nomeMes+"/despesaMensal/")).then((snapshot)=>{
                     var valorDB = snapshot.val().despesaMensal;
-                    console.log(valorDB);
+
 
                     calculosDelete(valor_final, transferencia_final, valorDB);
                 });}
@@ -649,14 +666,14 @@ function DadosParaOCalculoExcluir(id){
 
 //função do update
 function alterData(){
-    
     var nome = document.getElementById('titulo').value;
     var tipo = document.getElementById('categoria').value;
     var valor = document.getElementById('valor').value;
     var periodo =document.getElementById('periodo').value;
     var transferencia = document.getElementById('transferencia').value;
     var num = String(document.getElementById('idEditar').value).trim();
-    
+
+
             update(ref(db,"users/"+user_final+"/"+nomeMes+"/gastos/"+num),{
                 titulo: nome,
                 tipo: tipo,
@@ -665,7 +682,17 @@ function alterData(){
                 transferencia: transferencia
             })
             .then(()=>{
-               
+                
+                document.getElementById('titulo').value = "";
+              document.getElementById('categoria').value = "";
+              document.getElementById('valor').value = "";
+              document.getElementById('periodo').value = "";
+              document.getElementById('transferencia').value = "";
+                document.querySelector('#editar').classList.add('sumiu');
+               document.querySelector('#adicionar').classList.remove('sumiu');
+
+              
+
             })
             .catch((error)=>{
                 
