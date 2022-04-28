@@ -404,7 +404,6 @@ function calculosDelete(valor_final, transferencia_final, valorDB){
             )
             .then(()=>{
                 GetGanho();
-            
             });
  
           balanco();
@@ -432,23 +431,84 @@ balanco();
 }
 }
 var nomeMes = datas();
-function calculosEditar(){
+
+function calculosEditarParte1(num){
 
 
-//1 - Pegar dados - Ganho Mensal, Despesa Mensal, transferencia, valorInicial
-var num = String(document.getElementById('idEditar').value).trim();
-get(child(db,"users/"+user_final+"/"+nomeMes+"/gastos/"+num)).then((snapshot)=>{
-    var transferenciaInicial = snapshot.val().transferencia;
-    var valorInicial = snapshot.val().valor;
+//1 - SUBTRAI
+const dbref = ref(db);
+get(child(dbref,"users/"+user_final+"/"+nomeMes+"/gastos/"+num)).then((snapshot)=>{
+           if(snapshot.exists()){
+               var valor_final = parseFloat(snapshot.val().valor);
+               var transferencia_final = snapshot.val().transferencia; 
+            }
+            console.log('VALOR: '+valor_final+', TRANSFERÊNCIA: '+transferencia_final);
+            if(transferencia_final == "Receita"){
+
+            console.log('RETIRAR DA RECEITA');
+            var receita = document.getElementById('ganhoInicial').textContent.replace(',', '.').replace('R$', '');
+            var resultado = parseFloat(receita) - valor_final;
+            console.log(resultado);
+
+            update(ref(db,"users/"+user_final+"/"+nomeMes+"/ganhoMensal/"),{
+                ganhoMensal: resultado
+            }
+            );console.log('foi');
+            
+} else{
+            console.log('RETIRAR DA DESPESA');
+            var receita = document.getElementById('despesaInicial').textContent.replace(',', '.').replace('R$', '');
+            var resultado = parseFloat(receita) - valor_final;
+            console.log(resultado);
+
+            update(ref(db,"users/"+user_final+"/"+nomeMes+"/despesaMensal/"),{
+                despesaMensal: resultado
+            }
+            );console.log('foi');
+}
+        });
 
 
-});
-//2 - Subtra
 
-//3
 
-//4
+}
+function calculosEditarParte2(num)
+{
+    const dbref = ref(db);
+    get(child(dbref,"users/"+user_final+"/"+nomeMes+"/gastos/"+num)).then((snapshot)=>{
+           if(snapshot.exists()){
+               var valor_final = parseFloat(snapshot.val().valor);
+               var transferencia_final = snapshot.val().transferencia; 
+            }
+            console.log('VALOR: '+valor_final+', TRANSFERÊNCIA: '+transferencia_final);
+            if(transferencia_final == "Receita"){
 
+            console.log('RETIRAR DA RECEITA');
+            var receita = document.getElementById('ganhoInicial').textContent.replace(',', '.').replace('R$', '');
+            var resultado = parseFloat(receita) + valor_final;
+            console.log(resultado);
+
+            update(ref(db,"users/"+user_final+"/"+nomeMes+"/ganhoMensal/"),{
+                ganhoMensal: resultado
+            }
+            
+            );console.log('foi');
+            balanco();
+            
+} else{
+            console.log('RETIRAR DA DESPESA');
+            var receita = document.getElementById('despesaInicial').textContent.replace(',', '.').replace('R$', '');
+            var resultado = parseFloat(receita) + valor_final;
+            console.log(resultado);
+
+            update(ref(db,"users/"+user_final+"/"+nomeMes+"/despesaMensal/"),{
+                despesaMensal: resultado
+            }
+            );console.log('foi');
+            balanco();
+}
+        });
+balanco();
 }
 //---------------------------CRIAR DADOS---------------------------\\
 const createClient = (client) => {
@@ -457,8 +517,7 @@ const createClient = (client) => {
     var valor = document.getElementById('valor').value;
     var periodo =document.getElementById('periodo').value;
     var transferencia = document.getElementById('transferencia').value;
-    var ganhos = document.getElementById('ganhosInicial')
-
+    var ganhos = document.getElementById('ganhosInicial');
     var nomeMes = datas();
     var data = new Date();
     var segundos = data.getSeconds();
@@ -673,7 +732,7 @@ function alterData(){
     var transferencia = document.getElementById('transferencia').value;
     var num = String(document.getElementById('idEditar').value).trim();
 
-
+    calculosEditarParte1(num);
             update(ref(db,"users/"+user_final+"/"+nomeMes+"/gastos/"+num),{
                 titulo: nome,
                 tipo: tipo,
@@ -682,21 +741,23 @@ function alterData(){
                 transferencia: transferencia
             })
             .then(()=>{
+
+                calculosEditarParte2(num);
                 
                 document.getElementById('titulo').value = "";
-              document.getElementById('categoria').value = "";
-              document.getElementById('valor').value = "";
-              document.getElementById('periodo').value = "";
-              document.getElementById('transferencia').value = "";
+                document.getElementById('categoria').value = "";
+                document.getElementById('valor').value = "";
+                document.getElementById('periodo').value = "";
+                document.getElementById('transferencia').value = "";
                 document.querySelector('#editar').classList.add('sumiu');
-               document.querySelector('#adicionar').classList.remove('sumiu');
+                document.querySelector('#adicionar').classList.remove('sumiu');
 
               
 
-            })
-            .catch((error)=>{
+           })
+           .catch((error)=>{
                 
-            });
+           });
         }
 
 //---------------------------LER E MOSTRAR DADOS NOS MODAIS---------------------------\\
