@@ -283,14 +283,14 @@ function balanco()
 
 //-----------PASSANDO PARA FLOAT-----------//
 
-    var ganhoInicialFloat = parseFloat(ganhoInicialNum.toFixed(3));
-    var despesaInicialFloat = parseFloat(despesaInicialNum.toFixed(3));
+    var ganhoInicialFloat = parseFloat(ganhoInicialNum);
+    var despesaInicialFloat = parseFloat(despesaInicialNum);
 
 //-----------CONTA FINAL-----------//
 
     var balanco = ganhoInicialFloat - despesaInicialFloat;
     console.log(balanco);
-    balanco = parseFloat(balanco.toFixed(3))
+    balanco = parseFloat(balanco).toFixed(2);
     console.log(balanco);
 
     set(ref(db, "users/"+user_final+"/"+nomeMes+"/balancoMensal/"),
@@ -333,13 +333,14 @@ function calculos()
 
 //-----------TRANSFORMANDO EM FLOAT E RECEBENDO APENAS NÚMEROS NAS VARIÁVEIS-----------//
 
-        var valorFloat = parseFloat(valor.toFixed(3));
+        var valorFloat = parseFloat(valor);
         var ganhoInicialNum = ganhoInicial.replace(',', '.').replace('R$', '');
-        var ganhoInicialFloat = parseFloat(ganhoInicialNum.toFixed(3));
+        var ganhoInicialFloat = parseFloat(ganhoInicialNum);
 
 //-----------CÁLCULO FINAL-----------//
 
         var ganhoFinal = valorFloat + ganhoInicialFloat;
+        ganhoFinal = parseFloat(ganhoFinal).toFixed(2);
 
         set(ref(db, "users/"+user_final+"/"+nomeMes+"/ganhoMensal/"),
             {
@@ -360,13 +361,14 @@ function calculos()
 
 //-----------TRANSFORMANDO EM FLOAT E RECEBENDO APENAS NÚMEROS NAS VARIÁVEIS-----------//
 
-        var valorFloat = parseFloat(valor.toFixed(3));
+        var valorFloat = parseFloat(valor);
         var despesaInicialNum = despesaInicial.replace(',', '.').replace('R$', '');
-        var despesaInicialFloat = parseFloat(despesaInicialNum.toFixed(3));
+        var despesaInicialFloat = parseFloat(despesaInicialNum);
 
 //-----------CÁLCULO FINAL-----------//
 
         var despesaFinal = despesaInicialFloat + valorFloat;
+        var despesaFinal = parseFloat(despesaFinal).toFixed(2);
         set(ref(db, "users/"+user_final+"/"+nomeMes+"/despesaMensal/"),
             {
                 despesaMensal: despesaFinal
@@ -395,6 +397,7 @@ function calculosDelete(valor_final, transferencia_final, valorDB){
 
       
          var resultado = valorDB - valor_final ;
+         resultado = parseFloat(resultado).toFixed(2);
     //document.getElementById('ganhoInicial').textContent = `R$${resultado}`;
 
     //set para o banco de Dados
@@ -415,6 +418,7 @@ function calculosDelete(valor_final, transferencia_final, valorDB){
 }else
 { 
 var resultado = valorDB - valor_final ;
+resultado = parseFloat(resultado).toFixed(2);
 
 
 
@@ -442,7 +446,7 @@ function calculosEditarParte1(num){
 const dbref = ref(db);
 get(child(dbref,"users/"+user_final+"/"+nomeMes+"/gastos/"+num)).then((snapshot)=>{
            if(snapshot.exists()){
-               var valor_final = parseFloat(snapshot.val().valor.toFixed(3));
+               var valor_final = parseFloat(snapshot.val().valor);
                var transferencia_final = snapshot.val().transferencia; 
             }
             console.log('VALOR: '+valor_final+', TRANSFERÊNCIA: '+transferencia_final);
@@ -450,7 +454,8 @@ get(child(dbref,"users/"+user_final+"/"+nomeMes+"/gastos/"+num)).then((snapshot)
 
             console.log('RETIRAR DA RECEITA');
             var receita = document.getElementById('ganhoInicial').textContent.replace(',', '.').replace('R$', '');
-            var resultado = parseFloat(receita.toFixed(3)) - valor_final;
+            var resultado = parseFloat(receita) - valor_final;
+            resultado = parseFloat(resultado).toFixed(2);
             console.log(resultado);
 
             update(ref(db,"users/"+user_final+"/"+nomeMes+"/ganhoMensal/"),{
@@ -461,7 +466,8 @@ get(child(dbref,"users/"+user_final+"/"+nomeMes+"/gastos/"+num)).then((snapshot)
 } else{
             console.log('RETIRAR DA DESPESA');
             var receita = document.getElementById('despesaInicial').textContent.replace(',', '.').replace('R$', '');
-            var resultado = parseFloat(receita.toFixed(3)) - valor_final;
+            var resultado = parseFloat(receita) - valor_final;
+            resultado = parseFloat(resultado).toFixed(2);
             console.log(resultado);
 
             update(ref(db,"users/"+user_final+"/"+nomeMes+"/despesaMensal/"),{
@@ -480,7 +486,7 @@ function calculosEditarParte2(num)
     const dbref = ref(db);
     get(child(dbref,"users/"+user_final+"/"+nomeMes+"/gastos/"+num)).then((snapshot)=>{
            if(snapshot.exists()){
-               var valor_final = parseFloat(snapshot.val().valor.toFixed(3));
+               var valor_final = parseFloat(snapshot.val().valor);
                var transferencia_final = snapshot.val().transferencia; 
             }
             console.log('VALOR: '+valor_final+', TRANSFERÊNCIA: '+transferencia_final);
@@ -488,7 +494,8 @@ function calculosEditarParte2(num)
 
             console.log('RETIRAR DA RECEITA');
             var receita = document.getElementById('ganhoInicial').textContent.replace(',', '.').replace('R$', '');
-            var resultado = parseFloat(receita.toFixed(3)) + valor_final;
+            var resultado = parseFloat(receita) + valor_final;
+            resultado = parseFloat(resultado).toFixed(2);
             console.log(resultado);
 
             update(ref(db,"users/"+user_final+"/"+nomeMes+"/ganhoMensal/"),{
@@ -501,7 +508,7 @@ function calculosEditarParte2(num)
 } else{
             console.log('RETIRAR DA DESPESA');
             var receita = document.getElementById('despesaInicial').textContent.replace(',', '.').replace('R$', '');
-            var resultado = parseFloat(receita.toFixed(3)) + parseFloat(valor_final.toFixed(3));
+            var resultado = parseFloat(receita) + parseFloat(valor_final);
             console.log(resultado);
 
             update(ref(db,"users/"+user_final+"/"+nomeMes+"/despesaMensal/"),{
@@ -518,6 +525,7 @@ const createClient = (client) => {
     var nome = document.getElementById('titulo').value;
     var tipo = document.getElementById('categoria').value;
     var valor = document.getElementById('valor').value;
+    valor = parseFloat(valor).toFixed(2);
     var periodo =document.getElementById('periodo').value;
     var transferencia = document.getElementById('transferencia').value;
     var ganhos = document.getElementById('ganhosInicial');
@@ -581,7 +589,6 @@ const dbRef = ref(db,"users/"+user_final+"/"+nomeMes+"/gastos/");
     var gastos = [];
     snapshot.forEach(childSnapshot =>{
     gastos.push(childSnapshot.val());
-
     });
     AddAll(gastos);
     });
@@ -701,7 +708,7 @@ function DadosParaOCalculoExcluir(id){
        const dbref = ref(db);
        get(child(dbref,"users/"+user_final+"/"+nomeMes+"/gastos/"+id)).then((snapshot)=>{
            if(snapshot.exists()){
-               var valor_final = parseFloat(snapshot.val().valor.toFixed(3));
+               var valor_final = parseFloat(snapshot.val().valor);
                var transferencia_final = snapshot.val().transferencia; 
 
                if(transferencia_final == "Receita"){
