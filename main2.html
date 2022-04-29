@@ -56,9 +56,9 @@
             </div><div class="sc-hKgJUU frdCTY">
                 <div class="sc-jrAFXE eqoOME" style="flex-direction: column; flex-wrap: wrap; align-content: stretch; justify-content: space-evenly; align-items: stretch;">
                     <div class="sc-kEjbQP fuVdYh">
-                        <div class="sc-iqHYmW jklSBJ setleft"><</div>
-                        <div class="sc-crrszt cPfwyB">Abril de 2022</div>
-                        <div class="sc-iqHYmW jklSBJ setright">></div>
+                        <div class="sc-iqHYmW jklSBJ setleft" id="anterior"><</div>
+                        <div class="sc-crrszt cPfwyB" id="mes">Abril de 2022</div>
+                        <div class="sc-iqHYmW jklSBJ setright" id="proximo">></div>
                     </div>
                     <div class="sc-dQoVA klQxRK">
                         <div class="sc-bqyKOL fXEhmA">
@@ -141,6 +141,7 @@
                                 </div>
                             </div>
                             <div id="IdVerdadeiro"></div>
+                            <div id="guardaOmes"></div>
                         </div>
                         <script type="module">
                             var user_final = localStorage.getItem('valueText');
@@ -180,42 +181,68 @@
 //------------------------------DECLARANDO VÁRIAVEIS GLOBAIS------------------------------//
 var btn_adicionar = document.getElementById("adicionar");
 
-function datas(){
+function mesAnterior(){
+    var mes = parseInt(document.getElementById('guardaOmes').textContent);
+    mes = mes-1;
+    mes = parseInt(mes);
+    console.log(mes);
+    document.getElementById('guardaOmes').textContent = mes;
+    datas(mes);
+}
+function mesPosterior(){
+    var mes = parseInt(document.getElementById('guardaOmes').textContent);
+    mes = mes+1;
+    mes = parseInt(mes);
+    console.log(mes);
+    document.getElementById('guardaOmes').textContent = mes;
+    datas(mes);
+}
 
-var data = new Date()
+function datas(mes){
 
+    if(mes == undefined){
+    var data = new Date()
 var mes = String(data.getMonth() + 1);
-
-
+document.getElementById('guardaOmes').textContent = `${mes}`;
+}
+mes = document.getElementById('guardaOmes').textContent
 switch(mes){
     case '1':
-        nomeMes = "jan"; 
+        nomeMes = "jan";
+        document.getElementById('mes').textContent = "Janeiro de 2022";
+        console.log(nomeMes);
 
     return nomeMes;
 
     break;
     case '2':
     nomeMes = "fev"; 
+    document.getElementById('mes').textContent = "Fevereiro de 2022";
+    console.log(nomeMes);
 
     break;
     case '3':
     nomeMes = "mar"; 
-
+    document.getElementById('mes').textContent = "Março de 2022";
+    console.log(nomeMes);
         return nomeMes;
     break;
     case '4':
     nomeMes = "abril"; 
-
+    document.getElementById('mes').textContent = "Abril de 2022";
+    console.log(nomeMes);
         return nomeMes;
     break;
     case '5':
     nomeMes = "maio"; 
-
+    document.getElementById('mes').textContent = "Maio de 2022";
+    console.log(nomeMes);
         return nomeMes;
     break;
     case '6':
     nomeMes = "jun"; 
-
+    document.getElementById('mes').textContent = "Junho de 2022";
+    console.log(nomeMes);
         return nomeMes;
     break;
     
@@ -439,7 +466,8 @@ balanco();
 }
 var nomeMes = datas();
 
-function calculosEditarParte1(num){
+function calculosEditarParte1(num)
+{
 
 
 //1 - SUBTRAI
@@ -481,6 +509,7 @@ get(child(dbref,"users/"+user_final+"/"+nomeMes+"/gastos/"+num)).then((snapshot)
 
 
 }
+
 function calculosEditarParte2(num)
 {
     const dbref = ref(db);
@@ -489,10 +518,10 @@ function calculosEditarParte2(num)
                var valor_final = parseFloat(snapshot.val().valor);
                var transferencia_final = snapshot.val().transferencia; 
             }
-            console.log('VALOR: '+valor_final+', TRANSFERÊNCIA: '+transferencia_final);
+
             if(transferencia_final == "Receita"){
 
-            console.log('RETIRAR DA RECEITA');
+
             var receita = document.getElementById('ganhoInicial').textContent.replace(',', '.').replace('R$', '');
             var resultado = parseFloat(receita) + valor_final;
             resultado = parseFloat(resultado).toFixed(2);
@@ -502,7 +531,7 @@ function calculosEditarParte2(num)
                 ganhoMensal: resultado
             }
             
-            );console.log('foi');
+            );
             balanco();
             
 } else{
@@ -529,7 +558,8 @@ const createClient = (client) => {
     var periodo =document.getElementById('periodo').value;
     var transferencia = document.getElementById('transferencia').value;
     var ganhos = document.getElementById('ganhosInicial');
-    var nomeMes = datas();
+    var num = document.getElementById('guardaOmes').textContent
+    var nomeMes = datas(num);
     var data = new Date();
     var segundos = data.getSeconds();
     var minutos = data.getMinutes();
@@ -542,7 +572,7 @@ const createClient = (client) => {
    if((nome=="") || (tipo=="") || (valor=="") ||(periodo=="") ||(transferencia=="")){
      alert('preencha todos os campos');
    }else{
-    
+    console.log(nomeMes);
     localStorage.setItem('db_client', client);
         set(ref(db, "users/"+user_final+"/"+nomeMes+"/gastos/"+id),
             {
@@ -582,7 +612,8 @@ var tbody = document.getElementById('tbody');
 //-------------------RECEBENDO TODO O SNAPCHOT DO DB-------------------\\
 
 function GetAllDataRT(){
-
+    var num = document.getElementById('guardaOmes').textContent;
+    var nomeMes = datas();
 const dbRef = ref(db,"users/"+user_final+"/"+nomeMes+"/gastos/");
 
     onValue(dbRef,(snapshot)=>{
@@ -806,6 +837,9 @@ function selectData(){
     btn_adicionar.addEventListener('click', createClient);
     document.getElementById('excluir').addEventListener('click', deleteData);
     document.getElementById('editar').addEventListener('click', alterData);
+    document.getElementById('anterior').addEventListener('click', mesAnterior);
+    document.getElementById('proximo').addEventListener('click', mesPosterior);
+
 
      
     
