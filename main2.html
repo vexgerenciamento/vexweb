@@ -187,6 +187,7 @@ function mesAnterior(){
     mes = parseInt(mes);
     console.log(mes);
     document.getElementById('guardaOmes').textContent = mes;
+    GetAllDataRT();
     datas(mes);
 }
 function mesPosterior(){
@@ -195,6 +196,7 @@ function mesPosterior(){
     mes = parseInt(mes);
     console.log(mes);
     document.getElementById('guardaOmes').textContent = mes;
+    GetAllDataRT();
     datas(mes);
 }
 
@@ -613,7 +615,7 @@ var tbody = document.getElementById('tbody');
 
 function GetAllDataRT(){
     var num = document.getElementById('guardaOmes').textContent;
-    var nomeMes = datas();
+    var nomeMes = datas(num);
 const dbRef = ref(db,"users/"+user_final+"/"+nomeMes+"/gastos/");
 
     onValue(dbRef,(snapshot)=>{
@@ -625,7 +627,7 @@ const dbRef = ref(db,"users/"+user_final+"/"+nomeMes+"/gastos/");
     });
             }
 
-    window.onload = GetAllDataRT;
+GetAllDataRT();
 //-------------------RECEBENDO DADOS DO SNAPCHOT-------------------\\
 
 function AddAll(users){
