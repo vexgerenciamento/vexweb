@@ -80,8 +80,8 @@
         
         <div class="chart-wrapper">
             <div class="line-bar-chart-wrapper">
-                <canvas class="line-chart" style="background-color: white;"></canvas>
-                <canvas class="bar-chart" style="background-color: white;"></canvas>
+                    <canvas class="line-chart" style="background-color: white;"></canvas>
+                    <canvas class="bar-chart" style="background-color: white;"></canvas>
                 </div>
                 <div class="doughnut-chart-wrapper">
                 <select>
@@ -105,9 +105,9 @@
                 <tbody id="tbody"></tbody>
             </table>
         </section>
-        <script src="path/to/chartjs/dist/chart.min.js"></script>
+        <script src="node_modules/chart.js/dist/chart.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
-        <script src="path/to/chartjs-plugin-zoom/dist/chartjs-plugin-zoom.min.js"></script>
+        <script src="node_modules/chartjs-plugin-zoom/dist/chartjs-plugin-zoom.min.js"></script>
         <script type="module">
             const usuario = "teste";
             var user_final = localStorage.getItem('valueText');
@@ -165,7 +165,8 @@ switch(mes){
         return nomeMes;
     break;
     case '2':
-    nomeMes = "fev"; 
+        nomeMes = "fev"; 
+        return nomeMes;
     break;
     case '3':
     nomeMes = "mar"; 
@@ -228,27 +229,32 @@ switch(mes){
         var DoughnutChart = new Chart(doughnut_chart, {
             type: "doughnut",
             data: [{}],
-            options: {
-    plugins: {
-      zoom: {
-        zoom: {
-          wheel: {
-            enabled: true,
-          },
-          pinch: {
-            enabled: true
-          },
-          mode: 'xy',
-        }
-      }
-    }
-  }
         });
         
         var line_chart = document.getElementsByClassName("line-chart");
         var LineChart = new Chart(line_chart, {
             type: "line",
             data: [{}],
+            options: {
+                plugins: {
+                    zoom: {
+
+                        pan: {
+                            enabled: true,
+                            mode: 'xy'
+                        },
+                        zoom: {
+                            wheel: {
+                                enabled: true
+                            },
+                            pinch: {
+                                enabled: true
+                            },
+                            mode: 'xy',
+                        }
+                    }
+                }
+            }
         });
 
         var bar_chart = document.getElementsByClassName("bar-chart");
@@ -256,7 +262,6 @@ switch(mes){
             type: "bar",
             data: [{}],
         })     
-
 
         function createLineChartData(){
             var meses = ["jan", "fev", "mar", "abril", "maio", "jun"];
@@ -269,10 +274,7 @@ switch(mes){
                 });
                 });                                   
             }
-            var labels = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
-
-            console.log(balancos);
-            console.log(labels);           
+            var labels = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];         
 
             var data = {
                 labels: labels,
@@ -286,7 +288,7 @@ switch(mes){
             return data;            
         }
       
-        function drawGraph(){ 
+
         DoughnutChart.config.data;
 
         LineChart.config.data = createLineChartData();
@@ -295,24 +297,7 @@ switch(mes){
 
         BarChart.config.data;
         BarChart.update;
-        BarChart.resize(69, 69)
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
-
-        window.onload = drawGraph;
+        BarChart.resize(69, 69)    
 
             </script>
     </body>
