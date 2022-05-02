@@ -3,8 +3,6 @@
     <head>
         <meta charset="utf-8">
         <title>TESTE Chart.js</Chart></title>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
         <link rel="stylesheet" href="CSS/main2.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
@@ -105,6 +103,7 @@
                 <tbody id="tbody"></tbody>
             </table>
         </section>
+    </body>
         <script src="node_modules/chart.js/dist/chart.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
         <script src="node_modules/chartjs-plugin-zoom/dist/chartjs-plugin-zoom.min.js"></script>
@@ -273,11 +272,10 @@ switch(mes){
                     balancos.push(childSnapshot.val());                 
                 });
                 });                                   
-            }
-            var labels = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];         
+            }       
 
             var data = {
-                labels: labels,
+                labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
                 datasets: [{
                     label: "Balanços Mensais",
                     data: balancos,
@@ -286,20 +284,17 @@ switch(mes){
                 }], 
             };
             return data;            
-        }
-      
+        }      
 
         DoughnutChart.config.data;
 
         LineChart.config.data = createLineChartData();
-        LineChart.update;
-        LineChart.resize(69, 69);
+        setTimeout(function() { LineChart.update(); },500);
 
         BarChart.config.data;
         BarChart.update;
         BarChart.resize(69, 69)    
 
             </script>
-    </body>
  
 </html>
