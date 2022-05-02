@@ -105,11 +105,11 @@
             </table>
         </section>
     </body>
-        <script src="node_modules/chart.js/dist/chart.min.js"></script>
-        <script src="node_modules/chart.js/dist/chart.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
-        <script src="node_modules/chartjs-plugin-zoom/dist/chartjs-plugin-zoom.min.js"></script>
-        <script src="node_modules/chartjs-plugin-zoom/dist/chartjs-plugin-zoom.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/1.2.1/chartjs-plugin-zoom.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/1.2.1/chartjs-plugin-zoom.js"></script>
         <script type="module">
             const usuario = "teste";
             var user_final = localStorage.getItem('valueText');
@@ -215,67 +215,6 @@ switch(mes){
             var o = Math.round, r = Math.random, s = 255;
             return "rgb(" + o(r()*s) + ", " + o(r()*s) + ", " + o(r()*s) + ")";
         }
-
-        import {
-            Chart,
-            ArcElement,
-            LineElement,
-            BarElement,
-            PointElement,
-            BarController,
-            BubbleController,
-            DoughnutController,
-            LineController,
-            PieController,
-            PolarAreaController,
-            RadarController,
-            ScatterController,
-            CategoryScale,
-            LinearScale,
-            LogarithmicScale,
-            RadialLinearScale,
-            TimeScale,
-            TimeSeriesScale,
-            Decimation,
-            Filler,
-            Legend,
-            Title,
-            Tooltip,
-            SubTitle
-            } from 'chart.js';
-
-            Chart.register(
-            ArcElement,
-            LineElement,
-            BarElement,
-            PointElement,
-            BarController,
-            BubbleController,
-            DoughnutController,
-            LineController,
-            PieController,
-            PolarAreaController,
-            RadarController,
-            ScatterController,
-            CategoryScale,
-            LinearScale,
-            LogarithmicScale,
-            RadialLinearScale,
-            TimeScale,
-            TimeSeriesScale,
-            Decimation,
-            Filler,
-            Legend,
-            Title,
-            Tooltip,
-            SubTitle
-            );
-
-            import zoomPlugin from 'chartjs-plugin-zoom';
-
-            Chart.register(zoomPlugin);
-
-
 
         var doughnut_chart = document.getElementsByClassName("doughnut-chart");
         var DoughnutChart = new Chart(doughnut_chart, {
