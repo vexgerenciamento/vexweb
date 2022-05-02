@@ -87,8 +87,16 @@
 
                             </option>
                             <option value="Alimentação">Alimentação</option>
-                            <option value="Aluguel">Aluguel</option>
+                            <option value="Entretenimento">Entretenimento</option>
+                            <option value="GastosPessoais">Gastos Pessoais</option>
+                            <option value="Habitação">Habitação</option>
                             <option value="Salário">Salário</option>
+                            <option value="Saúde">Saúde</option>
+                            <option value="Seguros">Seguros</option>
+                            <option value="Transportes">Transportes</option>                
+                            <option value="Utilidades">Utilidades</option>
+                            <option value="Outros">Outros</option>
+                            
                         </select>
                     </label>
                     <label class="sc-fFucqa hmyJIQ">
@@ -694,13 +702,31 @@ trow.appendChild(td2);
 //
 td2.classList.add("sc-fubCzh");
 
-if (tipo == "Aluguel")
+if (tipo == "Alimentação")
 {
 td2.classList.add("vermelho");
-}else if(tipo == "Alimentação"){
+}else if(tipo == "Entretenimento"){
+    td2.classList.add("hiVCco");
+}else if(tipo == "GastosPessoais"){
+    td2.classList.add("kuaJPV");
+}
+else if(tipo == "Habitação"){
     td2.classList.add("hiVCco");
 }else if(tipo == "Salário"){
     td2.classList.add("kuaJPV");
+}
+else if(tipo == "Saúde"){
+    td2.classList.add("hiVCco");
+}else if(tipo == "Seguros"){
+    td2.classList.add("kuaJPV");
+}
+else if(tipo == "Transportes"){
+    td2.classList.add("hiVCco");
+}else if(tipo == "Utilidades"){
+    td2.classList.add("kuaJPV");
+}
+else if(tipo == "Outros"){
+    td2.classList.add("hiVCco");
 }
 
 td2.classList.add("alignCategoria");
