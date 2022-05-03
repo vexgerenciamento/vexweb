@@ -1,4 +1,5 @@
-<html lang="en"><head>
+<html lang="en">
+    <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#000000">
@@ -141,7 +142,7 @@
                                 </div>
                             </div>
                             <div id="IdVerdadeiro"></div>
-                            <div id="guardaOmes"></div>
+                            <div id="guardaOmes" style="color: white;"></div>
                         </div>
                         <script type="module">
                             var user_final = localStorage.getItem('valueText');
@@ -186,7 +187,7 @@ function mesAnterior(){
     mes = mes-1;
     mes = parseInt(mes);
     console.log(mes);
-    if(mes<1){ m = 1}
+    if(mes<1){ mes = 1}
     document.getElementById('guardaOmes').textContent = mes;
     GetAllDataRT();
     GetGanho();
@@ -200,7 +201,7 @@ function mesPosterior(){
     mes = mes+1;
     mes = parseInt(mes);
     console.log(mes);
-    if(mes>6){ m = 6}
+    if(mes>6){ mes = 6}
     document.getElementById('guardaOmes').textContent = mes;
     GetAllDataRT();
     GetGanho();
@@ -212,6 +213,7 @@ function mesPosterior(){
 
 function datas(mes){
 
+   
     if(mes == undefined){
     var data = new Date()
 var mes = String(data.getMonth() + 1);
@@ -267,7 +269,7 @@ switch(mes){
 function GetGanho(){
     var num = document.getElementById('guardaOmes').textContent;
     var nomeMes = datas(num);
-const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/ganhoMensal/");
+    const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/ganhoMensal/");
 
     onValue(dbRef,(snapshot)=>{    
         var ganhos = [];
@@ -296,7 +298,6 @@ const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/balancoMensal/");
  
     });
 }
-
 function GetDespesa(){
     var num = document.getElementById('guardaOmes').textContent;
     var nomeMes = datas(num);
@@ -314,6 +315,7 @@ const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/despesaMensal/");
        
 function balanco()
 {
+    
     var num = document.getElementById('guardaOmes').textContent;
     var nomeMes = datas(num);
 //-----------RECEBENDO O VALOR DAS DIVS-----------//
@@ -334,9 +336,9 @@ function balanco()
 //-----------CONTA FINAL-----------//
 
     var balanco = ganhoInicialFloat - despesaInicialFloat;
-    console.log(balanco);
+
     balanco = parseFloat(balanco).toFixed(2);
-    console.log(balanco);
+
 
     set(ref(db, "users/"+user_final+"/"+nomeMes+"/balancoMensal/"),
             {
@@ -363,6 +365,7 @@ function balanco()
 
 function calculos()
 {
+
     var num = document.getElementById('guardaOmes').textContent;
     var nomeMes = datas(num);
 //-----------RECEBENDO O VALOR DAS DIVS E INPUTS-----------//
@@ -488,41 +491,41 @@ var nomeMes = datas();
 
 function calculosEditarParte1(num)
 {
-    var num = document.getElementById('guardaOmes').textContent;
-    var nomeMes = datas(num);
-
 //1 - SUBTRAI
 const dbref = ref(db);
 get(child(dbref,"users/"+user_final+"/"+nomeMes+"/gastos/"+num)).then((snapshot)=>{
            if(snapshot.exists()){
-               var valor_final = parseFloat(snapshot.val().valor);
+               var valor_final = parseFloat(snapshot.val().valor).toFixed(2);
                var transferencia_final = snapshot.val().transferencia; 
             }
-            console.log('VALOR: '+valor_final+', TRANSFERÊNCIA: '+transferencia_final);
+            
+
             if(transferencia_final == "Receita"){
 
-            console.log('RETIRAR DA RECEITA');
+      
             var receita = document.getElementById('ganhoInicial').textContent.replace(',', '.').replace('R$', '');
             var resultado = parseFloat(receita) - valor_final;
-            resultado = parseFloat(resultado).toFixed(2);
-            console.log(resultado);
+            resultado = parseFloat(resultado);
+                
+
 
             update(ref(db,"users/"+user_final+"/"+nomeMes+"/ganhoMensal/"),{
                 ganhoMensal: resultado
             }
-            );console.log('foi');
+            );
             
 } else{
-            console.log('RETIRAR DA DESPESA');
-            var receita = document.getElementById('despesaInicial').textContent.replace(',', '.').replace('R$', '');
-            var resultado = parseFloat(receita) - valor_final;
-            resultado = parseFloat(resultado).toFixed(2);
-            console.log(resultado);
 
+            var receita = document.getElementById('despesaInicial').textContent.replace(',', '.').replace('R$', '');
+            var resultado = parseFloat(receita) - parseFloat(valor_final).toFixed(2);
+            resultado = parseFloat(resultado).toFixed(2);
+            valor_final = parseFloat(valor_final).toFixed(2);
+
+    
             update(ref(db,"users/"+user_final+"/"+nomeMes+"/despesaMensal/"),{
                 despesaMensal: resultado
             }
-            );console.log('foi');
+            );
 }
         });
 
@@ -533,22 +536,20 @@ get(child(dbref,"users/"+user_final+"/"+nomeMes+"/gastos/"+num)).then((snapshot)
 
 function calculosEditarParte2(num)
 {   
-    var num = document.getElementById('guardaOmes').textContent;
-    var nomeMes = datas(num);
     const dbref = ref(db);
     get(child(dbref,"users/"+user_final+"/"+nomeMes+"/gastos/"+num)).then((snapshot)=>{
            if(snapshot.exists()){
-               var valor_final = parseFloat(snapshot.val().valor);
+               var valor_final = parseFloat(snapshot.val().valor).toFixed(2);
                var transferencia_final = snapshot.val().transferencia; 
             }
 
             if(transferencia_final == "Receita"){
 
-
             var receita = document.getElementById('ganhoInicial').textContent.replace(',', '.').replace('R$', '');
             var resultado = parseFloat(receita) + valor_final;
             resultado = parseFloat(resultado).toFixed(2);
-            console.log(resultado);
+
+
 
             update(ref(db,"users/"+user_final+"/"+nomeMes+"/ganhoMensal/"),{
                 ganhoMensal: resultado
@@ -558,15 +559,18 @@ function calculosEditarParte2(num)
             balanco();
             
 } else{
-            console.log('RETIRAR DA DESPESA');
+
+            
             var receita = document.getElementById('despesaInicial').textContent.replace(',', '.').replace('R$', '');
             var resultado = parseFloat(receita) + parseFloat(valor_final);
-            console.log(resultado);
+            valor_final = parseFloat(valor_final).toFixed(2);
+     
+            resultado = parseFloat(resultado).toFixed(2);
 
             update(ref(db,"users/"+user_final+"/"+nomeMes+"/despesaMensal/"),{
                 despesaMensal: resultado
             }
-            );console.log('foi');
+            );
             balanco();
 }
         });
@@ -595,7 +599,7 @@ const createClient = (client) => {
    if((nome=="") || (tipo=="") || (valor=="") ||(periodo=="") ||(transferencia=="")){
      alert('preencha todos os campos');
    }else{
-    console.log(nomeMes);
+
     localStorage.setItem('db_client', client);
         set(ref(db, "users/"+user_final+"/"+nomeMes+"/gastos/"+id),
             {
@@ -636,6 +640,7 @@ var tbody = document.getElementById('tbody');
 
 function GetAllDataRT(){
     var num = document.getElementById('guardaOmes').textContent;
+    console.log(num);
     var nomeMes = datas(num);
 const dbRef = ref(db,"users/"+user_final+"/"+nomeMes+"/gastos/");
 
@@ -791,16 +796,17 @@ function DadosParaOCalculoExcluir(id){
 
 //função do update
 function alterData(){
-    var num = document.getElementById('guardaOmes').textContent;
-    var nomeMes = datas(num);
+    var numA = document.getElementById('guardaOmes').textContent;
+    var nomeMes = datas(numA);
     var nome = document.getElementById('titulo').value;
     var tipo = document.getElementById('categoria').value;
-    var valor = document.getElementById('valor').value;
+    var valor = parseFloat(document.getElementById('valor').value).toFixed(2);
     var periodo =document.getElementById('periodo').value;
     var transferencia = document.getElementById('transferencia').value;
     var num = String(document.getElementById('idEditar').value).trim();
 
     calculosEditarParte1(num);
+
             update(ref(db,"users/"+user_final+"/"+nomeMes+"/gastos/"+num),{
                 titulo: nome,
                 tipo: tipo,
@@ -811,7 +817,6 @@ function alterData(){
             .then(()=>{
 
                 calculosEditarParte2(num);
-                
                 document.getElementById('titulo').value = "";
                 document.getElementById('categoria').value = "";
                 document.getElementById('valor').value = "";
