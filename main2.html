@@ -201,7 +201,7 @@ function mesAnterior(){
     GetGanho();
     GetDespesa();
     GetBalanco();
-    balanco();
+    //balanco();
     datas(mes);
 }
 function mesPosterior(){
@@ -215,7 +215,7 @@ function mesPosterior(){
     GetGanho();
     GetDespesa();
     GetBalanco();
-    balanco();
+   //balanco();
     datas(mes);
 }
 
@@ -232,7 +232,7 @@ switch(mes){
     case '1':
         nomeMes = "jan";
         document.getElementById('mes').textContent = "Janeiro de 2022";
-        console.log(nomeMes);
+  
 
     return nomeMes;
 
@@ -240,32 +240,32 @@ switch(mes){
     case '2':
     nomeMes = "fev"; 
     document.getElementById('mes').textContent = "Fevereiro de 2022";
-    console.log(nomeMes);
+
     return nomeMes;
 
     break;
     case '3':
     nomeMes = "mar"; 
     document.getElementById('mes').textContent = "Março de 2022";
-    console.log(nomeMes);
+
         return nomeMes;
     break;
     case '4':
     nomeMes = "abril"; 
     document.getElementById('mes').textContent = "Abril de 2022";
-    console.log(nomeMes);
+
         return nomeMes;
     break;
     case '5':
     nomeMes = "maio"; 
     document.getElementById('mes').textContent = "Maio de 2022";
-    console.log(nomeMes);
+
         return nomeMes;
     break;
     case '6':
     nomeMes = "jun"; 
     document.getElementById('mes').textContent = "Junho de 2022";
-    console.log(nomeMes);
+
         return nomeMes;
     break;
     
@@ -278,17 +278,15 @@ function GetGanho(){
     var num = document.getElementById('guardaOmes').textContent;
     var nomeMes = datas(num);
     const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/ganhoMensal/");
-
     onValue(dbRef,(snapshot)=>{    
         var ganhos = [];
     snapshot.forEach(childSnapshot =>{
     ganhos.push(childSnapshot.val());
-    console.log(ganhos);
     document.getElementById('ganhoInicial').textContent = `R$ ${ganhos}`;      
  
     });
- 
     });
+   
 }
 
 function GetBalanco(){
@@ -323,6 +321,7 @@ const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/despesaMensal/");
        
 function balanco()
 {
+    {
     
     var num = document.getElementById('guardaOmes').textContent;
     var nomeMes = datas(num);
@@ -370,11 +369,12 @@ function balanco()
         document.getElementById('balanco').textContent = `R$${balanco}`;
     }
 }
+}
 
 function calculos()
 {
-
-    var num = document.getElementById('guardaOmes').textContent;
+console.log('Faz alguma conta necessária');
+   var num = document.getElementById('guardaOmes').textContent;
     var nomeMes = datas(num);
 //-----------RECEBENDO O VALOR DAS DIVS E INPUTS-----------//
 
@@ -442,7 +442,7 @@ function calculos()
         balanco();
        
     }
-};
+}
 
 function calculosDelete(valor_final, transferencia_final, valorDB){
     var num = document.getElementById('guardaOmes').textContent;
@@ -553,11 +553,13 @@ function calculosEditarParte2(num)
 
             if(transferencia_final == "Receita"){
 
+            
             var receita = document.getElementById('ganhoInicial').textContent.replace(',', '.').replace('R$', '');
-            var resultado = parseFloat(receita) + valor_final;
+            var resultado = parseFloat(receita) + parseFloat(valor_final);
+            valor_final = parseFloat(valor_final).toFixed(2);
+     
             resultado = parseFloat(resultado).toFixed(2);
-
-
+            console.log(resultado);
 
             update(ref(db,"users/"+user_final+"/"+nomeMes+"/ganhoMensal/"),{
                 ganhoMensal: resultado
@@ -826,7 +828,8 @@ function alterData(){
     var nomeMes = datas(numA);
     var nome = document.getElementById('titulo').value;
     var tipo = document.getElementById('categoria').value;
-    var valor = parseFloat(document.getElementById('valor').value).toFixed(2);
+    var valor = document.getElementById('valor').value;
+    valor = parseFloat(valor).toFixed(2);
     var periodo =document.getElementById('periodo').value;
     var transferencia = document.getElementById('transferencia').value;
     var num = String(document.getElementById('idEditar').value).trim();

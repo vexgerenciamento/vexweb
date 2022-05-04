@@ -168,13 +168,32 @@ if (senha_login.value == usuario[8] && nome_login.value == usuario[3])
             {
                 metas: "",
                 gastos:"",
-                balancoMensal: "",
-                despesaMensal:"",
-                ganhoMensal:""
+                balancoMensal: 0,
+                despesaMensal: 0,
+                ganhoMensal:0
                 
             }
-            )}}
+            )
             
+            set(ref(db, "users/"+nome.value+"/"+meses[i]+"/balancoMensal"),
+            {
+                balancoMensal: 0
+            }
+            )
+            
+            set(ref(db, "users/"+nome.value+"/"+meses[i]+"/despesaMensal"),
+            {
+                despesaMensal: 0
+            }
+            )
+            
+            set(ref(db, "users/"+nome.value+"/"+meses[i]+"/ganhoMensal"),
+            {
+                ganhoMensal:0
+            }
+            )
+        }
+    }
         
         function geral(){
             cadastro();
