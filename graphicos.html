@@ -80,7 +80,6 @@
                     <canvas class="line-chart" style="background-color: white;"></canvas>                    
                     <canvas class="bar-chart" style="background-color: white;"></canvas>      
                     <select class="selectBox" id="selectBoxBar" onchange="getSelectBoxBarValue()" style="height: 25px;">
-                        <option></option>
                         <option value="Alimentação">Alimentação</option>
                         <option value="Entretenimento">Entretenimento</option>
                         <option value="GastosPessoais">Gastos Pessoais</option>
@@ -297,11 +296,40 @@ switch(mes){
             return selectBoxBar;
         }      
 
+            function createBarChartData(){   
+            const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/gastos/");
+            onValue(dbRef,(snapshot)=>{    
+                var gastos = [];
+                snapshot.forEach(childSnapshot =>{
+                    gastos.push(childSnapshot.val());
+                        gastos.forEach(element => {
+                            var arrayValor = [];
+                            var arrayTitulo = [];
+                            var valor = element.valor;
+                            var titulo = element.titulo;
+                            arrayValor.push(valor);
+                            arrayTitulo.push(titulo);            
 
+                            var data = {
+                                labels: arrayTitulo,
+                                datasets: [{
+                                    barPercentage: 0.5,
+                                    barThickness: 6,
+                                    maxBarThickness: 8,
+                                    minBarLength: 2,
+                                    data: arrayValor
+                                }]
+                            };
+                    return data;
+                        });
+                });
+            });
+        }    
+        
+        
+        //******* MESMA FUNÇÃO DE CIMA SÓ QUE DIFERENTE ********
 
-
-
-        window.createBarChartData = function(){   
+        /* window.createBarChartData = function(){   
             const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/gastos/");
             onValue(dbRef,(snapshot)=>{    
                 var gastos = [];
@@ -337,10 +365,7 @@ switch(mes){
                     }]
                 };
             return data;
-        }
-        
-
-
+        }*/
 
         DoughnutChart.config.data;
 
