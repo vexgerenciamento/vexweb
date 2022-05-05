@@ -81,7 +81,7 @@
             <div class="line-bar-chart-wrapper">
                     <canvas class="line-chart" style="background-color: white;"></canvas>                    
                     <canvas class="bar-chart" style="background-color: white;"></canvas>      
-                    <select class="selectBox" id="selectBoxBar" onchange="getSelectBoxBarValue()" style="height: 25px;">
+                    <select class="selectBox" id="selectBoxBar" style="height: 25px;">
                         <option value="Alimentação">Alimentação</option>
                         <option value="Entretenimento">Entretenimento</option>
                         <option value="GastosPessoais">Gastos Pessoais</option>
@@ -262,13 +262,6 @@ switch(mes){
         var BarChart = new Chart(bar_chart , {
             type: 'bar',
             data: createBarChartData(),
-            options: {
-                plugins: {
-                    legend: {
-                        display: false
-                    }
-                }
-            }
         });
 
         function createLineChartData(){
@@ -294,12 +287,13 @@ switch(mes){
             };
             return data;            
         }      
-/*
+
         var selectBoxBar;
         window.getSelectBoxBarValue = function(){
             selectBoxBar = document.getElementById('selectBoxBar').value;
             return selectBoxBar;
-        }      */
+            console.log(selectBoxBar);
+        }      
 
             function createBarChartData(){   
                 var gastos = [];
@@ -311,10 +305,14 @@ switch(mes){
                         gastos.push(childSnapshot.val());
                     });                
                     gastos.forEach(element => {
+                        if(element.tipo != getSelectBoxBarValue()){
+                            return;
+                        }else{
                         var valor = parseInt(element.valor);
                         var titulo = element.titulo;
                         arrayValor.push(valor);
-                        arrayTitulo.push(titulo);                                    
+                        arrayTitulo.push(titulo);
+                        }                                    
                     });
                 });
                 var data = {
@@ -328,6 +326,7 @@ switch(mes){
                     }]
                 }
                 return data;
+                BarChart.update();
             }  
         
 
@@ -340,9 +339,15 @@ switch(mes){
         }
 
         BarChart.config.data = createBarChartData();
-        setTimeout(function() { BarChart.update(); },800);   
-        document.getElementById("botao-legal").addEventListener("click", createBarChartData);
+        setTimeout(function() { BarChart.update(); },800);  
+        document.getElementById("selectBoxBar").addEventListener("change", getSelectBoxBarValue()); 
 
+        </script>
+        <script>
+            
+        function teste(elememnto){
+            console.log(elemento.value);
+        }
         </script>
  
 </html>
