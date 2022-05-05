@@ -5,6 +5,8 @@
         <title>Gráficos</title>
         <link rel="stylesheet" href="CSS/main2.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="autenticar.js"></script>
+        <sscript src="logout.js"></sscript>
     </head>
     <style>
         .chart-wrapper{
@@ -73,7 +75,7 @@
                 <div color="green" class="sc-hBEYId ftQMvP" id="balanco">R$00 </div>
             </div>
         </div>
-    </div>
+    </div>   
         
         <div class="chart-wrapper">
             <div class="line-bar-chart-wrapper">
@@ -89,9 +91,9 @@
                         <option value="Seguros">Seguros</option>
                         <option value="Transportes">Transportes</option>                
                         <option value="Utilidades">Utilidades</option>
-                        <option value="Outros">Outros</option>
-                        
-                    </select>              
+                        <option value="Outros">Outros</option>                        
+                    </select>       
+   
                 </div>
                 <button onclick="lineResetZoom()">Reset</button>
                 <div class="doughnut-chart-wrapper">
@@ -194,15 +196,11 @@ switch(mes){
         var nomeMes = datas();
         var biscu = [];
         var tbody = document.getElementById('tbody');
-
-        function AddItemTb(titulo, valor){            
-
+        function AddItemTb(titulo, valor){          
             let trow = document.createElement('tr');
             let td1 = document.createElement('td');
             let td2 = document.createElement('td');
-            
-            biscu.push([titulo, valor]);  
-            
+            biscu.push([titulo, valor]);              
         }
 
         var ID = 0;
@@ -262,9 +260,16 @@ switch(mes){
 
         var bar_chart = document.getElementsByClassName("bar-chart");
         var BarChart = new Chart(bar_chart , {
-            type: "bar",
-            data: [{}],
-        });     
+            type: 'bar',
+            data: createBarChartData(),
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
 
         function createLineChartData(){
             var meses = ["jan", "fev", "mar", "abril", "maio", "jun"];
@@ -276,7 +281,7 @@ switch(mes){
                     balancos.push(childSnapshot.val());                 
                 });
                 });                                   
-            }       
+            }     
 
             var data = {
                 labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
@@ -289,83 +294,42 @@ switch(mes){
             };
             return data;            
         }      
-
+/*
         var selectBoxBar;
         window.getSelectBoxBarValue = function(){
             selectBoxBar = document.getElementById('selectBoxBar').value;
             return selectBoxBar;
-        }      
+        }      */
 
             function createBarChartData(){   
-            const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/gastos/");
-            onValue(dbRef,(snapshot)=>{    
                 var gastos = [];
-                snapshot.forEach(childSnapshot =>{
-                    gastos.push(childSnapshot.val());
-                        gastos.forEach(element => {
-                            var arrayValor = [];
-                            var arrayTitulo = [];
-                            var valor = element.valor;
-                            var titulo = element.titulo;
-                            arrayValor.push(valor);
-                            arrayTitulo.push(titulo);            
-
-                            var data = {
-                                labels: arrayTitulo,
-                                datasets: [{
-                                    barPercentage: 0.5,
-                                    barThickness: 6,
-                                    maxBarThickness: 8,
-                                    minBarLength: 2,
-                                    data: arrayValor
-                                }]
-                            };
-                    return data;
-                        });
+                var arrayValor = [];
+                var arrayTitulo = [];
+                const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/gastos/");
+                onValue(dbRef,(snapshot)=>{    
+                    snapshot.forEach(childSnapshot =>{
+                        gastos.push(childSnapshot.val());
+                    });                
+                    gastos.forEach(element => {
+                        var valor = parseInt(element.valor);
+                        var titulo = element.titulo;
+                        arrayValor.push(valor);
+                        arrayTitulo.push(titulo);                                    
+                    });
                 });
-            });
-        }    
-        
-        
-        //******* MESMA FUNÇÃO DE CIMA SÓ QUE DIFERENTE ********
-
-        /* window.createBarChartData = function(){   
-            const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/gastos/");
-            onValue(dbRef,(snapshot)=>{    
-                var gastos = [];
-                snapshot.forEach(childSnapshot =>{
-                gastos.push(childSnapshot.val());
-                AddAllToArrays(gastos);
-            });
-            });
-        }
-
-        window.AddAllToArrays = function(gastos){
-
-            gastos.forEach(element => {
-                AddItemToArrays(element.titulo, element.valor);
-            });
-        }
-
-        window.AddItemToArrays = function(titulo, valor){
-            var arrayValor = [];
-            var arrayTitulo = [];
-            arrayValor.push(valor);
-            arrayTitulo.push(titulo);
-            
-
-            var data = {
-                labels: arrayTitulo,
-                datasets: [{
-                    barPercentage: 0.5,
-                    barThickness: 6,
-                    maxBarThickness: 8,
-                    minBarLength: 2,
-                    data: arrayValor
+                var data = {
+                    labels: arrayTitulo,
+                    datasets: [
+                    {
+                        label: "Teste",
+                        data: arrayValor,
+                        backgroundColor: ["#ccf6ec", "#ff6654", "#009784", "#009784", "#009784"],
+                        hoverBackgroundColor: ["#ccf6ec", "#ff6654", "#009784", "#009784", "#009784"]
                     }]
-                };
-            return data;
-        }*/
+                }
+                return data;
+            }  
+        
 
         DoughnutChart.config.data;
 
@@ -376,7 +340,8 @@ switch(mes){
         }
 
         BarChart.config.data = createBarChartData();
-        setTimeout(function() { LineChart.update(); },800);   
+        setTimeout(function() { BarChart.update(); },800);   
+        document.getElementById("botao-legal").addEventListener("click", createBarChartData);
 
         </script>
  
