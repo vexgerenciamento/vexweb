@@ -34,18 +34,28 @@
             border-radius: 2%;
         }
 
-        .doughnut-chart-wrapper {
+        .doughnut-chart-wrapper {            
+            display: flex;
+        }
+
+        .doughnut-chart1 {
             background-color: white;
             margin-top: 15%;
             border-radius: 2%;
-            height: 100%;
-            width: 100%;
-            margin-left: 45%;
+            height: 85%;
+            width: 85%;
+            margin-right: 8%;
+            margin-left: 5%;
         }
 
-        .doughnut-chart {
-            height: 75%;
-            width: 75%;
+        .doughnut-chart2 {
+            background-color: white;
+            margin-top: 15%;
+            border-radius: 2%;
+            height: 85%;
+            width: 85%;
+            margin-left: 8%;
+            margin-right: 5%;
         }
 
     </style>
@@ -81,7 +91,7 @@
             <div class="line-bar-chart-wrapper">
                     <canvas class="line-chart" style="background-color: white;"></canvas>                    
                     <canvas class="bar-chart" style="background-color: white;"></canvas>      
-                    <select class="selectBox" id="selectBoxBar" style="height: 25px;">
+                    <select class="selectBox" id="selectBoxBar" name="selectBoxBar" style="height: 25px;">
                         <option value="Alimentação">Alimentação</option>
                         <option value="Entretenimento">Entretenimento</option>
                         <option value="GastosPessoais">Gastos Pessoais</option>
@@ -92,18 +102,14 @@
                         <option value="Transportes">Transportes</option>                
                         <option value="Utilidades">Utilidades</option>
                         <option value="Outros">Outros</option>                        
-                    </select>       
-   
+                    </select>      
                 </div>
                 <button onclick="lineResetZoom()">Reset</button>
                 <div class="doughnut-chart-wrapper">
-                <select>
-                    <option value="receita">Receita</option>
-                    <option value="despesa">Despesa</option>
-                </select>
-        <canvas class="doughnut-chart"></canvas>
-        </div>
-        <br>
+                    <canvas class="doughnut-chart1"></canvas>
+                    <canvas class="doughnut-chart2"></canvas>
+                </div>
+            <br>
         
         </div>
         <section class="chart-tables" style="display: none;">
@@ -119,11 +125,11 @@
             </table>
         </section>
     </body>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.js"></script>
+        <script src="node_modules/chart.js/dist/chart.min.js"></script>
+        <script src="node_modules/chart.js/dist/chart.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/1.2.1/chartjs-plugin-zoom.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/1.2.1/chartjs-plugin-zoom.js"></script>
+        <script src="node_modules/chartjs-plugin-zoom/dist/chartjs-plugin-zoom.min.js"></script>
+        <script src="node_modules/chartjs-plugin-zoom/dist/chartjs-plugin-zoom.js"></script>
         <script type="module">
             const usuario = "teste";
             var user_final = localStorage.getItem('valueText');
@@ -226,8 +232,14 @@ switch(mes){
             return "rgb(" + o(r()*s) + ", " + o(r()*s) + ", " + o(r()*s) + ")";
         }
 
-        var doughnut_chart = document.getElementsByClassName("doughnut-chart");
-        var DoughnutChart = new Chart(doughnut_chart, {
+        var doughnut_chart1 = document.getElementsByClassName("doughnut-chart1");
+        var DoughnutChart = new Chart(doughnut_chart1, {
+            type: "doughnut",
+            data: [{}],
+        });
+
+        var doughnut_chart2 = document.getElementsByClassName("doughnut-chart2");
+        var DoughnutChart = new Chart(doughnut_chart2, {
             type: "doughnut",
             data: [{}],
         });
@@ -262,6 +274,13 @@ switch(mes){
         var BarChart = new Chart(bar_chart , {
             type: 'bar',
             data: createBarChartData(),
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
         });
 
         function createLineChartData(){
@@ -295,42 +314,61 @@ switch(mes){
             console.log(selectBoxBar);
         }      
 
-            function createBarChartData(){   
-                var gastos = [];
-                var arrayValor = [];
-                var arrayTitulo = [];
-                const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/gastos/");
-                onValue(dbRef,(snapshot)=>{    
-                    snapshot.forEach(childSnapshot =>{
-                        gastos.push(childSnapshot.val());
-                    });                
-                    gastos.forEach(element => {
-                        if(element.tipo != getSelectBoxBarValue()){
-                            return;
-                        }else{
-                        var valor = parseInt(element.valor);
-                        var titulo = element.titulo;
-                        arrayValor.push(valor);
-                        arrayTitulo.push(titulo);
-                        }                                    
-                    });
+        function createBarChartData(){   
+            var gastos = [];
+            var arrayValor = [];
+            var arrayTitulo = [];
+            const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/gastos/");
+            onValue(dbRef,(snapshot)=>{    
+                snapshot.forEach(childSnapshot =>{
+                    gastos.push(childSnapshot.val());
+                });                
+                gastos.forEach(element => {
+                    if(element.tipo != getSelectBoxBarValue()){
+                        return;
+                    }else{
+                    var valor = parseInt(element.valor);
+                    var titulo = element.titulo;
+                    arrayValor.push(valor);
+                    arrayTitulo.push(titulo);
+                    }                                    
                 });
-                var data = {
-                    labels: arrayTitulo,
-                    datasets: [
-                    {
-                        label: "Teste",
-                        data: arrayValor,
-                        backgroundColor: ["#ccf6ec", "#ff6654", "#009784", "#009784", "#009784"],
-                        hoverBackgroundColor: ["#ccf6ec", "#ff6654", "#009784", "#009784", "#009784"]
-                    }]
-                }
-                return data;
-                BarChart.update();
-            }  
-        
+            });
 
-        DoughnutChart.config.data;
+            var data = {
+                labels: arrayTitulo,
+                datasets: [{
+                    label: "Teste",
+                    data: arrayValor,
+                    backgroundColor: ["#ccf6ec", "#ff6654", "#009784", "#009784", "#009784"],
+                    hoverBackgroundColor: ["#ccf6ec", "#ff6654", "#009784", "#009784", "#009784"]
+                }]
+                    
+            }
+                return data;
+        }  
+
+        function createDoughnutChart1Data(){
+            var gastos = [];
+            const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/gastos/");
+            onValue(dbRef,(snapshot)=>{    
+                snapshot.forEach(childSnapshot =>{
+                    gastos.push(childSnapshot.val());
+                });
+                gastos.forEach(element => {
+                    if(element.transferencia != "Despesa"){
+                        return;
+                    }else{
+
+                    }
+                }); 
+            });
+        }
+
+        createDoughnutChart1Data();
+
+
+
 
         LineChart.config.data = createLineChartData();
         setTimeout(function() { LineChart.update(); },800);
@@ -339,15 +377,21 @@ switch(mes){
         }
 
         BarChart.config.data = createBarChartData();
-        setTimeout(function() { BarChart.update(); },800);  
-        document.getElementById("selectBoxBar").addEventListener("change", getSelectBoxBarValue()); 
+        setTimeout(function() { BarChart.update(); },800); 
+        
+        
 
-        </script>
-        <script>
-            
-        function teste(elememnto){
-            console.log(elemento.value);
-        }
-        </script>
- 
+
+
+
+
+        const selectElement = document.querySelector('#selectBoxBar');
+        selectElement.addEventListener('change', (event) => {
+            getSelectBoxBarValue();
+            BarChart.config.data = createBarChartData();
+            BarChart.update();
+        });
+
+    </script>
+    
 </html>
