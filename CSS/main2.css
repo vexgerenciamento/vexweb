@@ -253,12 +253,69 @@ tr {
   color: rgb(0, 0, 0);
   background-color: blue;
 }
-.vermelho {
+.alimentacao {
   display: inline-block;
   padding: 5px 10px;
   border-radius: 5px;
   color: rgb(255, 255, 255);
-  background-color: #f1a310;
+  background-color: #ff4b2b;
+  font-weight: bold;
+}
+.entretenimento {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  background-color: #db2d1f;
+  font-weight: bold;
+}
+.habitacao {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  background-color: #8dd34e;
+  font-weight: bold;
+}
+.salario {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  background-color: #31830e;
+  font-weight: bold;
+}
+.saude {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  background-color: #2cc5f4;
+  font-weight: bold;
+}
+.seguros {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  background-color: #1675af;
+  font-weight: bold;
+}
+.transportes {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  background-color: #8e6eb7;
+  font-weight: bold;
+}
+.outros {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  background-color: #69419d;
+  font-weight: bold;
 }
 .gZUaaB {
   padding: 10px 0;

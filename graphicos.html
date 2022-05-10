@@ -66,26 +66,6 @@
               <img src="img/vex dourado.png" style="width: 30px; height: 30px; position: relative;">
                VEX - Cresça Financeiramente</h1>
          </div>
-        <div class="sc-kEjbQP fuVdYh">
-            <div class="sc-iqHYmW jklSBJ setleft"><</div>
-            <div class="sc-crrszt cPfwyB">Abril de 2022</div>
-            <div class="sc-iqHYmW jklSBJ setright">></div>
-        </div>
-        <div class="sc-dQoVA klQxRK">
-            <div class="sc-bqyKOL fXEhmA">
-                <div class="sc-kstqJO bQkMyN">Ganhos</div>
-                <div class="sc-hBEYId hZHyLH" id="ganhoInicial">R$00</div>
-            </div>
-            <div class="sc-bqyKOL fXEhmA">
-                <div class="sc-kstqJO bQkMyN">Despesas</div>
-                <div class="sc-hBEYId hZHyLH" style="color:rgb(255, 0, 0);" id="despesaInicial">R$00 </div>
-            </div>
-            <div class="sc-bqyKOL fXEhmA">
-                <div class="sc-kstqJO bQkMyN">Balanço</div>
-                <div color="green" class="sc-hBEYId ftQMvP" id="balanco">R$00 </div>
-            </div>
-        </div>
-    </div>   
         
         <div class="chart-wrapper">
             <div class="line-bar-chart-wrapper">
@@ -94,13 +74,11 @@
                     <select class="selectBox" id="selectBoxBar" name="selectBoxBar" style="height: 25px;">
                         <option value="Alimentação">Alimentação</option>
                         <option value="Entretenimento">Entretenimento</option>
-                        <option value="GastosPessoais">Gastos Pessoais</option>
                         <option value="Habitação">Habitação</option>
                         <option value="Salário">Salário</option>
                         <option value="Saúde">Saúde</option>
                         <option value="Seguros">Seguros</option>
                         <option value="Transportes">Transportes</option>                
-                        <option value="Utilidades">Utilidades</option>
                         <option value="Outros">Outros</option>                        
                     </select>      
                 </div>
@@ -341,7 +319,7 @@ switch(mes){
                     label: "Teste",
                     data: arrayValor,
                     backgroundColor: ["#ccf6ec", "#ff6654", "#009784", "#009784", "#009784"],
-                    hoverBackgroundColor: ["#ccf6ec", "#ff6654", "#009784", "#009784", "#009784"]
+                    hoverBackgroundColor: ["#ffeeb3"]
                 }]
                     
             }
@@ -350,8 +328,8 @@ switch(mes){
 
         function createDoughnutChartData(tipo){
             var gastos = [];
-            var arrayValores = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-            var arrayTipos = ["Alimentação", "Entretenimento", "GastosPessoais", "Habitação", "Salário", "Saúde", "Seguros", "Transportes", "Utilidades", "Outros"];
+            var arrayValores = [0, 0, 0, 0, 0, 0, 0, 0];
+            var arrayTipos = ["Alimentação", "Entretenimento", "Habitação", "Salário", "Saúde", "Seguros", "Transportes", "Outros"];
             const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/gastos/");
             onValue(dbRef,(snapshot)=>{    
                 snapshot.forEach(childSnapshot =>{
@@ -373,8 +351,7 @@ switch(mes){
                 datasets: [{
                     label: "Teste",
                     data: arrayValores,
-                    backgroundColor: ["#ccf6ec", "#ff6654", "#009784", "#009784", "#009784"],
-                    hoverBackgroundColor: ["#ccf6ec", "#ff6654", "#009784", "#009784", "#009784"]
+                    backgroundColor: ["#ff4b2b", "#db2d1f", "#8dd34e", "#31830e", "#2cc5f4", "#1675af", "#8e6eb7", "#69419d"],
                 }]     
             }
                 return data;
