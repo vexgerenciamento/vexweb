@@ -124,6 +124,7 @@
                 <tbody id="tbody"></tbody>
             </table>
         </section>
+        <button id="teste">TESTE</button>
     </body>
         <script src="node_modules/chart.js/dist/chart.min.js"></script>
         <script src="node_modules/chart.js/dist/chart.js"></script>
@@ -233,13 +234,13 @@ switch(mes){
         }
 
         var doughnut_chart1 = document.getElementsByClassName("doughnut-chart1");
-        var DoughnutChart = new Chart(doughnut_chart1, {
+        var DoughnutChart1 = new Chart(doughnut_chart1, {
             type: "doughnut",
             data: [{}],
         });
 
         var doughnut_chart2 = document.getElementsByClassName("doughnut-chart2");
-        var DoughnutChart = new Chart(doughnut_chart2, {
+        var DoughnutChart2 = new Chart(doughnut_chart2, {
             type: "doughnut",
             data: [{}],
         });
@@ -311,7 +312,6 @@ switch(mes){
         window.getSelectBoxBarValue = function(){
             selectBoxBar = document.getElementById('selectBoxBar').value;
             return selectBoxBar;
-            console.log(selectBoxBar);
         }      
 
         function createBarChartData(){   
@@ -350,6 +350,92 @@ switch(mes){
 
         function createDoughnutChart1Data(){
             var gastos = [];
+            var arrayValores = [];
+            var alimentacao = 0.0;
+            var entretenimento = 0.0;
+            var gastospessoais = 0.0;
+            var habitacao = 0.0;
+            var salario = 0.0;
+            var saude = 0.0;
+            var seguros = 0.0;
+            var transportes = 0.0;
+            var utilidades = 0.0;
+            var outros = 0.0;
+            const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/gastos/");
+            onValue(dbRef,(snapshot)=>{    
+                snapshot.forEach(childSnapshot =>{
+                    gastos.push(childSnapshot.val());
+                });
+                gastos.forEach(element => {
+                    if(element.transferencia != "Receita"){
+                       if (element.tipo == "Alimentação"){
+                            alimentacao = parseFloat(alimentacao);
+                            alimentacao = alimentacao+ parseFloat(element.valor);                   
+                        }else if (element.tipo == "Entretenimento"){
+                            entretenimento = parseFloat(entretenimento);
+                            entretenimento = entretenimento+ parseFloat(element.valor);
+                        }else if (element.tipo == "GastosPessoais"){
+                            gastospessoais = parseFloat(gastospessoais);
+                            gastospessoais = gastospessoais+ parseFloat(element.valor);
+                        }else if (element.tipo == "Habitação"){
+                            habitacao = parseFloat(habitacao);
+                            habitacao = habitacao+ parseFloat(element.valor);
+                        }else if (element.tipo == "Salário"){
+                            salario = parseFloat(salario);
+                            salario = salario+ parseFloat(element.valor);
+                        }else if (element.tipo == "Habitação"){
+                            habitacao = parseFloat(habitacao);
+                            habitacao = habitacao+ parseFloat(element.valor);
+                        }else if (element.tipo == "Saúde"){
+                            saude = parseFloat(saude);
+                            saude = saude+ parseFloat(element.valor);
+                        }else if (element.tipo == "Seguros"){
+                            seguros = parseFloat(seguros);
+                            seguros = seguros+ parseFloat(element.valor);
+                        }else if (element.tipo == "Transportes"){
+                            transportes = parseFloat(transportes);
+                            transportes = transportes+ parseFloat(element.valor);
+                        }else if (element.tipo == "Habitação"){
+                            habitacao = parseFloat(habitacao);
+                            habitacao = habitacao+ parseFloat(element.valor);
+                        }else if (element.tipo == "Utilidades"){
+                            utilidades = parseFloat(utilidades);
+                            utilidades = utilidades+ parseFloat(element.valor);
+                        }else if (element.tipo == "Outros"){
+                            outros = parseFloat(outros);
+                            outros = outros+ parseFloat(element.valor);
+                        }
+                    }
+                }); 
+                    arrayValores.push(alimentacao, entretenimento, gastospessoais, habitacao, salario, saude, seguros, transportes, utilidades, outros);
+            });
+           
+            var data = {
+                labels: ['Alimentacao', 'Entretenimento', 'Gastos Pessoais', 'Habitação', 'Salário', 'Saúde', 'Seguros', 'Transportes', 'Utilidades', 'Outros'],
+                datasets: [{
+                    label: "Teste",
+                    data: arrayValores,
+                    backgroundColor: ["#ccf6ec", "#ff6654", "#009784", "#009784", "#009784"],
+                    hoverBackgroundColor: ["#ccf6ec", "#ff6654", "#009784", "#009784", "#009784"]
+                }]
+                    
+            }
+                return data;
+        }
+
+        function createDoughnutChart2Data(){
+            var gastos = [];
+            var arrayValores = [];
+            var alimentacao = 0.0;
+            var entretenimento = 0.0;
+            var gastospessoais = 0.0;
+            var habitacao = 0.0;
+            var salario = 0.0;
+            var saude = 0.0;
+            var seguros = 0.0;
+            var transportes = 0.0;
+            var utilidades = 0.0;
+            var outros = 0.0;
             const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/gastos/");
             onValue(dbRef,(snapshot)=>{    
                 snapshot.forEach(childSnapshot =>{
@@ -357,17 +443,66 @@ switch(mes){
                 });
                 gastos.forEach(element => {
                     if(element.transferencia != "Despesa"){
-                        return;
-                    }else{
-
+                       if (element.tipo == "Alimentação"){
+                            alimentacao = parseFloat(alimentacao);
+                            alimentacao = alimentacao+ parseFloat(element.valor);                   
+                        }else if (element.tipo == "Entretenimento"){
+                            entretenimento = parseFloat(entretenimento);
+                            entretenimento = entretenimento+ parseFloat(element.valor);
+                        }else if (element.tipo == "GastosPessoais"){
+                            gastospessoais = parseFloat(gastospessoais);
+                            gastospessoais = gastospessoais+ parseFloat(element.valor);
+                        }else if (element.tipo == "Habitação"){
+                            habitacao = parseFloat(habitacao);
+                            habitacao = habitacao+ parseFloat(element.valor);
+                        }else if (element.tipo == "Salário"){
+                            salario = parseFloat(salario);
+                            salario = salario+ parseFloat(element.valor);
+                        }else if (element.tipo == "Habitação"){
+                            habitacao = parseFloat(habitacao);
+                            habitacao = habitacao+ parseFloat(element.valor);
+                        }else if (element.tipo == "Saúde"){
+                            saude = parseFloat(saude);
+                            saude = saude+ parseFloat(element.valor);
+                        }else if (element.tipo == "Seguros"){
+                            seguros = parseFloat(seguros);
+                            seguros = seguros+ parseFloat(element.valor);
+                        }else if (element.tipo == "Transportes"){
+                            transportes = parseFloat(transportes);
+                            transportes = transportes+ parseFloat(element.valor);
+                        }else if (element.tipo == "Habitação"){
+                            habitacao = parseFloat(habitacao);
+                            habitacao = habitacao+ parseFloat(element.valor);
+                        }else if (element.tipo == "Utilidades"){
+                            utilidades = parseFloat(utilidades);
+                            utilidades = utilidades+ parseFloat(element.valor);
+                        }else if (element.tipo == "Outros"){
+                            outros = parseFloat(outros);
+                            outros = outros+ parseFloat(element.valor);
+                        }
                     }
                 }); 
+                    arrayValores.push(alimentacao, entretenimento, gastospessoais, habitacao, salario, saude, seguros, transportes, utilidades, outros);
             });
+           
+            var data = {
+                labels: ['Alimentacao', 'Entretenimento', 'Gastos Pessoais', 'Habitação', 'Salário', 'Saúde', 'Seguros', 'Transportes', 'Utilidades', 'Outros'],
+                datasets: [{
+                    label: "Teste",
+                    data: arrayValores,
+                    backgroundColor: ["#ccf6ec", "#ff6654", "#009784", "#009784", "#009784"],
+                    hoverBackgroundColor: ["#ccf6ec", "#ff6654", "#009784", "#009784", "#009784"]
+                }]
+                    
+            }
+                return data;
         }
 
-        createDoughnutChart1Data();
+        DoughnutChart1.config.data = createDoughnutChart1Data();
+        setTimeout(function() {  DoughnutChart1.update(); },800);
 
-
+        DoughnutChart2.config.data = createDoughnutChart2Data();
+        setTimeout(function() {  DoughnutChart2.update(); },800);
 
 
         LineChart.config.data = createLineChartData();
@@ -380,7 +515,7 @@ switch(mes){
         setTimeout(function() { BarChart.update(); },800); 
         
         
-
+        document.getElementById('teste').addEventListener('click', createDoughnutChart1Data)
 
 
 
