@@ -9,6 +9,37 @@
     font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
 }
+
+.signup{
+    align-self: center;
+}
+
+.formulario{
+    min-width: 264px;
+}
+
+/*AQUI FICA O BOTÃO*/
+#btn_entrar{
+    background-color: #ffb327;
+    border: none;
+    width: 200px;
+    height: 30px;
+    align-self: center;
+    margin-top: 10px;
+    cursor:pointer;
+
+}
+
+#bt_cadastrar{
+    border-radius: 2px;
+    background-color: #ffb327;
+    border: none;
+    width: 230px;
+    height: 30px;
+    box-shadow: 0px 0px 5px 0px #1f241f;
+}
+
+
 /* AQUI FICA A SESSÃO ONDE TUDO ESTÁ INSRIDO- DEFINIMOS A COR, TAMANHO MINIMO, POSIÇÃO, DISPLAY E TRANSIÇÕES*/
 section
 {
@@ -18,7 +49,7 @@ section
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 5%;
     transition: 0.5s;
 }
 /* AQUI FICA O ESPAÇO ONDE ATUAM OS DOIS FORMULÁRIOS QUANDO ESTÃO OU NÃO APARECENDO*/
@@ -59,6 +90,8 @@ section .container .usuario .imgBx img
     height: 100%;
     object-fit: cover;
 }
+
+
 /* AQUI FICA O COMPORTAMENTO DO ESPAÇO DOS FORMULÁRIOS*/
 section .container .usuario .formulario
 {
@@ -74,7 +107,7 @@ section .container .usuario .formulario
     transition: 0.5s;
 }
 /* AQUI FICA O TITULO DOS FORMULÁRIOS*/
-section .container .usuario .formulario h2
+section .container .usuario .formulario #h2
 {
     font-size: 25px;
     font-weight: 600;
@@ -99,6 +132,7 @@ section .container .usuario .formulario input
     margin: 8px 0;
     letter-spacing: 1px;
     font-weight: 300;
+    box-shadow: 0px 0px 5px 0px #1f241f;
 }
 /* AQUI FICA O BOTÃO DOS FORMULÁRIOS*/
 section .container .usuario .formulario input[type="submit"]
@@ -160,6 +194,7 @@ section .container .usuario.cadastro .imgBx
 section .container.active .usuario.cadastro .formulario 
 {
     top: 0;
+    align-items: center;
 }
 /* AQUI FICA A IMAGEM DE LOGIN AO SER CHAMADO*/
 section .container.active .usuario.cadastro .imgBx 
@@ -186,4 +221,522 @@ section .container .login.imgBx
 section .container.active .login.imgBx
 {
     top:-100%;
+}
+
+
+@media (max-width:670px) {
+    
+ 
+    .imgBx{
+        display: none;
+    }
+
+    .formulario #h2{
+        padding-bottom: 25%;
+        padding-left: 3%;
+    }
+
+    #nome_login{
+        bottom: 25%;
+        position: relative;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+        padding-left: 37%;
+        padding-left: 10%;
+        width: 82.4% ;
+        align-self: center;
+    }
+
+    #senha_login{
+        bottom: 25%;
+        position: relative;
+        padding-left: 10%;
+        align-self: center;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+        width: 82.4% ;
+    }
+
+    section .container .usuario .formulario{
+        width: 100%;
+    }
+
+    #btn_entrar{
+        background-color: #ffb327;
+        position: relative;
+        border: none;
+        width: 48%;
+        height: 10%;
+        bottom: 15%;
+        left: 27%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+        align-self: auto;
+    }
+
+    #bt_cadastrar{
+        border-radius: 2px;
+        background-color: #ffb327;
+        border: none;
+        width: 220px;
+        height: 30px;
+    }
+
+    *{
+        transition: 1s;
+    }
+}
+
+@media (max-width:518px) {
+    #btn_entrar{
+        background-color: #ffb327;
+        position: relative;
+        border: none;
+        width: 48%;
+        height: 9%;
+        bottom: 15%;
+        align-self: auto;
+    }
+
+    *{
+        transition: 1s;
+    }
+   
+}
+
+
+@media (max-width:542px) {
+
+    #btn_entrar{
+        background-color: #ffb327;
+        position: relative;
+        border: none;
+        width: 48%;
+        bottom: 15%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+        align-self: auto;
+    }
+
+    #nome_login{
+        bottom: 25%;
+        position: relative;
+        margin-left: 9%;
+        padding-left: 37%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+        padding-left: 10%;
+
+    }
+
+    #senha_login{
+        bottom: 25%;
+        position: relative;
+        margin-left: 9%;
+        padding-left: 10%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+    }
+   
+    *{
+        transition: 1s;
+    }
+
+}
+
+@media (max-width:574px) {
+    #btn_entrar{
+        background-color: #ffb327;
+        position: relative;
+        border: none;
+        width: 48%;
+        bottom: 15%;
+        align-self: auto;
+    }
+   
+    #nome_login{
+        bottom: 25%;
+        position: relative;
+        margin-left: 9%;
+        padding-left: 37%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+        padding-left: 10%;
+
+    }
+
+    section .container .usuario .formulario #h2{
+        padding-bottom: 25%;
+    }
+
+    #senha_login{
+        bottom: 25%;
+        position: relative;
+        margin-left: 9%;
+        padding-left: 10%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+    }
+
+    *{
+        transition: 1s;
+    }
+
+}
+
+@media (max-width:588px) {
+    #btn_entrar{
+        background-color: #ffb327;
+        position: relative;
+        border: none;
+        width: 48%;
+        bottom: 15%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+        align-self: auto;
+    }
+
+    #nome_login{
+        bottom: 25%;
+        position: relative;
+        margin-left: 9%;
+        padding-left: 37%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+        padding-left: 10%;
+
+    }
+
+    #senha_login{
+        bottom: 25%;
+        position: relative;
+        margin-left: 9%;
+        padding-left: 10%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+    }
+
+    *{
+        transition: 1s;
+    }
+   
+}
+
+@media (max-width:528px) {
+    #btn_entrar{
+        background-color: #ffb327;
+        position: relative;
+        border: none;
+        width: 48%;
+        bottom: 15%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+        align-self: auto;
+    }
+   
+    #nome_login{
+        bottom: 25%;
+        position: relative;
+        margin-left: 7%;
+        padding-left: 37%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+        padding-left: 10%;
+
+    }
+
+    #senha_login{
+        bottom: 25%;
+        position: relative;
+        margin-left: 7%;
+        padding-left: 10%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+    }
+
+    }
+
+    *{
+        transition: 1s;
+    }
+
+
+@media (max-width:492px) {
+    #btn_entrar{
+        background-color: #ffb327;
+        position: relative;
+        border: none;
+        width: 48%;
+        bottom: 15%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+        align-self: auto;
+    }
+   
+    #nome_login{
+        bottom: 25%;
+        position: relative;
+        margin-left: 7%;
+        padding-left: 35%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+        padding-left: 10%;
+
+    }
+
+    #senha_login{
+        bottom: 25%;
+        position: relative;
+        margin-left: 7%;
+        padding-left: 10%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+    }
+
+    *{
+        transition: 1s;
+    }
+
+    section .container .usuario .formulario #h2{
+        padding-bottom: 35%;
+    }
+
+}
+
+
+@media (max-width:390px) {
+    #nome_login{
+        bottom: 25%;
+        position: relative;
+        margin-left: 7%;
+        padding-left: 35%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+        padding-left: 10%;
+
+    }
+
+    #senha_login{
+        bottom: 25%;
+        position: relative;
+        margin-left: 7%;
+        padding-left:35%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+        padding-left: 10%;
+
+    }
+
+    *{
+        transition: 1s;
+    }
+}
+
+
+@media (max-width:508px) {
+    .imgBx{
+        display: none;
+    }
+
+    *{
+        transition: 1s;
+    }
+}
+
+@media (max-width:497px) {
+
+
+    #btn_entrar{
+        background-color: #ffb327;
+        position: relative;
+        border: none;
+        width: 48%;
+        bottom: 15%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+        align-self: auto;
+    }
+
+    #nome_login{
+        bottom: 25%;
+        position: relative;
+        margin-left: 8%;
+        padding-left: 45%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+        padding-left: 10%;
+
+    }
+
+    #senha_login{
+        bottom: 25%;
+        position: relative;
+        margin-left: 8%;
+        padding-left:45%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+        padding-left: 10%;
+
+    }
+
+    *{
+        transition: 1s;
+    }
+   
+}
+
+@media (max-width:460px) {
+
+    .formulario #h3{
+        padding-bottom: 10%;
+        padding-left: 5%;
+    }
+
+    #btn_entrar{
+        background-color: #ffb327;
+        position: relative;
+        border: none;
+        width: 48%;
+        bottom: 15%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+        align-self: auto;
+    }
+
+    #nome_login{
+        bottom: 25%;
+        position: relative;
+        margin-left: 4%;
+        padding-left: 40%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+        padding-left: 10%;
+
+    }
+
+    #senha_login{
+        bottom: 25%;
+        position: relative;
+        margin-left: 4%;
+        padding-left:40%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+        padding-left: 10%;
+
+    }
+   
+    *{
+        transition: 1s;
+    }
+}
+
+
+
+
+@media (max-width:480px) {
+
+
+    .formulario #h3{
+        padding-bottom: 10%;
+        padding-left: 5%;
+    }
+
+    #btn_entrar{
+        background-color: #ffb327;
+        position: relative;
+        border: none;
+        width: 48%;
+        bottom: 15%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+        align-self: auto;
+    }
+
+    #nome_login{
+        bottom: 25%;
+        position: relative;
+        margin-left: 4%;
+        padding-left: 40%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+        align-self: center;
+        padding-left: 10%;
+
+    }
+
+    #senha_login{
+        bottom: 25%;
+        position: relative;
+        margin-left: 4%;
+        padding-left:40%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+        align-self: center;
+        padding-left: 10%;
+
+    }
+    *{
+        transition: 1s;
+    }
+   
+}
+
+
+
+
+
+
+
+@media (max-width:370px) {
+
+    *{
+        transition: 1s;
+    }
+
+
+    .formulario #h3{
+        padding-bottom: 15%;
+        padding-left: 5%;
+    }
+
+    #btn_entrar{
+        background-color: #ffb327;
+        position: relative;
+        border: none;
+        width: 48%;
+        bottom: 15%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+        align-self: auto;
+    }
+
+    #nome_login{
+        bottom: 25%;
+        position: relative;
+        margin-left: 8%;
+        padding-left: 35%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+        padding-left: 10%;
+ 
+    }
+
+    #senha_login{
+        bottom: 25%;
+        position: relative;
+        margin-left: 8%;
+        padding-left:35%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+        padding-left: 10%;
+
+    }
+
+    #btn_entrar{
+        background-color: #ffb327;
+        position: relative;
+        border: none;
+        width: 48%;
+        height: 7%;
+        bottom: 15%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+        align-self: auto;
+    }
+   
+    #nome_login{
+        bottom: 25%;
+        position: relative;
+        margin-left: 7%;
+        padding-left: 35%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+        padding-left: 10%;
+
+    }
+
+    #senha_login{
+        bottom: 25%;
+        position: relative;
+        margin-left: 7%;
+        box-shadow: 0px 0px 5px 0px #1f241f;
+        padding-left: 10%;
+
+    }
+
+    *{
+        transition: 1s;
+    }
+
+    section .container .usuario .formulario #h2{
+        padding-bottom: 45%;
+    }
+   
 }

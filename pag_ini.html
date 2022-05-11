@@ -12,8 +12,10 @@
     <!--AQUI ESTÁ TODO O CONTEÚDO DO SITE-->
     <section>
         <!--AQUI ESTÁ AS DUAS FOTOS E OS DOIS FORMULÁRIOS-->
-        <div class="container">
+        
+            <div class="container">
             <!--AQUI ESTÁ O FORMULÁRIO DE LOGIN-->
+        
             <div class="usuario login">
                 <!--AQUI ESTÁ A IMAGEM DO FORMULÁRIO DE LOGIN-->
                 <div class="imgBx">
@@ -21,7 +23,7 @@
                 </div>
                 <!--AQUI ESTÁ OS INPUTS DO FORMULÁRIO DE LOGIN-->
                 <div class="formulario">
-                    <h2>Login</h2>
+                    <h2 id="h2">Login</h2>
                     <input type="text" placeholder="Nome" id="nome_login"/>
                     <input type="password" placeholder="Senha" id="senha_login"/>
                     <button id="btn_entrar">ENTRAR</button>
@@ -29,17 +31,18 @@
                     <p class="signup">Não tem conta? <a href="#" onclick="mudanca();">Cadastre-se.</a></p>
                 </div>
             </div>
+        
             <!--AQUI ESTÁ O FORMULÁRIO DE CADASTRO-->
             <div class="usuario cadastro">
                 
                 <div class="formulario">
                     <!--AQUI ESTÁ OS INPUTS DO FORMULÁRIO DE CADASTRO-->
-                    <h2>Crie sua conta</h2>
-                    <input type="text" placeholder="Nome" id="nome_cadastro">
-                    <input type="text" placeholder="E-mail" id="email_cadastro"/>
-                    <input type="password" placeholder="Crie sua Senha" id="senha_cadastro"/>
-                    <input type="password" placeholder="Digite a senha novamente" id="senha_repitida"/>
-                    <button id="bt_cadastrar" onclick="geral();"> CADASTRAR </button>
+                    <h2 id="h3" style="font-size: 25px;">Crie sua conta</h2>
+                    <input type="text" placeholder="Nome" id="nome_cadastro" style="box-shadow: 0px 0px 5px 0px #1f241f;">
+                    <input type="text" placeholder="E-mail" id="email_cadastro" style="box-shadow: 0px 0px 5px 0px #1f241f;"/>
+                    <input type="password" placeholder="Crie sua Senha" id="senha_cadastro" style="box-shadow: 0px 0px 5px 0px #1f241f;"/>
+                    <input type="password" placeholder="Digite a senha novamente" id="senha_repitida" style="box-shadow: 0px 0px 5px 0px #1f241f;"/>
+                    <button id="bt_cadastrar" style="margin-top: 20px;" onclick="geral();"> CADASTRAR </button>
                     <!--AQUI ESTÁ A PERGUNTA QUE CHAMA A FUNÇÃO MUDANCA-->
                     <p class="signup">Quer entrar no site? <a href="#" onclick="mudanca();">Entre.</a></p>
                 </div>
@@ -211,6 +214,12 @@ if (senha_login.value == usuario[8] && nome_login.value == usuario[3])
         document.getElementById('btn_entrar').addEventListener('click', GetAllDataRT);
 
 
-      </script>
+        var input = document.getElementById("senha_login")
+        input.addEventListener("keyup", function(event){
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("btn_entrar").click();
+        }});
+</script>
 </body>
 </html>
