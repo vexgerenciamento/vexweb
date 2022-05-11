@@ -22,6 +22,7 @@
       Notice the use of  in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
+
       Unlike "/favicon.ico" or "favicon.ico", "/favicon.ico" will
       work correctly both with client-side routing and a non-CORPO public URL.
       Learn how to configure a non-CORPO public URL by running `npm run build`.
@@ -88,13 +89,11 @@
                             </option>
                             <option value="Alimentação">Alimentação</option>
                             <option value="Entretenimento">Entretenimento</option>
-                            <option value="GastosPessoais">Gastos Pessoais</option>
                             <option value="Habitação">Habitação</option>
                             <option value="Salário">Salário</option>
                             <option value="Saúde">Saúde</option>
                             <option value="Seguros">Seguros</option>
                             <option value="Transportes">Transportes</option>                
-                            <option value="Utilidades">Utilidades</option>
                             <option value="Outros">Outros</option>
                             
                         </select>
@@ -149,7 +148,7 @@
                                 </div>
                             </div>
                             <div id="IdVerdadeiro"></div>
-                            <div id="guardaOmes"></div>
+                            <div id="guardaOmes" style="color: white;"></div>
                         </div>
                         <script type="module">
                             var user_final = localStorage.getItem('valueText');
@@ -194,13 +193,13 @@ function mesAnterior(){
     mes = mes-1;
     mes = parseInt(mes);
     console.log(mes);
-    if(mes<1){ m = 1}
+    if(mes<1){ mes = 1}
     document.getElementById('guardaOmes').textContent = mes;
     GetAllDataRT();
     GetGanho();
     GetDespesa();
     GetBalanco();
-    balanco();
+    //balanco();
     datas(mes);
 }
 function mesPosterior(){
@@ -208,18 +207,19 @@ function mesPosterior(){
     mes = mes+1;
     mes = parseInt(mes);
     console.log(mes);
-    if(mes>6){ m = 6}
+    if(mes>6){ mes = 6}
     document.getElementById('guardaOmes').textContent = mes;
     GetAllDataRT();
     GetGanho();
     GetDespesa();
     GetBalanco();
-    balanco();
+   //balanco();
     datas(mes);
 }
 
 function datas(mes){
 
+   
     if(mes == undefined){
     var data = new Date()
 var mes = String(data.getMonth() + 1);
@@ -230,7 +230,7 @@ switch(mes){
     case '1':
         nomeMes = "jan";
         document.getElementById('mes').textContent = "Janeiro de 2022";
-        console.log(nomeMes);
+  
 
     return nomeMes;
 
@@ -238,32 +238,32 @@ switch(mes){
     case '2':
     nomeMes = "fev"; 
     document.getElementById('mes').textContent = "Fevereiro de 2022";
-    console.log(nomeMes);
+
     return nomeMes;
 
     break;
     case '3':
     nomeMes = "mar"; 
     document.getElementById('mes').textContent = "Março de 2022";
-    console.log(nomeMes);
+
         return nomeMes;
     break;
     case '4':
     nomeMes = "abril"; 
     document.getElementById('mes').textContent = "Abril de 2022";
-    console.log(nomeMes);
+
         return nomeMes;
     break;
     case '5':
     nomeMes = "maio"; 
     document.getElementById('mes').textContent = "Maio de 2022";
-    console.log(nomeMes);
+
         return nomeMes;
     break;
     case '6':
     nomeMes = "jun"; 
     document.getElementById('mes').textContent = "Junho de 2022";
-    console.log(nomeMes);
+
         return nomeMes;
     break;
     
@@ -275,18 +275,16 @@ switch(mes){
 function GetGanho(){
     var num = document.getElementById('guardaOmes').textContent;
     var nomeMes = datas(num);
-const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/ganhoMensal/");
-
+    const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/ganhoMensal/");
     onValue(dbRef,(snapshot)=>{    
         var ganhos = [];
     snapshot.forEach(childSnapshot =>{
     ganhos.push(childSnapshot.val());
-    console.log(ganhos);
     document.getElementById('ganhoInicial').textContent = `R$ ${ganhos}`;      
  
     });
- 
     });
+   
 }
 
 function GetBalanco(){
@@ -304,7 +302,6 @@ const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/balancoMensal/");
  
     });
 }
-
 function GetDespesa(){
     var num = document.getElementById('guardaOmes').textContent;
     var nomeMes = datas(num);
@@ -322,6 +319,8 @@ const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/despesaMensal/");
        
 function balanco()
 {
+    {
+    
     var num = document.getElementById('guardaOmes').textContent;
     var nomeMes = datas(num);
 //-----------RECEBENDO O VALOR DAS DIVS-----------//
@@ -342,9 +341,9 @@ function balanco()
 //-----------CONTA FINAL-----------//
 
     var balanco = ganhoInicialFloat - despesaInicialFloat;
-    console.log(balanco);
+
     balanco = parseFloat(balanco).toFixed(2);
-    console.log(balanco);
+
 
     set(ref(db, "users/"+user_final+"/"+nomeMes+"/balancoMensal/"),
             {
@@ -368,10 +367,12 @@ function balanco()
         document.getElementById('balanco').textContent = `R$${balanco}`;
     }
 }
+}
 
 function calculos()
 {
-    var num = document.getElementById('guardaOmes').textContent;
+console.log('Faz alguma conta necessária');
+   var num = document.getElementById('guardaOmes').textContent;
     var nomeMes = datas(num);
 //-----------RECEBENDO O VALOR DAS DIVS E INPUTS-----------//
 
@@ -439,7 +440,7 @@ function calculos()
         balanco();
        
     }
-};
+}
 
 function calculosDelete(valor_final, transferencia_final, valorDB){
     var num = document.getElementById('guardaOmes').textContent;
@@ -496,41 +497,41 @@ var nomeMes = datas();
 
 function calculosEditarParte1(num)
 {
-    var num = document.getElementById('guardaOmes').textContent;
-    var nomeMes = datas(num);
-
 //1 - SUBTRAI
 const dbref = ref(db);
 get(child(dbref,"users/"+user_final+"/"+nomeMes+"/gastos/"+num)).then((snapshot)=>{
            if(snapshot.exists()){
-               var valor_final = parseFloat(snapshot.val().valor);
+               var valor_final = parseFloat(snapshot.val().valor).toFixed(2);
                var transferencia_final = snapshot.val().transferencia; 
             }
-            console.log('VALOR: '+valor_final+', TRANSFERÊNCIA: '+transferencia_final);
+            
+
             if(transferencia_final == "Receita"){
 
-            console.log('RETIRAR DA RECEITA');
+      
             var receita = document.getElementById('ganhoInicial').textContent.replace(',', '.').replace('R$', '');
             var resultado = parseFloat(receita) - valor_final;
-            resultado = parseFloat(resultado).toFixed(2);
-            console.log(resultado);
+            resultado = parseFloat(resultado);
+                
+
 
             update(ref(db,"users/"+user_final+"/"+nomeMes+"/ganhoMensal/"),{
                 ganhoMensal: resultado
             }
-            );console.log('foi');
+            );
             
 } else{
-            console.log('RETIRAR DA DESPESA');
-            var receita = document.getElementById('despesaInicial').textContent.replace(',', '.').replace('R$', '');
-            var resultado = parseFloat(receita) - valor_final;
-            resultado = parseFloat(resultado).toFixed(2);
-            console.log(resultado);
 
+            var receita = document.getElementById('despesaInicial').textContent.replace(',', '.').replace('R$', '');
+            var resultado = parseFloat(receita) - parseFloat(valor_final).toFixed(2);
+            resultado = parseFloat(resultado).toFixed(2);
+            valor_final = parseFloat(valor_final).toFixed(2);
+
+    
             update(ref(db,"users/"+user_final+"/"+nomeMes+"/despesaMensal/"),{
                 despesaMensal: resultado
             }
-            );console.log('foi');
+            );
 }
         });
 
@@ -541,20 +542,20 @@ get(child(dbref,"users/"+user_final+"/"+nomeMes+"/gastos/"+num)).then((snapshot)
 
 function calculosEditarParte2(num)
 {   
-    var num = document.getElementById('guardaOmes').textContent;
-    var nomeMes = datas(num);
     const dbref = ref(db);
     get(child(dbref,"users/"+user_final+"/"+nomeMes+"/gastos/"+num)).then((snapshot)=>{
            if(snapshot.exists()){
-               var valor_final = parseFloat(snapshot.val().valor);
+               var valor_final = parseFloat(snapshot.val().valor).toFixed(2);
                var transferencia_final = snapshot.val().transferencia; 
             }
 
             if(transferencia_final == "Receita"){
 
-
+            
             var receita = document.getElementById('ganhoInicial').textContent.replace(',', '.').replace('R$', '');
-            var resultado = parseFloat(receita) + valor_final;
+            var resultado = parseFloat(receita) + parseFloat(valor_final);
+            valor_final = parseFloat(valor_final).toFixed(2);
+     
             resultado = parseFloat(resultado).toFixed(2);
             console.log(resultado);
 
@@ -566,15 +567,18 @@ function calculosEditarParte2(num)
             balanco();
             
 } else{
-            console.log('RETIRAR DA DESPESA');
+
+            
             var receita = document.getElementById('despesaInicial').textContent.replace(',', '.').replace('R$', '');
             var resultado = parseFloat(receita) + parseFloat(valor_final);
-            console.log(resultado);
+            valor_final = parseFloat(valor_final).toFixed(2);
+     
+            resultado = parseFloat(resultado).toFixed(2);
 
             update(ref(db,"users/"+user_final+"/"+nomeMes+"/despesaMensal/"),{
                 despesaMensal: resultado
             }
-            );console.log('foi');
+            );
             balanco();
 }
         });
@@ -603,7 +607,7 @@ const createClient = (client) => {
    if((nome=="") || (tipo=="") || (valor=="") ||(periodo=="") ||(transferencia=="")){
      alert('preencha todos os campos');
    }else{
-    console.log(nomeMes);
+
     localStorage.setItem('db_client', client);
         set(ref(db, "users/"+user_final+"/"+nomeMes+"/gastos/"+id),
             {
@@ -644,6 +648,7 @@ var tbody = document.getElementById('tbody');
 
 function GetAllDataRT(){
     var num = document.getElementById('guardaOmes').textContent;
+    console.log(num);
     var nomeMes = datas(num);
 const dbRef = ref(db,"users/"+user_final+"/"+nomeMes+"/gastos/");
 
@@ -704,29 +709,23 @@ td2.classList.add("sc-fubCzh");
 
 if (tipo == "Alimentação")
 {
-td2.classList.add("vermelho");
+td2.classList.add("alimentacao");
 }else if(tipo == "Entretenimento"){
-    td2.classList.add("hiVCco");
-}else if(tipo == "GastosPessoais"){
-    td2.classList.add("kuaJPV");
-}
-else if(tipo == "Habitação"){
-    td2.classList.add("hiVCco");
+    td2.classList.add("entretenimento");
+}else if(tipo == "Habitação"){
+    td2.classList.add("habitacao");
 }else if(tipo == "Salário"){
-    td2.classList.add("kuaJPV");
+    td2.classList.add("salario");
 }
 else if(tipo == "Saúde"){
-    td2.classList.add("hiVCco");
+    td2.classList.add("saude");
 }else if(tipo == "Seguros"){
-    td2.classList.add("kuaJPV");
+    td2.classList.add("seguros");
 }
 else if(tipo == "Transportes"){
-    td2.classList.add("hiVCco");
-}else if(tipo == "Utilidades"){
-    td2.classList.add("kuaJPV");
-}
-else if(tipo == "Outros"){
-    td2.classList.add("hiVCco");
+    td2.classList.add("transportes");
+}else if(tipo == "Outros"){
+    td2.classList.add("outros");
 }
 
 td2.classList.add("alignCategoria");
@@ -817,16 +816,18 @@ function DadosParaOCalculoExcluir(id){
 
 //função do update
 function alterData(){
-    var num = document.getElementById('guardaOmes').textContent;
-    var nomeMes = datas(num);
+    var numA = document.getElementById('guardaOmes').textContent;
+    var nomeMes = datas(numA);
     var nome = document.getElementById('titulo').value;
     var tipo = document.getElementById('categoria').value;
     var valor = document.getElementById('valor').value;
+    valor = parseFloat(valor).toFixed(2);
     var periodo =document.getElementById('periodo').value;
     var transferencia = document.getElementById('transferencia').value;
     var num = String(document.getElementById('idEditar').value).trim();
 
     calculosEditarParte1(num);
+
             update(ref(db,"users/"+user_final+"/"+nomeMes+"/gastos/"+num),{
                 titulo: nome,
                 tipo: tipo,
@@ -837,7 +838,6 @@ function alterData(){
             .then(()=>{
 
                 calculosEditarParte2(num);
-                
                 document.getElementById('titulo').value = "";
                 document.getElementById('categoria').value = "";
                 document.getElementById('valor').value = "";
