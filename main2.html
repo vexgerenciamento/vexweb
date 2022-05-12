@@ -208,7 +208,7 @@ function mesAnterior(){
     mes = mes-1;
     mes = parseInt(mes);
     console.log(mes);
-    if(mes<1){ mes = 1}
+    if(mes<1){ mes = 12}
     document.getElementById('guardaOmes').textContent = mes;
     GetAllDataRT();
     GetGanho();
@@ -222,7 +222,7 @@ function mesPosterior(){
     mes = mes+1;
     mes = parseInt(mes);
     console.log(mes);
-    if(mes>6){ mes = 6}
+    if(mes>12){ mes = 1}
     document.getElementById('guardaOmes').textContent = mes;
     GetAllDataRT();
     GetGanho();

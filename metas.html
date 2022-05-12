@@ -72,7 +72,7 @@
                         </div>
                         <div class="sc-bqyKOL fXEhmA">
                             <div class="sc-kstqJO bQkMyN">Balanço</div>
-                            <div color="green" class="sc-hBEYId ftQMvP" id="balanco">R$00 </div>
+                            <div color="green" class="sc-hBEYId ftQMvP" id="balanco">R$00</div>
                         </div>
                     </div>
                 </div>
@@ -100,14 +100,16 @@
                     </label>
                     
                     <label class="sc-fFucqa hmyJIQ">
-                        <div class="sc-bkzYnD kLxSip">Ínicio</div>
-                        <input type="date" class="sc-idOiZg rwnMw" name="dataInicial" id="dataInicial" required>
-                    </label>
-                    <label class="sc-fFucqa hmyJIQ">
-                        <div class="sc-bkzYnD kLxSip">Fim</div>
-                        <input type="date" class="sc-idOiZg rwnMw" name="dataFinal" id="dataFinal" required>
-                    </label>
-                  
+                        <div class="sc-bkzYnD kLxSip">Período</div>
+                        <select class="sc-idOiZg rwnMw" id="periodo" required>
+                            <option>
+
+                            </option>
+                            <option value="Mensal">Mensal</option>
+                            <option value="Bimestral">Bimestral</option>
+                            <option value="Trimestral">Trimestral</option>                            
+                        </select>
+                    </label>                 
                         <label class="sc-fFucqa hmyJIQ">
                             <div class="sc-bkzYnD kLxSip">Valor</div>
                             <input type="number" class="sc-idOiZg rwnMw" value="" id="valor"></label>
@@ -123,7 +125,6 @@
                                         <th class="sc-jSgvzq fouaSj alignTitulo">Título</th>
                                         <th width="130" class="sc-jSgvzq fcmwIe alignCategoria">Categoria</th>
                                         <th width="100" class="sc-jSgvzq gyieuF alignData">Periodo</th>
-                                        <th width="100" class="sc-jSgvzq jaAmsI alignValor">Transf</th>
                                         <th width="150" class="sc-jSgvzq jaAmsI alignValor">Valor</th>
                                         <th width="130" style="color: white; text-align: start; position: relative; left: 16px;">Ações</th>
                                     </tr>
@@ -368,10 +369,7 @@ const createClient = (client) => {
     var nome = document.getElementById('titulo').value;
     var tipo = document.getElementById('categoria').value;
     var valor = document.getElementById('valor').value;
-    var dataInicial = document.getElementById('dataInicial').value;
-    dataInicial = dataInicial.split('-').reverse().join('/');
-    var dataFinal = document.getElementById('dataFinal').value;
-    dataFinal = dataFinal.split('-').reverse().join('/');
+    var periodo = document.getElementById('periodo').value;
     valor = parseFloat(valor).toFixed(2);
     var data = new Date();
     var segundos = data.getSeconds();
@@ -382,7 +380,7 @@ const createClient = (client) => {
     var anos = String(data.getFullYear());
     var id = anos+meses+dias+horas+minutos+segundos;
 
-   if((nome=="") || (tipo=="") || (valor=="") ||(dataFinal=="") ||(dataInicial=="")){
+   if((nome=="") || (tipo=="") || (valor=="") ||(periodo=="")){
      alert('preencha todos os campos');
    }else{
 
@@ -393,8 +391,7 @@ const createClient = (client) => {
                 titulo: nome,
                 tipo: tipo,
                 valor: valor,
-                dataInicial: dataInicial,
-                dataFinal: dataFinal
+                periodo: periodo
 
             }
             )
@@ -403,8 +400,7 @@ const createClient = (client) => {
               document.getElementById('titulo').value = "";
               document.getElementById('categoria').value = "";
               document.getElementById('valor').value = "";
-              document.getElementById('dataInicial').value = "";
-              document.getElementById('dataFinal').value = "";
+              document.getElementById('periodo').value = "";
             
             })
             .catch((error)=>{
@@ -443,20 +439,18 @@ function AddAll(users){
 
 tbody.innerHTML="";
 users.forEach(element => {
-    AddItemTb(element.titulo, element.tipo, element.dataInicial ,element.dataFinal, element.valor, element.id);
+    AddItemTb(element.titulo, element.tipo, element.periodo, element.valor, element.id);
 });
 }
 
 //-------------------CRIANDO LINHAS DA TABELA-------------------\\
-function AddItemTb(titulo, tipo, dataInicial ,dataFinal, valor, id){
+function AddItemTb(titulo, tipo, periodo, valor, id){
     
 let trow = document.createElement('tr');
 
 let td1 = document.createElement('td');
 
 let td2 = document.createElement('td');
-
-let td3 = document.createElement('td');
 
 let td4 = document.createElement('td');
 
@@ -465,11 +459,10 @@ let td5 = document.createElement('td');
 let td6 = document.createElement('td');
 
 
-valores.push([titulo, tipo, dataInicial ,dataFinal, valor, id]);
+valores.push([titulo, tipo, periodo, valor, id]);
 td1.innerHTML=titulo; 
 td2.innerHTML=tipo; 
-td3.innerHTML=dataInicial;
-td4.innerHTML=dataFinal;
+td4.innerHTML=periodo;
 td5.innerHTML= 'R$ '+valor;
 
 trow.appendChild(td1);
@@ -504,11 +497,6 @@ else if(tipo == "Transportes"){
 }
 
 td2.classList.add("alignCategoria");
-trow.appendChild(td3);
-//
-td3.classList.add("sc-iBPTik"); 
-td3.classList.add("gZUaaB"); 
-td3.classList.add("alignData");
 
 trow.appendChild(td4);
 //
@@ -568,10 +556,7 @@ function alterData(){
     var tipo = document.getElementById('categoria').value;
     var valor = document.getElementById('valor').value;
     valor = parseFloat(valor).toFixed(2);
-    var dataInicial =document.getElementById('dataInicial').value;
-    dataInicial = dataInicial.split('-').reverse().join('/');
-    var dataFinal = document.getElementById('dataFinal').value;
-    dataFinal = dataInicial.split('-').reverse().join('/');
+    var periodo = document.getElementById('periodo').value;
     var num = String(document.getElementById('idEditar').value).trim();
 
 
@@ -580,8 +565,7 @@ function alterData(){
                 titulo: nome,
                 tipo: tipo,
                 valor: valor,
-                dataInicial: dataInicial,
-                dataFinal: dataFinal
+                periodo: periodo
             })
             .then(()=>{
 
@@ -589,8 +573,7 @@ function alterData(){
                 document.getElementById('titulo').value = "";
                 document.getElementById('categoria').value = "";
                 document.getElementById('valor').value = "";
-                document.getElementById('dataInicial').value = "";
-                document.getElementById('dataFinal').value = "";
+                document.getElementById('periodo').value = "";
                 document.querySelector('#editar').classList.add('sumiu');
                 document.querySelector('#adicionar').classList.remove('sumiu');
 
@@ -616,12 +599,7 @@ function selectData(){
                 document.getElementById('titulo').value = snapshot.val().titulo;
                 document.getElementById('categoria').value = snapshot.val().tipo;
                 document.getElementById('valor').value = snapshot.val().valor;
-                var dataInicial =  snapshot.val().dataInicial
-                dataInicial = dataInicial.split('/').reverse().join('-');
-                document.getElementById('dataInicial').value = dataInicial;
-                var dataFinal =  snapshot.val().dataFinal
-                dataFinal = dataFinal.split('/').reverse().join('-');
-                document.getElementById('dataFinal').value = dataFinal; 
+                document.getElementById('periodo').value = snapshot.val().periodo
                document.querySelector('#editar').classList.remove('sumiu');
                document.querySelector('#adicionar').classList.add('sumiu');
                
