@@ -42,20 +42,20 @@
             background-color: white;
             margin-top: 15%;
             border-radius: 2%;
-            height: 85%;
-            width: 85%;
-            margin-right: 8%;
-            margin-left: 5%;
+            height: 95%;
+            width: 95%;
+            margin-right: 2%;
+            margin-left: 2%;
         }
 
         .doughnut-chart2 {
             background-color: white;
             margin-top: 15%;
             border-radius: 2%;
-            height: 85%;
-            width: 85%;
-            margin-left: 8%;
-            margin-right: 5%;
+            height: 95%;
+            width: 95%;
+            margin-left: 2%;
+            margin-right: 2%;
         }
 
     </style>
@@ -102,7 +102,6 @@
                 <tbody id="tbody"></tbody>
             </table>
         </section>
-        <button id="teste">TESTE</button>
     </body>
         <script src="node_modules/chart.js/dist/chart.min.js"></script>
         <script src="node_modules/chart.js/dist/chart.js"></script>
@@ -214,13 +213,13 @@ switch(mes){
         var doughnut_chart1 = document.getElementsByClassName("doughnut-chart1");
         var DoughnutChart1 = new Chart(doughnut_chart1, {
             type: "doughnut",
-            data: [{}],
+            data: createDoughnutChartData("Receita"),
         });
 
         var doughnut_chart2 = document.getElementsByClassName("doughnut-chart2");
         var DoughnutChart2 = new Chart(doughnut_chart2, {
             type: "doughnut",
-            data: [{}],
+            data: createDoughnutChartData("Despesa"),
         });
         
         var line_chart = document.getElementsByClassName("line-chart");
@@ -254,6 +253,17 @@ switch(mes){
             type: 'bar',
             data: createBarChartData(),
             options: {
+                scales: {
+                    yAxes: {
+                        display: true,
+                        ticks: {
+                            beginAtZero: true,
+                            steps: 10,
+                            stepValue: 5,
+                            max: 100
+                        }
+                    },
+                },
                 plugins: {
                     legend: {
                         display: false
@@ -265,22 +275,52 @@ switch(mes){
         function createLineChartData(){
             var meses = ["jan", "fev", "mar", "abril", "maio", "jun"];
             var balancos = []; 
+            var ganhos = [];
+            var despesas = [];
             for (var i = 0; i<meses.length; i++){
                 const dbRef = ref(db, "users/"+user_final+"/"+meses[i]+"/balancoMensal/");
                 onValue(dbRef,(snapshot)=>{                                          
                     snapshot.forEach(childSnapshot =>{
                     balancos.push(childSnapshot.val());                 
-                });
+                    });
                 });                                   
-            }     
+            }
+            for (var i = 0; i<meses.length; i++){
+                const dbRef = ref(db, "users/"+user_final+"/"+meses[i]+"/ganhoMensal/");
+                onValue(dbRef,(snapshot)=>{                                          
+                    snapshot.forEach(childSnapshot =>{
+                    ganhos.push(childSnapshot.val());                 
+                    });
+                });                                   
+            }
+            for (var i = 0; i<meses.length; i++){
+                const dbRef = ref(db, "users/"+user_final+"/"+meses[i]+"/despesaMensal/");
+                onValue(dbRef,(snapshot)=>{                                          
+                    snapshot.forEach(childSnapshot =>{
+                    despesas.push(childSnapshot.val());                 
+                    });
+                });                                   
+            }        
 
             var data = {
                 labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
                 datasets: [{
                     label: "Balanços Mensais",
                     data: balancos,
-                    fill: true,
-                    borderColor: 'rgb(245, 193, 22)'
+                    borderColor: 'rgb(245, 193, 22)',
+                    tension: 0.2
+                },
+                {
+                    label: "Ganhos Mensais",
+                    data: ganhos,
+                    borderColor: 'rgb(10, 233, 10)',
+                    tension: 0.2,
+                },
+                {
+                    label: "Despesas Mensais",
+                    data: despesas,
+                    borderColor: 'rgb(255, 0, 0',
+                    tension: 0.2
                 }], 
             };
             return data;            
@@ -316,10 +356,8 @@ switch(mes){
             var data = {
                 labels: arrayTitulo,
                 datasets: [{
-                    label: "Teste",
                     data: arrayValor,
                     backgroundColor: ["#ccf6ec", "#ff6654", "#009784", "#009784", "#009784"],
-                    hoverBackgroundColor: ["#ffeeb3"]
                 }]
                     
             }
@@ -352,6 +390,7 @@ switch(mes){
                     label: "Teste",
                     data: arrayValores,
                     backgroundColor: ["#ff4b2b", "#db2d1f", "#8dd34e", "#31830e", "#2cc5f4", "#1675af", "#8e6eb7", "#69419d"],
+                    hoverOffset: 7
                 }]     
             }
                 return data;
@@ -373,8 +412,6 @@ switch(mes){
         BarChart.config.data = createBarChartData();
         setTimeout(function() { BarChart.update(); },800); 
         
-        document.getElementById('teste').addEventListener('click', createDoughnutChart1Data)
-
         const selectElement = document.querySelector('#selectBoxBar');
         selectElement.addEventListener('change', (event) => {
             getSelectBoxBarValue();
