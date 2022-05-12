@@ -99,17 +99,15 @@
                         </select>
                     </label>
                     
-                  <label class="sc-fFucqa hmyJIQ">
-                    <div class="sc-bkzYnD kLxSip">Transferência</div>
-                    <select class="sc-dIUeWJ gesRgG" id="transferencia">
-
-                        <option>
-                          
-                        </option>
-                        <option value="Receita">Receita</option>
-                        <option value="Despesa">Despesa</option>
-                    </select>
-                </label>
+                    <label class="sc-fFucqa hmyJIQ">
+                        <div class="sc-bkzYnD kLxSip">Ínicio</div>
+                        <input type="date" class="sc-idOiZg rwnMw" name="dataInicial" id="dataInicial" required>
+                    </label>
+                    <label class="sc-fFucqa hmyJIQ">
+                        <div class="sc-bkzYnD kLxSip">Fim</div>
+                        <input type="date" class="sc-idOiZg rwnMw" name="dataFinal" id="dataFinal" required>
+                    </label>
+                  
                         <label class="sc-fFucqa hmyJIQ">
                             <div class="sc-bkzYnD kLxSip">Valor</div>
                             <input type="number" class="sc-idOiZg rwnMw" value="" id="valor"></label>
@@ -119,14 +117,14 @@
                                 <button class="sc-hHfuMS dcAQVR sumiu" id="editar">Editar</button>
                             </label>
                         </div>
-                        <table class="bkasyz">
+                        <table class="sc-eCstlR bkasyz">
                                 <thead>
                                     <tr>
                                         <th class="sc-jSgvzq fouaSj alignTitulo">Título</th>
-                                        <th width="130" class="fcmwIe alignCategoria">Categoria</th>
-                                        <th width="100" class="gyieuF alignData">Dia | Horas</th>
-                                        <th width="100" class="jaAmsI alignValor">Transf</th>
-                                        <th width="150" class="jaAmsI alignValor">Valor</th>
+                                        <th width="130" class="sc-jSgvzq fcmwIe alignCategoria">Categoria</th>
+                                        <th width="100" class="sc-jSgvzq gyieuF alignData">Periodo</th>
+                                        <th width="100" class="sc-jSgvzq jaAmsI alignValor">Transf</th>
+                                        <th width="150" class="sc-jSgvzq jaAmsI alignValor">Valor</th>
                                         <th width="130" style="color: white; text-align: start; position: relative; left: 16px;">Ações</th>
                                     </tr>
                                 </thead>
@@ -138,14 +136,10 @@
                                 </div>
                             </div>
                             <div id="IdVerdadeiro"></div>
-                            <div id="guardaOmes" style="color: white; display: none;" ></div>
+                            <div id="guardaOmes" style="color: white;"></div>
                         </div>
                         <script type="module">
-
-var user_final = localStorage.getItem('valueText');
-        var senha_final = localStorage.getItem('senha');
-        var usuario_logado = localStorage.getItem('nome');
-
+                            var user_final = localStorage.getItem('valueText');
         
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
@@ -177,27 +171,6 @@ var user_final = localStorage.getItem('valueText');
 
         const db = getDatabase();
 
-        function autenticar(){
-            const dbref = ref(db);
-get(child(dbref,"users/"+user_final)).then((snapshot)=>{
-
-                var nome = snapshot.val().fullname;
-                var senha = snapshot.val().password;
-                if ((localStorage.getItem('nome') == nome) && (localStorage.getItem('senha') == senha))
-                {   
-                }
-                else
-                {
-
-                    window.location.href = 'index.html';
-                } 
-                
-                
-        }).catch((error)=>{
-            window.location.href = 'index.html';
-        });
-        }
-        window.onload = autenticar;
         
 
 //------------------------------DECLARANDO VÁRIAVEIS GLOBAIS------------------------------//
@@ -210,7 +183,6 @@ function mesAnterior(){
     console.log(mes);
     if(mes<1){ mes = 1}
     document.getElementById('guardaOmes').textContent = mes;
-    GetAllDataRT();
     GetGanho();
     GetDespesa();
     GetBalanco();
@@ -224,15 +196,12 @@ function mesPosterior(){
     console.log(mes);
     if(mes>6){ mes = 6}
     document.getElementById('guardaOmes').textContent = mes;
-    GetAllDataRT();
     GetGanho();
     GetDespesa();
     GetBalanco();
    //balanco();
     datas(mes);
 }
-
-
 
 function datas(mes){
 
@@ -280,52 +249,6 @@ switch(mes){
     case '6':
     nomeMes = "jun"; 
     document.getElementById('mes').textContent = "Junho de 2022";
-
-        
-    return nomeMes;
-    break;
-    case '7':
-    nomeMes = "jul"; 
-    document.getElementById('mes').textContent = "Julho de 2022";
-
-       
-    return nomeMes;
-    break;
-    case '8':
-    nomeMes = "ago"; 
-    document.getElementById('mes').textContent = "Agosto de 2022";
-
- 
-    return nomeMes;
-    break;
-
-        case '9':
-    nomeMes = "set"; 
-    document.getElementById('mes').textContent = "Setembro de 2022";
-
-
-    return nomeMes;
-    break;
-
-        case '10':
-    nomeMes = "out"; 
-    document.getElementById('mes').textContent = "Outubro de 2022";
-
-    
-    return nomeMes;
-    break;
-
-        case '11':
-    nomeMes = "nov"; 
-    document.getElementById('mes').textContent = "Novembro de 2022";
-
-    
-    return nomeMes;
-    break;
-
-        case '12':
-    nomeMes = "dez"; 
-    document.getElementById('mes').textContent = "Dezembro de 2022";
 
         return nomeMes;
     break;
@@ -432,232 +355,24 @@ function balanco()
 }
 }
 
-function calculos()
-{
-console.log('Faz alguma conta necessária');
-   var num = document.getElementById('guardaOmes').textContent;
-    var nomeMes = datas(num);
-//-----------RECEBENDO O VALOR DAS DIVS E INPUTS-----------//
-
-    var transferencia = document.getElementById('transferencia').value;
-    var valor = document.getElementById('valor').value;
-    var ganhoInicial = document.getElementById('ganhoInicial').textContent;
-    var despesaInicial = document.getElementById('despesaInicial').textContent;
 
 
 
-    if(transferencia == "Receita"){
-
-
-//-----------TRANSFORMANDO EM FLOAT E RECEBENDO APENAS NÚMEROS NAS VARIÁVEIS-----------//
-
-        var valorFloat = parseFloat(valor);
-        var ganhoInicialNum = ganhoInicial.replace(',', '.').replace('R$', '');
-        var ganhoInicialFloat = parseFloat(ganhoInicialNum);
-
-//-----------CÁLCULO FINAL-----------//
-
-        var ganhoFinal = valorFloat + ganhoInicialFloat;
-        ganhoFinal = parseFloat(ganhoFinal).toFixed(2);
-
-        set(ref(db, "users/"+user_final+"/"+nomeMes+"/ganhoMensal/"),
-            {
-               ganhoMensal: ganhoFinal
-            }
-            )
-            .then(()=>{
-                GetGanho();
-            });
-
-//-----------MUDANÇA DE VALORES E CORES NA TELA-----------//
-
-        balanco();
-
-    } else 
-    {
-
-
-//-----------TRANSFORMANDO EM FLOAT E RECEBENDO APENAS NÚMEROS NAS VARIÁVEIS-----------//
-
-        var valorFloat = parseFloat(valor);
-        var despesaInicialNum = despesaInicial.replace(',', '.').replace('R$', '');
-        var despesaInicialFloat = parseFloat(despesaInicialNum);
-
-//-----------CÁLCULO FINAL-----------//
-
-        var despesaFinal = despesaInicialFloat + valorFloat;
-        var despesaFinal = parseFloat(despesaFinal).toFixed(2);
-        set(ref(db, "users/"+user_final+"/"+nomeMes+"/despesaMensal/"),
-            {
-                despesaMensal: despesaFinal
-            }
-            )
-            .then(()=>{
-                
-            });
-
-       
-//-----------MUDANÇA DE VALORES E CORES NA TELA-----------//
- 
-        document.getElementById('despesaInicial').textContent = `R$${despesaFinal}`;
-        balanco();
-       
-    }
-}
-
-function calculosDelete(valor_final, transferencia_final, valorDB){
-    var num = document.getElementById('guardaOmes').textContent;
-    var nomeMes = datas(num);   
-      if(transferencia_final == "Receita"){
-    
-
-    //funçao get para pegar do REALTIME DB
-
-
-      
-         var resultado = valorDB - valor_final ;
-         resultado = parseFloat(resultado).toFixed(2);
-    //document.getElementById('ganhoInicial').textContent = `R$${resultado}`;
-
-    //set para o banco de Dados
-        
-         document.getElementById('ganhoInicial').textContent = `R$${resultado}`;
-         set(ref(db, "users/"+user_final+"/"+nomeMes+"/ganhoMensal/"),
-            {
-               ganhoMensal: resultado
-            }
-            )
-            .then(()=>{
-                GetGanho();
-            });
- 
-          balanco();
-
-          
-}else
-{ 
-var resultado = valorDB - valor_final ;
-resultado = parseFloat(resultado).toFixed(2);
-
-
-
-document.getElementById('despesaInicial').textContent = `R$${resultado}`;
-
-set(ref(db, "users/"+user_final+"/"+nomeMes+"/despesaMensal/"),
-            {
-               despesaMensal: resultado
-            }
-            )
-            .then(()=>{
-                GetDespesa();
-                balanco();
-            });
-
-balanco();
-}
-}
 var nomeMes = datas();
 
-function calculosEditarParte1(num)
-{
-//1 - SUBTRAI
-const dbref = ref(db);
-get(child(dbref,"users/"+user_final+"/"+nomeMes+"/gastos/"+num)).then((snapshot)=>{
-           if(snapshot.exists()){
-               var valor_final = parseFloat(snapshot.val().valor).toFixed(2);
-               var transferencia_final = snapshot.val().transferencia; 
-            }
-            
-
-            if(transferencia_final == "Receita"){
-
-      
-            var receita = document.getElementById('ganhoInicial').textContent.replace(',', '.').replace('R$', '');
-            var resultado = parseFloat(receita) - valor_final;
-            resultado = parseFloat(resultado);
-                
-
-
-            update(ref(db,"users/"+user_final+"/"+nomeMes+"/ganhoMensal/"),{
-                ganhoMensal: resultado
-            }
-            );
-            
-} else{
-
-            var receita = document.getElementById('despesaInicial').textContent.replace(',', '.').replace('R$', '');
-            var resultado = parseFloat(receita) - parseFloat(valor_final).toFixed(2);
-            resultado = parseFloat(resultado).toFixed(2);
-            valor_final = parseFloat(valor_final).toFixed(2);
-
-    
-            update(ref(db,"users/"+user_final+"/"+nomeMes+"/despesaMensal/"),{
-                despesaMensal: resultado
-            }
-            );
-}
-        });
 
 
 
-
-}
-
-function calculosEditarParte2(num)
-{   
-    const dbref = ref(db);
-    get(child(dbref,"users/"+user_final+"/"+nomeMes+"/gastos/"+num)).then((snapshot)=>{
-           if(snapshot.exists()){
-               var valor_final = parseFloat(snapshot.val().valor).toFixed(2);
-               var transferencia_final = snapshot.val().transferencia; 
-            }
-
-            if(transferencia_final == "Receita"){
-
-            
-            var receita = document.getElementById('ganhoInicial').textContent.replace(',', '.').replace('R$', '');
-            var resultado = parseFloat(receita) + parseFloat(valor_final);
-            valor_final = parseFloat(valor_final).toFixed(2);
-     
-            resultado = parseFloat(resultado).toFixed(2);
-            console.log(resultado);
-
-            update(ref(db,"users/"+user_final+"/"+nomeMes+"/ganhoMensal/"),{
-                ganhoMensal: resultado
-            }
-            
-            );
-            balanco();
-            
-} else{
-
-            
-            var receita = document.getElementById('despesaInicial').textContent.replace(',', '.').replace('R$', '');
-            var resultado = parseFloat(receita) + parseFloat(valor_final);
-            valor_final = parseFloat(valor_final).toFixed(2);
-     
-            resultado = parseFloat(resultado).toFixed(2);
-
-            update(ref(db,"users/"+user_final+"/"+nomeMes+"/despesaMensal/"),{
-                despesaMensal: resultado
-            }
-            );
-            balanco();
-}
-        });
-balanco();
-}
 //---------------------------CRIAR DADOS---------------------------\\
 const createClient = (client) => {
     var nome = document.getElementById('titulo').value;
     var tipo = document.getElementById('categoria').value;
     var valor = document.getElementById('valor').value;
+    var dataInicial = document.getElementById('dataInicial').value;
+    dataInicial = dataInicial.split('-').reverse().join('/');
+    var dataFinal = document.getElementById('dataFinal').value;
+    dataFinal = dataFinal.split('-').reverse().join('/');
     valor = parseFloat(valor).toFixed(2);
-
-    var transferencia = document.getElementById('transferencia').value;
-    var ganhos = document.getElementById('ganhosInicial');
-    var num = document.getElementById('guardaOmes').textContent
-    var nomeMes = datas(num);
     var data = new Date();
     var segundos = data.getSeconds();
     var minutos = data.getMinutes();
@@ -665,32 +380,31 @@ const createClient = (client) => {
     var dias =  data.getDate();
     var meses = data.getMonth()+1;
     var anos = String(data.getFullYear());
-    var periodo = dias+" | "+horas+":"+minutos;
     var id = anos+meses+dias+horas+minutos+segundos;
 
-   if((nome=="") || (tipo=="") || (valor=="") ||(periodo=="") ||(transferencia=="")){
+   if((nome=="") || (tipo=="") || (valor=="") ||(dataFinal=="") ||(dataInicial=="")){
      alert('preencha todos os campos');
    }else{
 
     localStorage.setItem('db_client', client);
-        set(ref(db, "users/"+user_final+"/"+nomeMes+"/gastos/"+id),
+        set(ref(db, "users/"+user_final+"/metas/"+id),
             {
                 id: id,
                 titulo: nome,
                 tipo: tipo,
                 valor: valor,
-                periodo: periodo,
-                transferencia: transferencia
+                dataInicial: dataInicial,
+                dataFinal: dataFinal
+
             }
             )
             .then(()=>{
 
-            calculos();
-
               document.getElementById('titulo').value = "";
               document.getElementById('categoria').value = "";
               document.getElementById('valor').value = "";
-              document.getElementById('transferencia').value = "";             
+              document.getElementById('dataInicial').value = "";
+              document.getElementById('dataFinal').value = "";
             
             })
             .catch((error)=>{
@@ -708,17 +422,17 @@ var tbody = document.getElementById('tbody');
 //-------------------RECEBENDO TODO O SNAPCHOT DO DB-------------------\\
 
 function GetAllDataRT(){
-    var num = document.getElementById('guardaOmes').textContent;
-    console.log(num);
-    var nomeMes = datas(num);
-const dbRef = ref(db,"users/"+user_final+"/"+nomeMes+"/gastos/");
+
+
+
+const dbRef = ref(db,"users/"+user_final+"/metas/");
 
     onValue(dbRef,(snapshot)=>{
-    var gastos = [];
+    var metas = [];
     snapshot.forEach(childSnapshot =>{
-    gastos.push(childSnapshot.val());
+    metas.push(childSnapshot.val());
     });
-    AddAll(gastos);
+    AddAll(metas);
     });
             }
 
@@ -729,12 +443,12 @@ function AddAll(users){
 
 tbody.innerHTML="";
 users.forEach(element => {
-    AddItemTb(element.titulo, element.tipo, element.periodo ,element.transferencia, element.valor, element.id);
+    AddItemTb(element.titulo, element.tipo, element.dataInicial ,element.dataFinal, element.valor, element.id);
 });
 }
 
 //-------------------CRIANDO LINHAS DA TABELA-------------------\\
-function AddItemTb(titulo, tipo, periodo ,transferencia, valor, id){
+function AddItemTb(titulo, tipo, dataInicial ,dataFinal, valor, id){
     
 let trow = document.createElement('tr');
 
@@ -751,11 +465,11 @@ let td5 = document.createElement('td');
 let td6 = document.createElement('td');
 
 
-valores.push([titulo, tipo, periodo, transferencia, valor, id]);
+valores.push([titulo, tipo, dataInicial ,dataFinal, valor, id]);
 td1.innerHTML=titulo; 
 td2.innerHTML=tipo; 
-td3.innerHTML=periodo;
-td4.innerHTML=transferencia;
+td3.innerHTML=dataInicial;
+td4.innerHTML=dataFinal;
 td5.innerHTML= 'R$ '+valor;
 
 trow.appendChild(td1);
@@ -795,6 +509,7 @@ trow.appendChild(td3);
 td3.classList.add("sc-iBPTik"); 
 td3.classList.add("gZUaaB"); 
 td3.classList.add("alignData");
+
 trow.appendChild(td4);
 //
 td4.classList.add("sc-iBPTik"); 
@@ -828,11 +543,11 @@ GetBalanco();
 
 //---------------------------EXLUIR DADOS---------------------------\\
 function deleteData(){
-    var num = document.getElementById('guardaOmes').textContent;
-    var nomeMes = datas(num);  var num = String(document.getElementById('teste').value).trim();
-    DadosParaOCalculoExcluir(num);
 
-    remove(ref(db,"users/"+user_final+"/"+nomeMes+"/gastos/"+num),{
+    var num = String(document.getElementById('teste').value).trim();
+    
+
+    remove(ref(db,"users/"+user_final+"/metas/"+num),{
     })
     .then(()=>{
 
@@ -844,63 +559,38 @@ function deleteData(){
     });
 }
 
-function DadosParaOCalculoExcluir(id){
-    var num = document.getElementById('guardaOmes').textContent;
-    var nomeMes = datas(num);
-       const dbref = ref(db);
-       get(child(dbref,"users/"+user_final+"/"+nomeMes+"/gastos/"+id)).then((snapshot)=>{
-           if(snapshot.exists()){
-               var valor_final = parseFloat(snapshot.val().valor);
-               var transferencia_final = snapshot.val().transferencia; 
 
-               if(transferencia_final == "Receita"){
-                get(child(dbref,"users/"+user_final+"/"+nomeMes+"/ganhoMensal/")).then((snapshot)=>{
-                    var valorDB = snapshot.val().ganhoMensal;
-   
-
-                    calculosDelete(valor_final, transferencia_final, valorDB);
-                });
-               }else{
-                   get(child(dbref,"users/"+user_final+"/"+nomeMes+"/despesaMensal/")).then((snapshot)=>{
-                    var valorDB = snapshot.val().despesaMensal;
-
-
-                    calculosDelete(valor_final, transferencia_final, valorDB);
-                });}
-           }else{
-           }
-       })
-       .catch((error)=>{
-         
-       });
-   }
 
 //função do update
 function alterData(){
-    var numA = document.getElementById('guardaOmes').textContent;
-    var nomeMes = datas(numA);
+
     var nome = document.getElementById('titulo').value;
     var tipo = document.getElementById('categoria').value;
     var valor = document.getElementById('valor').value;
     valor = parseFloat(valor).toFixed(2);
-    var transferencia = document.getElementById('transferencia').value;
+    var dataInicial =document.getElementById('dataInicial').value;
+    dataInicial = dataInicial.split('-').reverse().join('/');
+    var dataFinal = document.getElementById('dataFinal').value;
+    dataFinal = dataInicial.split('-').reverse().join('/');
     var num = String(document.getElementById('idEditar').value).trim();
 
-    calculosEditarParte1(num);
 
-            update(ref(db,"users/"+user_final+"/"+nomeMes+"/gastos/"+num),{
+
+            update(ref(db,"users/"+user_final+"/metas/"+num),{
                 titulo: nome,
                 tipo: tipo,
                 valor: valor,
-                transferencia: transferencia
+                dataInicial: dataInicial,
+                dataFinal: dataFinal
             })
             .then(()=>{
 
-                calculosEditarParte2(num);
+
                 document.getElementById('titulo').value = "";
                 document.getElementById('categoria').value = "";
                 document.getElementById('valor').value = "";
-                document.getElementById('transferencia').value = "";
+                document.getElementById('dataInicial').value = "";
+                document.getElementById('dataFinal').value = "";
                 document.querySelector('#editar').classList.add('sumiu');
                 document.querySelector('#adicionar').classList.remove('sumiu');
 
@@ -921,13 +611,17 @@ function selectData(){
 
     
         const dbref = ref(db);
-        get(child(dbref,"users/"+user_final+"/"+nomeMes+"/gastos/"+num)).then((snapshot)=>{
+        get(child(dbref,"users/"+user_final+"/metas/"+num)).then((snapshot)=>{
             if(snapshot.exists()){
                 document.getElementById('titulo').value = snapshot.val().titulo;
                 document.getElementById('categoria').value = snapshot.val().tipo;
                 document.getElementById('valor').value = snapshot.val().valor;
-            
-                document.getElementById('transferencia').value = snapshot.val().transferencia; 
+                var dataInicial =  snapshot.val().dataInicial
+                dataInicial = dataInicial.split('/').reverse().join('-');
+                document.getElementById('dataInicial').value = dataInicial;
+                var dataFinal =  snapshot.val().dataFinal
+                dataFinal = dataFinal.split('/').reverse().join('-');
+                document.getElementById('dataFinal').value = dataFinal; 
                document.querySelector('#editar').classList.remove('sumiu');
                document.querySelector('#adicionar').classList.add('sumiu');
                

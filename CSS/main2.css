@@ -364,7 +364,7 @@ tr {
 
 .fcmwIe {
 color: white;
-padding-left: 47px;
+padding-right: 60px;
 }
 
 .fouaSj {
@@ -449,7 +449,7 @@ position: static;
 alignCategoria foi criado para alinhar "Categoria" e os valores correspondentes a Categoria quando é feito o registro
 */
 .alignCategoria{
-margin-left: 85px;
+margin-left: 8px;
 position: static;
 }
 

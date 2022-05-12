@@ -106,35 +106,34 @@
         var nome_login = document.getElementById("nome_login");
         var senha_login = document.getElementById("senha_login");
 
-        function GetAllDataRT(){
 
-const dbRef = ref(db,"users/"+nome_login.value);
-    onValue(dbRef,(snapshot)=>{
-    var usuario = [];
-    snapshot.forEach(childSnapshot =>{
-    usuario.push(childSnapshot.val());
-});
+    function Autenticar(){
+    const dbref = ref(db);
+get(child(dbref,"users/"+nome_login.value)).then((snapshot)=>{
 
-if (senha_login.value == usuario[8] && nome_login.value == usuario[3])
-    {
-       // window.open('main.html');
-       var text = nome_login.value;
-        localStorage.setItem('valueText', text);
-        localStorage.setItem('nome', text);
-        localStorage.setItem('senha', senha_login.value);
-        window.location.href = 'main2.html';
+                var nome = snapshot.val().fullname;
+                var senha = snapshot.val().password;
+                if ((senha_login.value == senha) && (nome_login.value == nome))
+                {   
+                        var text = nome_login.value;
+                        localStorage.setItem('valueText', text);
+                        localStorage.setItem('nome', text);
+                        localStorage.setItem('senha', senha_login.value);
+                        window.location.href = 'main2.html';
 
-
-
-    } else {
-        alert('SENHA OU USUARIO INCORRETOS');
-        console.log(usuario[8]);
-        console.log(usuario[3]);
-    }
-});
-
+                }
+                else
+                {
+                    alert('Senha incorreta');
+                } 
+                
+                
+        }).catch((error)=>{
+            alert('Usuário não encontrado');
+        });
 
 }
+    
   
         function cadastro(){
             if((nome.value == "")||(email.value == "")||(senha.value == "")){
@@ -147,7 +146,8 @@ if (senha_login.value == usuario[8] && nome_login.value == usuario[3])
             {
                 fullname:nome.value,
                 email: email.value,
-                password: senha.value
+                password: senha.value,
+                metas: ""
             }
             )
             .then(()=>{
@@ -165,11 +165,12 @@ if (senha_login.value == usuario[8] && nome_login.value == usuario[3])
             
         }
         function mes(){
-            var meses = ["jan", "fev", "mar", "abril", "maio", "jun"];
+            var meses = ["jan", "fev", "mar", "abril", "maio", "jun", "jul", "ago", "set", "out", "nov", "dez"];
+           
             for (var i=0; i<meses.length; i++){
             set(ref(db, "users/"+nome.value+"/"+meses[i]),
             {
-                metas: "",
+
                 gastos:"",
                 balancoMensal: 0,
                 despesaMensal: 0,
@@ -211,7 +212,7 @@ if (senha_login.value == usuario[8] && nome_login.value == usuario[3])
            
         
         cadastros.addEventListener('click', geral);
-        document.getElementById('btn_entrar').addEventListener('click', GetAllDataRT);
+        document.getElementById('btn_entrar').addEventListener('click', Autenticar);
 
 
         var input = document.getElementById("senha_login")
