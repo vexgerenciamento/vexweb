@@ -7,12 +7,14 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <script src="autenticar.js"></script>
         <sscript src="logout.js"></sscript>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+     
     </head>
     <style>
         .chart-wrapper{
-            height: 43%;
-            width: 43%;
-            margin-left: 7%;
+            height: 70%;
+            width: 70%;
             padding-top: 3%;
         }
 
@@ -59,14 +61,61 @@
         }
 
     </style>
-    <body bgcolor="#202020">
+    <body>
+        <div class="corpo" style="background: black;margin-bottom: -90px;">
 
-        <div class="inner body">
-            <h1 class="ti tulo">
-              <img src="img/vex dourado.png" style="width: 30px; height: 30px; position: relative;">
-               VEX - Cresça Financeiramente</h1>
-         </div>
-        
+            
+            
+            <div class="inner body" style="min-width: 500px;">
+                <nav id="more">
+                    
+                
+                <span id="pontin" class="material-symbols-outlined" style="opacity: 0; font-size: 32px;">menu</span>
+                
+             
+                <img src="img/vex dourado.png" width="40px" height="40px" id="iconvex"><span id="closy" class="material-symbols-outlined">close</span>
+                <h1 style="color: white; position: relative; bottom: 9%; left: 5%;" id="meter">Vex</h1>
+                
+
+                <ul id="links">
+                    <a href="metas.html"><li id="metaspc"><p id="metas"><span class="material-symbols-outlined" id="icmetas">add_task</span>Metas</p></li></a>
+                    <li id="gestaopc"><a href="index.html"><p id="gestao"><span class="material-symbols-outlined" id="icgestao">inventory</span>Gestão</p></a></li>
+                    <li id="controlepc"><a href="main2.html"><p id="controle"><span class="material-symbols-outlined" id="iccontrole">touch_app</span>Controle</p></a></li>
+                    <li id="graphicpc"><a href="graphicos.html"><p id="graphic"><span class="material-symbols-outlined" id="icgraphic">monitoring</span>Gráficos</p></a></li>
+                </ul>
+
+                                <br>
+                
+                <p style="text-align:center; color: #f5c116;" id="liniy">_________________________</p>
+                
+                                <br>
+
+                <button id="logoff" onclick="logout();" style="background-color: transparent; border:none;"><span class="material-symbols-outlined" id="iclogout">logout</span><p style="display: inline-table; text-align: center;" id="sairir">Sair</p></button></div><br><br>
+
+                
+                
+
+               <!-- <img id="icon" src="vex dourado.png" style="padding-top: 5%;">-->
+                </nav>
+
+                
+                
+
+            </div>
+            
+            <div class="sc-hKgJUU frdCTY">
+                <div class="sc-jrAFXE eqoOME" style="flex-direction: column; flex-wrap: wrap; align-content: stretch; justify-content: space-evenly; align-items: stretch;">
+                    <div class="sc-kEjbQP fuVdYh">
+                        <div class="sc-iqHYmW jklSBJ setleft" id="anterior"><span class="material-symbols-outlined unselectable">
+                            arrow_forward_ios
+                            </span></div>
+                        <div class="sc-crrszt cPfwyB" id="mes">Abril de 2022</div>
+                        <div class="sc-iqHYmW jklSBJ setright" id="proximo"><span class="material-symbols-outlined unselectable">
+                            arrow_back_ios
+                            </span></div>
+                    </div>
+                    
+                </div>
         <div class="chart-wrapper">
             <div class="line-bar-chart-wrapper">
                     <canvas class="line-chart" style="background-color: white;"></canvas>                    
@@ -102,6 +151,7 @@
                 <tbody id="tbody"></tbody>
             </table>
         </section>
+        <div id="guardaOmes" style="color: white; display: none;" ></div>
     </body>
         <script src="node_modules/chart.js/dist/chart.min.js"></script>
         <script src="node_modules/chart.js/dist/chart.js"></script>
@@ -143,41 +193,171 @@
             from "https://www.gstatic.com/firebasejs/9.6.8/firebase-database.js";
             const db = getDatabase();
         
-        function datas(){
-    var data = new Date();
+            function autenticar(){
+            const dbref = ref(db);
+get(child(dbref,"users/"+user_final)).then((snapshot)=>{
 
-    var mes = String(data.getMonth() + 1);
+                var nome = snapshot.val().fullname;
+                var senha = snapshot.val().password;
+                if ((localStorage.getItem('nome') == nome) && (localStorage.getItem('senha') == senha))
+                {   
+                }
+                else
+                {
 
+                    window.location.href = 'index.html';
+                } 
+                
+                
+        }).catch((error)=>{
+            window.location.href = 'index.html';
+        });
+        }
+        window.onload = autenticar;
+        
+
+//------------------------------DECLARANDO VÁRIAVEIS GLOBAIS------------------------------//
+var btn_adicionar = document.getElementById("adicionar");
+
+function mesAnterior(){
+    var mes = parseInt(document.getElementById('guardaOmes').textContent);
+    mes = mes-1;
+    mes = parseInt(mes);
+    if(mes<1){ mes = 12}
+    document.getElementById('guardaOmes').textContent = mes;
+
+    BarChart.config.data = createBarChartData();
+    setTimeout(function() { BarChart.update(); },800);
+    DoughnutChart1.config.data = createDoughnutChartData("Receita");
+    setTimeout(function() {  DoughnutChart1.update(); },800);
+    DoughnutChart2.config.data = createDoughnutChartData("Despesa");
+    setTimeout(function() {  DoughnutChart2.update(); },800);
+    datas(mes);
+}
+function mesPosterior(){
+    var mes = parseInt(document.getElementById('guardaOmes').textContent);
+    mes = mes+1;
+    mes = parseInt(mes);
+    if(mes>12){ mes = 1}
+    document.getElementById('guardaOmes').textContent = mes;
+
+    BarChart.config.data = createBarChartData();
+    setTimeout(function() { BarChart.update(); },800);
+    DoughnutChart1.config.data = createDoughnutChartData("Receita");
+    setTimeout(function() {  DoughnutChart1.update(); },800);
+    DoughnutChart2.config.data = createDoughnutChartData("Despesa");
+    setTimeout(function() {  DoughnutChart2.update(); },800);
+
+    datas(mes);
+}
+
+
+
+function datas(mes){
+
+   
+    if(mes == undefined){
+    var data = new Date()
+var mes = String(data.getMonth() + 1);
+document.getElementById('guardaOmes').textContent = `${mes}`;
+}
+mes = document.getElementById('guardaOmes').textContent
 switch(mes){
     case '1':
-        nomeMes = "jan"; 
-        return nomeMes;
+        nomeMes = "jan";
+        document.getElementById('mes').textContent = "Janeiro de 2022";
+  
+
+    return nomeMes;
+
     break;
     case '2':
-        nomeMes = "fev"; 
-        return nomeMes;
+    nomeMes = "fev"; 
+    document.getElementById('mes').textContent = "Fevereiro de 2022";
+
+    return nomeMes;
+
     break;
     case '3':
     nomeMes = "mar"; 
+    document.getElementById('mes').textContent = "Março de 2022";
+
         return nomeMes;
     break;
     case '4':
     nomeMes = "abril"; 
+    document.getElementById('mes').textContent = "Abril de 2022";
+
         return nomeMes;
     break;
     case '5':
     nomeMes = "maio"; 
+    document.getElementById('mes').textContent = "Maio de 2022";
+
         return nomeMes;
     break;
     case '6':
     nomeMes = "jun"; 
+    document.getElementById('mes').textContent = "Junho de 2022";
+
+        
+    return nomeMes;
+    break;
+    case '7':
+    nomeMes = "jul"; 
+    document.getElementById('mes').textContent = "Julho de 2022";
+
+       
+    return nomeMes;
+    break;
+    case '8':
+    nomeMes = "ago"; 
+    document.getElementById('mes').textContent = "Agosto de 2022";
+
+ 
+    return nomeMes;
+    break;
+
+        case '9':
+    nomeMes = "set"; 
+    document.getElementById('mes').textContent = "Setembro de 2022";
+
+
+    return nomeMes;
+    break;
+
+        case '10':
+    nomeMes = "out"; 
+    document.getElementById('mes').textContent = "Outubro de 2022";
+
+    
+    return nomeMes;
+    break;
+
+        case '11':
+    nomeMes = "nov"; 
+    document.getElementById('mes').textContent = "Novembro de 2022";
+
+    
+    return nomeMes;
+    break;
+
+        case '12':
+    nomeMes = "dez"; 
+    document.getElementById('mes').textContent = "Dezembro de 2022";
+
         return nomeMes;
     break;
     
 }
-
 }
+
+
+
+
         var nomeMes = datas();
+        document.getElementById('anterior').addEventListener('click', mesAnterior);
+    document.getElementById('proximo').addEventListener('click', mesPosterior);
         var biscu = [];
         var tbody = document.getElementById('tbody');
         function AddItemTb(titulo, valor){          
@@ -333,6 +513,8 @@ switch(mes){
         }      
 
         function createBarChartData(){   
+            var num = document.getElementById('guardaOmes').textContent;
+            var nomeMes = datas(num);
             var gastos = [];
             var arrayValor = [];
             var arrayTitulo = [];
@@ -361,10 +543,13 @@ switch(mes){
                 }]
                     
             }
+            console.log("Função do BarChart foi")
                 return data;
         }  
 
         function createDoughnutChartData(tipo){
+            var num = document.getElementById('guardaOmes').textContent;
+            var nomeMes = datas(num);
             var gastos = [];
             var arrayValores = [0, 0, 0, 0, 0, 0, 0, 0];
             var arrayTipos = ["Alimentação", "Entretenimento", "Habitação", "Salário", "Saúde", "Seguros", "Transportes", "Outros"];
@@ -393,6 +578,7 @@ switch(mes){
                     hoverOffset: 7
                 }]     
             }
+            console.log("Função do DoughnutChart foi")
                 return data;
         }
 
@@ -420,5 +606,5 @@ switch(mes){
         });
 
     </script>
-    
+                          <script src="menu.js"></script>
 </html>

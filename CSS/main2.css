@@ -1,15 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@200&display=swap');
+
+.active {
+  background-color: rgb(245, 193, 22);
+}
+
 body {
 background-color: #202020;
 margin: 0;
-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  sans-serif;
+font-family: 'Sora', sans-serif;
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
 position: absolute;
 min-width: 1000px;
 width: 100%;
+
 }
+
+
+
+#more{
+  position: fixed;
+  height:1000px;
+  width: 300px;
+  background-color: #3b3b3b;
+}
+
+
+#icmetas{
+  transform: rotate(1deg);
+  right: 25%;
+}
+
+#icgestao{
+  transform: rotate(1deg);
+  right: 23%;
+}
+
+#iccontrole{
+  transform: rotate(1deg);
+  right: 20%;
+}
+
+#icgraphic{
+  transform: rotate(1deg);
+  right: 20%;
+}
+
+#iconvex{
+  margin-right: 73%;
+  padding-top: 15%;
+}
+
+#iclogout{
+  right: 20%;
+  padding-top: 5px;
+}
+
+
+
+
 
 .setleft{
 margin-left: 320px;
@@ -24,7 +75,7 @@ font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
   monospace;
 }
 .body {
-  background-color: #000;
+ 
   height: 150px;
   text-align: center;
 }
@@ -32,12 +83,13 @@ font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
   margin: 0;
   padding: 0;
   color: #FFF;
-  padding-top: 30px;
+  position: block;
+
 }
 .frdCTY {
   margin: auto;
-  max-width: 980px;
-  margin-bottom: 50px;
+  max-width: 1000px;
+  padding-left: 5%;
 }
 .eqoOME {
   background-color: #202020;
@@ -78,6 +130,7 @@ font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
   -webkit-flex: 1;
   -ms-flex: 1;
   flex: 1;
+  width: 120px;
   text-align: center;
 }
 .jklSBJ {
@@ -172,7 +225,6 @@ font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
 .kLxSip {
   font-weight: bold;
   margin-bottom: 5px;
-  
 }
 .rwnMw {
   width: 100%;
@@ -187,6 +239,7 @@ font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
   padding: 0 5px;
   border: 1px solid #f5c116;
   border-radius: 5px;
+
 }
 option {
   font-weight: normal;
@@ -195,6 +248,7 @@ option {
   min-height: 1.2em;
   padding: 0px 2px 1px;
 }
+
 .kLxSip {
   font-weight: bold;
   margin-bottom: 5px;
@@ -253,69 +307,14 @@ tr {
   color: rgb(0, 0, 0);
   background-color: blue;
 }
-.alimentacao {
+.vermelho {
   display: inline-block;
   padding: 5px 10px;
+ text-align: center;
   border-radius: 5px;
   color: rgb(255, 255, 255);
-  background-color: #ff4b2b;
-  font-weight: bold;
-}
-.entretenimento {
-  display: inline-block;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: rgb(255, 255, 255);
-  background-color: #db2d1f;
-  font-weight: bold;
-}
-.habitacao {
-  display: inline-block;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: rgb(255, 255, 255);
-  background-color: #8dd34e;
-  font-weight: bold;
-}
-.salario {
-  display: inline-block;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: rgb(255, 255, 255);
-  background-color: #31830e;
-  font-weight: bold;
-}
-.saude {
-  display: inline-block;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: rgb(255, 255, 255);
-  background-color: #2cc5f4;
-  font-weight: bold;
-}
-.seguros {
-  display: inline-block;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: rgb(255, 255, 255);
-  background-color: #1675af;
-  font-weight: bold;
-}
-.transportes {
-  display: inline-block;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: rgb(255, 255, 255);
-  background-color: #8e6eb7;
-  font-weight: bold;
-}
-.outros {
-  display: inline-block;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: rgb(255, 255, 255);
-  background-color: #69419d;
-  font-weight: bold;
+  background-color: #f51616;
+  
 }
 .gZUaaB {
   padding: 10px 0;
@@ -329,7 +328,7 @@ tr {
   padding: 5px 10px;
   border-radius: 5px;
   color: rgb(0, 0, 0);
-  background-color: rgb(103, 8, 180);
+  background-color: green;
 }
 .fbeSIK {
   color: rgb(10, 233, 10);
@@ -359,13 +358,17 @@ tr {
   color: rgb(0, 0, 0);
 }
 
-
+.Valao {
+  width: 150px;
+  text-align: left;
+  color: white;
+}
 
 
 .fcmwIe {
-color: white;
-padding-right: 60px;
-}
+  color: white;
+  padding-right: 130px;
+  }
 
 .fouaSj {
 color: white;
@@ -415,7 +418,7 @@ background-color:#474545;
 border-radius: 8px;
 width: 40px;
 cursor: pointer;
-margin-left: 3px;
+margin-left: 10px;
 border: none;
 }
 
@@ -437,59 +440,208 @@ size: fixed;
 
 
 /*
-alignData foi criado para alinhar "Data" e os valores correspondentes a Data quando é feito o registro
+alignData foi criado para alinhar "Período" e os valores correspondentes a Período quando é feito o registro
 */
 .alignData{
-padding-left: 7px;
-position: static;
+  right: 77px;
+  position:relative;
+  }
+  
+  
+  /*
+  alignCategoria foi criado para alinhar "Categoria" e os valores correspondentes a Categoria quando é feito o registro
+  */
+  .alignCategoria{
+  margin-left: 29px;
+  position: static;
+  }
+  
+  
+  /*
+  aligTitulo foi criado para alinhar "Título" e os valores correspondentes a Título quando é feito o registro
+  */
+  .alignTitulo{
+  padding-left: 10px;
+  position: static;
+  }
+  
+  
+  /*
+  aligTransferencia foi criado para alinhar "Transferência" e os valores correspondentes a Transferência quando é feito o registro
+  */
+  .alignTransferencia {
+    right: 21px;
+    position: relative;
+  }
+  
+  
+  /*
+  alignValor foi criado para alinhar "Valor" e os valores correspondentes a Valor quando é feito o registro
+  */
+  .alignValor {
+    position: relative;
+    right: 15px;
+}
+  
+  /*
+  referente SOMENTE aos botões do ações
+  */
+  .alignAcoes{
+  position: relative;
+  right: 10px;
+  }
+
+  #logoff{
+    background: url(logout.png);
+    border: none;
+    position: relative;
+    right: 8.5%;
+    margin-bottom: 40%;
+    color: white;
+    top: 1%;
+    font-family: 'Sora', cursive;
+    font-size: 17px;
+    width: 69%;
+    border-radius: 5px;
+    right: 5px;
+    cursor: pointer;
+  }
+
+
+  #closy{
+    top: -5%;
+    left: 58%;
+    font-size: 29px;
+  }
+  
+  
+  #more ul li a{
+    text-decoration: none;
+    color: white;
+    list-style-type: none;
+  }
+
+  #more ul {
+    list-style-type: none;
+    margin-top: -10%;
+    margin-right: 17%;
+  }
+
+  #more ul li{
+    height: 5%;
+    border-radius: 5px;
+  }
+
+  #more ul a{
+    list-style-type: none;
+    text-decoration: none;
+    color: white;
+  }
+
+  #links{
+    font-family: 'Comfortaa', cursive;
+  }
+
+  #more{
+    box-shadow: 0px 0px 30px 0px black;
+  }
+
+  #metas {
+    height: 20px;
+  }
+
+  
+
+
+
+  #gestao{
+    background-color: transparent;
+    height: 20px;
+  }
+
+  #controle{
+    background-color: transparent;
+    height: 20px;
+    text-align: center;
+  }
+ 
+  #graphic{
+    background-color: transparent;
+    height: 20px;
+    text-align: center;
+  }
+  
+
+
+.material-symbols-outlined {
+  color: white;
+  transform: rotate(180deg);
+  top: 12px;
+  position: relative;
+  font-size: 30px;
+  cursor: pointer;
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
 }
 
-
-/*
-alignCategoria foi criado para alinhar "Categoria" e os valores correspondentes a Categoria quando é feito o registro
-*/
-.alignCategoria{
-margin-left: 8px;
-position: static;
+.material-symbols-outlined:hover{
+  transition: 0.5s;
+  color: #f5c116;
 }
-
-
-/*
-aligTitulo foi criado para alinhar "Título" e os valores correspondentes a Título quando é feito o registro
-*/
-.alignTitulo{
-padding-left: 78px;
-position: static;
+.activeModal{
+  transition: 0.5s;
+  color: #f5c116;
 }
-
-
-/*
-alignValor foi criado para alinhar "Valor" e os valores correspondentes a Valor quando é feito o registro
-*/
-.alignValor{
-margin-right: 190px;
-position:static;
-}
-
-/*
-referente SOMENTE aos botões do ações
-*/
-.alignAcoes{
-position: relative;
-right: 5px;
+select{
+  cursor: pointer;
+  
 }
 
 @media (max-width:500px) {
+
+  #more{
+    position: fixed;
+  }
+
+  body{
+    min-width: 480px;
+  }
+
+  .alignTitulo{
+    padding-right: 50px;
+    }
+
+.alignCategoria{
+  margin-left: 0px;
+}
+
+.alignData{
+  right: 77px;
+  position:relative;
+  padding-left: 50px;
+  }
+
+  .alignValor {
+    padding-left: 50px;
+    padding-right: 50px;
+}
 
 .tulo {
   margin: 0;
   padding: 0;
   color: #FFF;
-  padding-top: 30px;
+  padding-top: 20px;
   display: table;
-  margin-left: 2.25px;
+  margin-left: 1.25px;
+  min-width: 486px;
 }
 
+.frdCTY{
+  padding-left: 2.5px;
+}
 
 .setleft{
 margin-left: 0;
@@ -523,11 +675,11 @@ margin-right: 0;
   display: inline-grid;
   width: 440px;
 }
-
 .bkasyz{
-  max-width: 440px;
-  position: fixed;
-  overflow-x: auto;
+  max-width: 480px;
+  flex-wrap: nowrap; 
+  overflow-x: scroll;
+  display: flow-root;
 }
 
 }
@@ -616,21 +768,217 @@ margin-right: 0;
   padding: 0 20px;
 }
 
-@media (max-width:480px){
-  .modal{
-      top:100%;
-      transition: all 1s ease;
+@media (max-width: 900px) {
+  #more{
+    position: fixed;
   }
-  .modal.active{
-      top:0;
+
+  body{
+    min-width: 480px;
   }
-  .modal-content{
-      margin:0;
-      width:100%;
-      position:fixed;
+
+  .alignTitulo{
+    padding-right: 50px;
+    }
+
+.alignCategoria{
+  margin-left: 0px;
+}
+
+.alignData{
+  right: 77px;
+  position:relative;
+  padding-left: 50px;
   }
-  .modal-field{
-      width:100%;
+
+  .alignValor {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.tulo {
+  margin: 0;
+  padding: 0;
+  color: #FFF;
+  padding-top: 20px;
+  display: table;
+  margin-left: 1.25px;
+  min-width: 486px;
+}
+
+.frdCTY{
+  padding-left: 25%;
+  margin-top: -15%;
+}
+
+.setleft{
+margin-left: 0;
+}
+
+.setright{
+margin-right: 0;
+}
+
+.fuVdYh {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-left: 0;
+}
+
+.eqoOME{
+  display: flow-root;
+  width: 440px;
+}
+
+.fgloXw{
+  display: inline-grid;
+  width: 440px;
+}
+.bkasyz{
+  max-width: 480px;
+  flex-wrap: nowrap; 
+  overflow-x: scroll;
+  display: flow-root;
+}
+
+}
+
+.modal{
+  position: fixed;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  background: #00000090;
+  opacity: 0;
+  z-index: -1;
+}
+
+.modal.active{
+  opacity: 1;
+  z-index: 1;
+}
+
+.modal-content{
+  display: flex;
+  flex-direction: column;
+  gap:20px;
+  width: 50vw;
+  margin: 15vh auto;
+  padding-bottom: 20px;
+  background-color: white;
+  box-shadow: 1px 1px 10px black;
+}
+
+.modal-header{
+  display: flex;
+  position: relative;
+  justify-content: center;
+  height: 40px;
+  line-height: 40px;
+  font-size: 1rem;
+}
+
+
+
+.modal-close{
+  position: absolute;
+  right: 0;
+  display: block;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  user-select: none;
+  cursor: pointer;
+}
+
+.modal-close:hover{
+  background-color: #FF4949;
+  color: white;
+}
+
+.modal-form{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.modal-field{
+  width: calc(50% - 10px);
+  height: 40px;
+  outline-style: none;
+  border-style: none;
+  box-shadow: 0 0 2px black;
+  padding: 0 10px;
+  font-size:1rem;
+}
+
+.modal-field:focus{
+  border: 2px solid var(--primary-color);
+  box-shadow: 0 0 3px var(--primary-color);
+}
+
+
+.modal-footer{
+  background-color: inherit;
+  text-align: right;
+  padding: 0 20px;
+}
+
+@media (max-width: 900px) {
+  .frdCTY{
+    margin-left: -1.5%;
+  }
+
+  .bkasyz{
+    width: 600px;
+  }
+}
+
+@media (max-width: 800px) {
+  .frdCTY{
+    margin-left: -5%;
+  }
+}
+
+@media (max-width: 600px) {
+    .frdCTY{
+      margin-left: -10%;
+    }
+}
+
+@media (max-width: 500px) {
+  .eqoOME{
+    width: 90%;
+  }
+
+  .fgloXw{
+    width: 90%;
+  }
+
+  .bkasyz{
+    width: 100%;
+  }
+
+  #more{
+    height: 1200px;
+  }
+}
+
+@media (max-width: 400px) {
+  .frdCTY{
+    margin-top: -33%;
   }
 }
 .unselectable {
@@ -640,4 +988,68 @@ margin-right: 0;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+.alimentacao {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  background-color: #ff4b2b;
+  font-weight: bold;
+}
+.entretenimento {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  background-color: #db2d1f;
+  font-weight: bold;
+}
+.habitacao {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  background-color: #8dd34e;
+  font-weight: bold;
+}
+.salario {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  background-color: #31830e;
+  font-weight: bold;
+}
+.saude {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  background-color: #2cc5f4;
+  font-weight: bold;
+}
+.seguros {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  background-color: #1675af;
+  font-weight: bold;
+}
+.transportes {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  background-color: #8e6eb7;
+  font-weight: bold;
+}
+.outros {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  background-color: #69419d;
+  font-weight: bold;
 }

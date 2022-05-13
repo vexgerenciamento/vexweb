@@ -3,7 +3,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#000000">
-    <meta name="description" content="Web site created using create-react-app">
     <style>
         .sumiu{
             display: none;
@@ -37,7 +36,7 @@
 </head>
 <body>
 
-    <button onclick="logout();"></button>
+
 <div class="modal" id="modalDeletar">
             <div class="modal-content">
                 <header class="modal-header">
@@ -51,20 +50,56 @@
             </div>
         </div>
     <div>
-        <div class="corpo">
-            <div class="inner body">
-               <h1 class="ti tulo">
-                 <img src="img/vex dourado.png" style="width: 30px; height: 30px; position: relative;">
-                  VEX - Cresça Financeiramente</h1>
-            </div><div class="sc-hKgJUU frdCTY">
+        <div class="corpo" style="background: black;margin-bottom: -90px;">
+
+            
+            
+            <div class="inner body" style="min-width: 500px;">
+                <nav id="more">
+                    
+                
+                <span id="pontin" class="material-symbols-outlined" style="opacity: 0; font-size: 32px;">menu</span>
+                
+             
+                <img src="img/vex dourado.png" width="40px" height="40px" id="iconvex"><span id="closy" class="material-symbols-outlined">close</span>
+                <h1 style="color: white; position: relative; bottom: 9%; left: 5%;" id="meter">Vex</h1>
+                
+
+                <ul id="links">
+                    <a href="metas.html"><li id="metaspc"><p id="metas"><span class="material-symbols-outlined" id="icmetas">add_task</span>Metas</p></li></a>
+                    <li id="gestaopc"><a href="index.html"><p id="gestao"><span class="material-symbols-outlined" id="icgestao">inventory</span>Gestão</p></a></li>
+                    <li id="controlepc"><a href="main2.html"><p id="controle"><span class="material-symbols-outlined" id="iccontrole">touch_app</span>Controle</p></a></li>
+                    <li id="graphicpc"><a href="graphicos.html"><p id="graphic"><span class="material-symbols-outlined" id="icgraphic">monitoring</span>Gráficos</p></a></li>
+                </ul>
+
+                                <br>
+                
+                <p style="text-align:center; color: #f5c116;" id="liniy">_________________________</p>
+                
+                                <br>
+
+                <button id="logoff" onclick="logout();" style="background-color: transparent; border:none;"><span class="material-symbols-outlined" id="iclogout">logout</span><p style="display: inline-table; text-align: center;" id="sairir">Sair</p></button></div><br><br>
+
+                
+                
+
+               <!-- <img id="icon" src="vex dourado.png" style="padding-top: 5%;">-->
+                </nav>
+
+                
+                
+
+            </div>
+            
+            <div class="sc-hKgJUU frdCTY">
                 <div class="sc-jrAFXE eqoOME" style="flex-direction: column; flex-wrap: wrap; align-content: stretch; justify-content: space-evenly; align-items: stretch;">
                     <div class="sc-kEjbQP fuVdYh">
                         <div class="sc-iqHYmW jklSBJ setleft" id="anterior"><span class="material-symbols-outlined unselectable">
-                            arrow_back_ios
+                            arrow_forward_ios
                             </span></div>
                         <div class="sc-crrszt cPfwyB" id="mes">Abril de 2022</div>
                         <div class="sc-iqHYmW jklSBJ setright" id="proximo"><span class="material-symbols-outlined unselectable">
-                            arrow_forward_ios
+                            arrow_back_ios
                             </span></div>
                     </div>
                     <div class="sc-dQoVA klQxRK">
@@ -146,6 +181,7 @@
                             <div id="IdVerdadeiro"></div>
                             <div id="guardaOmes" style="color: white; display: none;" ></div>
                         </div>
+                        <script src="menu.js"></script>
                         <script type="module">
 
 var user_final = localStorage.getItem('valueText');
