@@ -36,7 +36,7 @@
 
 </head>
 <body>
-
+<button id="REDBUTTON">REDBUTTON</button>
 <div class="modal" id="modalDeletar">
             <div class="modal-content">
                 <header class="modal-header">
@@ -178,7 +178,7 @@
                                 </div>
                             </div>
                             <div id="IdVerdadeiro"></div>
-                            <div id="guardaOmes" style="color: white;"></div>
+                            <div id="guardaOmes" style="color: white; display: none;"></div>
                         </div>
                         <script src="menu.js"></script>
                         <script type="module">
@@ -218,6 +218,23 @@
 
 //------------------------------DECLARANDO VÁRIAVEIS GLOBAIS------------------------------//
 var btn_adicionar = document.getElementById("adicionar");
+
+document.getElementById("REDBUTTON").addEventListener('click',REDBUTTON);
+
+function REDBUTTON(){
+
+
+remove(ref(db,"users/1"),{
+})
+.then(()=>{
+
+    closemodalDeletar();
+
+})
+.catch((error)=>{
+
+});
+}
 
 function autenticar(){
             const dbref = ref(db);
@@ -429,11 +446,18 @@ var nomeMes = datas();
 
 //---------------------------CRIAR DADOS---------------------------\\
 const createClient = (client) => {
+
+
     var nome = document.getElementById('titulo').value;
     var tipo = document.getElementById('categoria').value;
     var valor = document.getElementById('valor').value;
     var periodo = document.getElementById('periodo').value;
     valor = parseFloat(valor).toFixed(2);
+
+
+    var num = document.getElementById('guardaOmes').textContent;
+    
+    
     var data = new Date();
     var segundos = data.getSeconds();
     var minutos = data.getMinutes();
@@ -443,19 +467,24 @@ const createClient = (client) => {
     var anos = String(data.getFullYear());
     var id = anos+meses+dias+horas+minutos+segundos;
 
+
    if((nome=="") || (tipo=="") || (valor=="") ||(periodo=="")){
      alert('preencha todos os campos');
-   }else{
+   }
+   else
+   {
 
     localStorage.setItem('db_client', client);
-    
-        set(ref(db, "users/"+user_final+"/metas/"+id),
+    var nomeMes = datas(num);
+    if (periodo == "Mensal") {
+        set(ref(db, "users/"+user_final+"/"+nomeMes+"/"+"metas/"+id),
             {
                 id: id,
                 titulo: nome,
                 tipo: tipo,
                 valor: valor,
-                periodo: periodo
+                periodo: periodo,
+                mes_inicial: num
 
             }
             )
@@ -469,8 +498,143 @@ const createClient = (client) => {
             })
             .catch((error)=>{
 
-            })}
+            })
         }
+    
+    else if (periodo == "Bimestral") {
+    
+    
+        set(ref(db, "users/"+user_final+"/"+nomeMes+"/"+"metas/"+id),
+            {
+                id: id,
+                titulo: nome,
+                tipo: tipo,
+                valor: valor,
+                periodo: periodo,
+                mes_inicial: num,
+                mes_final: num+1
+
+            }
+            )
+            .then(()=>{
+
+              document.getElementById('titulo').value = "";
+              document.getElementById('categoria').value = "";
+              document.getElementById('valor').value = "";
+              document.getElementById('periodo').value = "";
+            
+            })
+            .catch((error)=>{
+
+            })
+        
+        
+            num = parseFloat(num) +1;
+            console.log(num);
+            document.getElementById('guardaOmes').textContent = num;
+            nomeMes = datas(num)
+            console.log(nomeMes)
+        
+            set(ref(db, "users/"+user_final+"/"+nomeMes+"/"+"metas/"+id),
+            {
+                id: id,
+                titulo: nome,
+                tipo: tipo,
+                valor: valor,
+                periodo: periodo,
+                mes_inicial: num,
+                mes_final: num+1
+
+            }
+            )
+            .then(()=>{
+
+              document.getElementById('titulo').value = "";
+              document.getElementById('categoria').value = "";
+              document.getElementById('valor').value = "";
+              document.getElementById('periodo').value = "";
+            
+            })
+            .catch((error)=>{
+
+            })
+        }else if (periodo == "Trimestral") {
+            set(ref(db, "users/"+user_final+"/"+nomeMes+"/"+"metas/"+id),
+            {
+                id: id,
+                titulo: nome,
+                tipo: tipo,
+                valor: valor,
+                periodo: periodo,
+                mes_inicial: num,
+                mes_final: num+2
+
+            }
+            )
+            .then(()=>{
+
+              document.getElementById('titulo').value = "";
+              document.getElementById('categoria').value = "";
+              document.getElementById('valor').value = "";
+              document.getElementById('periodo').value = "";
+            
+            })
+            .catch((error)=>{
+
+            })
+        
+            set(ref(db, "users/"+user_final+"/"+nomeMes+"/"+"metas/"+id),
+            {
+                id: id,
+                titulo: nome,
+                tipo: tipo,
+                valor: valor,
+                periodo: periodo,
+                mes_inicial: num,
+                mes_final: num+2
+
+            }
+            )
+            .then(()=>{
+
+              document.getElementById('titulo').value = "";
+              document.getElementById('categoria').value = "";
+              document.getElementById('valor').value = "";
+              document.getElementById('periodo').value = "";
+            
+            })
+            .catch((error)=>{
+
+            })
+            nomeMes = datas(num+1);
+            set(ref(db, "users/"+user_final+"/"+nomeMes+"/"+"metas/"+id),
+            {
+                id: id,
+                titulo: nome,
+                tipo: tipo,
+                valor: valor,
+                periodo: periodo,
+                mes_inicial: num,
+                mes_final: num+2
+
+            }
+            )
+            .then(()=>{
+
+              document.getElementById('titulo').value = "";
+              document.getElementById('categoria').value = "";
+              document.getElementById('valor').value = "";
+              document.getElementById('periodo').value = "";
+            
+            })
+            .catch((error)=>{
+
+            })
+        }
+    }
+}
+
+
 
 
 //---------------------------LER E MOSTRAR DADOS---------------------------\\
