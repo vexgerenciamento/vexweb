@@ -818,7 +818,9 @@ function deleteData(){
 
 //função do update
 function alterData(){
-
+    const dbRef = ref(db);
+    var mes = document.getElementById('guardaOmes').textContent;
+    var nomeMes = datas(mes);
     var nome = document.getElementById('titulo').value;
     var tipo = document.getElementById('categoria').value;
     var valor = document.getElementById('valor').value;
@@ -826,9 +828,10 @@ function alterData(){
     var periodo = document.getElementById('periodo').value;
     var num = String(document.getElementById('idEditar').value).trim();
 
+    if (document.getElementById('periodo').value == "Mensal")
+            {            
 
-
-            update(ref(db,"users/"+user_final+"/metas/"+num),{
+                update(ref(db,"users/"+user_final+"/"+nomeMes+"/metas/"+num),{
                 titulo: nome,
                 tipo: tipo,
                 valor: valor,
@@ -851,6 +854,42 @@ function alterData(){
                 
            });
         }
+    else if (document.getElementById('periodo').value == "Bimestral") {
+        console.log(document.getElementById('periodo').value);
+        update(ref(db,"users/"+user_final+"/"+nomeMes+"/metas/"+num),{
+                titulo: nome,
+                tipo: tipo,
+                valor: valor,
+                periodo: periodo
+    }).then(()=>{
+            mes= parseFloat(mes) + 1;
+            document.getElementById('guardaOmes').textContent = mes;
+            nomeMes = datas(mes);
+            get(child(dbRef,"users/"+user_final+"/"+nomeMes+"/metas/"+num)).then((snapshot)=>{
+                if(snapshot.exists()){
+                    update(ref(db,"users/"+user_final+"/"+nomeMes+"/metas/"+num),{
+                            titulo: nome,
+                            tipo: tipo,
+                            valor: valor,
+                            periodo: periodo
+            })
+                }
+                else{
+                    mes = parseFloat(mes) - 2;
+                    document.getElementById('guardaOmes').textContent = mes;
+                        nomeMes = datas(mes);
+                        update(ref(db,"users/"+user_final+"/"+nomeMes+"/metas/"+num),{
+                            titulo: nome,
+                            tipo: tipo,
+                            valor: valor,
+                            periodo: periodo
+                    });
+                }
+            });
+    });
+           
+    }
+}
 
 //---------------------------LER E MOSTRAR DADOS NOS MODAIS---------------------------\\
 
@@ -861,12 +900,15 @@ function selectData(){
 
     
         const dbref = ref(db);
-        get(child(dbref,"users/"+user_final+"/metas/"+num)).then((snapshot)=>{
+        get(child(dbref,"users/"+user_final+"/"+nomeMes+"/metas/"+num)).then((snapshot)=>{
             if(snapshot.exists()){
                 document.getElementById('titulo').value = snapshot.val().titulo;
                 document.getElementById('categoria').value = snapshot.val().tipo;
                 document.getElementById('valor').value = snapshot.val().valor;
-                document.getElementById('periodo').value = snapshot.val().periodo
+                document.getElementById('periodo').value = snapshot.val().periodo;
+                
+                document.getElementById('periodo').style.pointerEvents = "none";
+
                document.querySelector('#editar').classList.remove('sumiu');
                document.querySelector('#adicionar').classList.add('sumiu');
                
