@@ -15,6 +15,7 @@
         .chart-wrapper{
             height: 70%;
             width: 70%;
+            margin-right: 200%;
             padding-top: 3%;
         }
 
@@ -86,7 +87,7 @@
 
                                 <br>
                 
-                <p style="text-align:center; color: #f5c116;" id="liniy">_________________________</p>
+                <p style="text-align:center; color: #f5c116;" id="liniy" class="unselectable">_________________________</p>
                 
                                 <br>
 
@@ -547,7 +548,7 @@ switch(mes){
                 return data;
         }  
 
-        function createDoughnutChartData(tipo){
+        function createDoughnutChartData(tipo){ 
             var num = document.getElementById('guardaOmes').textContent;
             var nomeMes = datas(num);
             var gastos = [];
@@ -572,7 +573,6 @@ switch(mes){
             var data = {
                 labels: arrayTipos,
                 datasets: [{
-                    label: "Teste",
                     data: arrayValores,
                     backgroundColor: ["#ff4b2b", "#db2d1f", "#8dd34e", "#31830e", "#2cc5f4", "#1675af", "#8e6eb7", "#69419d"],
                     hoverOffset: 7
