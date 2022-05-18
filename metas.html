@@ -36,7 +36,6 @@
 
 </head>
 <body>
-<button id="REDBUTTON">REDBUTTON</button>
 <div class="modal" id="modalDeletar">
             <div class="modal-content">
                 <header class="modal-header">
@@ -218,22 +217,8 @@
 //------------------------------DECLARANDO VÁRIAVEIS GLOBAIS------------------------------//
 var btn_adicionar = document.getElementById("adicionar");
 
-document.getElementById("REDBUTTON").addEventListener('click',REDBUTTON);
-
-function REDBUTTON(){
 
 
-remove(ref(db,"users/1"),{
-})
-.then(()=>{
-
-    closemodalDeletar();
-
-})
-.catch((error)=>{
-
-});
-}
 
 function autenticar(){
             const dbref = ref(db);
@@ -265,7 +250,6 @@ function mesAnterior(){
     var mes = parseInt(document.getElementById('guardaOmes').textContent);
     mes = mes-1;
     mes = parseInt(mes);
-    console.log(mes);
     if(mes<1){ mes = 12}
     document.getElementById('guardaOmes').textContent = mes;
     GetAllDataRT();
@@ -279,7 +263,6 @@ function mesPosterior(){
     var mes = parseInt(document.getElementById('guardaOmes').textContent);
     mes = mes+1;
     mes = parseInt(mes);
-    console.log(mes);
     if(mes>12){ mes = 1}
     document.getElementById('guardaOmes').textContent = mes;
     GetAllDataRT();
@@ -529,10 +512,8 @@ const createClient = (client) => {
         
         
             num = parseFloat(num) +1;
-            console.log(num);
             document.getElementById('guardaOmes').textContent = num;
             nomeMes = datas(num)
-            console.log(nomeMes)
         
             set(ref(db, "users/"+user_final+"/"+nomeMes+"/"+"metas/"+id),
             {
@@ -552,6 +533,9 @@ const createClient = (client) => {
               document.getElementById('categoria').value = "";
               document.getElementById('valor').value = "";
               document.getElementById('periodo').value = "";
+              num = parseFloat(num) - 1;
+              document.getElementById('guardaOmes').textContent = num;
+              nomeMes = datas(num)
             
             })
             .catch((error)=>{
@@ -768,7 +752,6 @@ function deleteData(){
         if(snapshot.exists()){
 
          var periodo = snapshot.val().periodo;
-        console.log(periodo);
         if(periodo == "Mensal"){
             remove(ref(db,"users/"+user_final+"/"+nomeMes+"/metas/"+num),{
             })
@@ -786,24 +769,27 @@ function deleteData(){
                 closemodalDeletar();
             })
           
-      
                 num1 = parseFloat(num1) + 1;
                 document.getElementById('guardaOmes').textContent = num1;
                 var nomeMes1 = datas(num1);
                 get(child(dbRef,"users/"+user_final+"/"+nomeMes1+"/metas/"+num)).then((snapshot)=>{
 
-
                     if(snapshot.exists()){
 
                         remove(ref(db,"users/"+user_final+"/"+nomeMes1+"/metas/"+num),{  
                 })
-
+                num1 = parseFloat(num1) - 1;
+              document.getElementById('guardaOmes').textContent = num1;
+              nomeMes1 = datas(num1)
                     } else{
                         num1 = parseFloat(num1) - 2;
                         document.getElementById('guardaOmes').textContent = num1;
                         nomeMes1 = datas(num1);
                         remove(ref(db,"users/"+user_final+"/"+nomeMes1+"/metas/"+num),{  
                 })
+                num1 = parseFloat(num1) + 1;
+              document.getElementById('guardaOmes').textContent = num1;
+              nomeMes1 = datas(num1)
                     }
 
 
@@ -844,8 +830,10 @@ function alterData(){
                 document.getElementById('categoria').value = "";
                 document.getElementById('valor').value = "";
                 document.getElementById('periodo').value = "";
+                document.getElementById('periodo').style.pointerEvents = "auto";
                 document.querySelector('#editar').classList.add('sumiu');
                 document.querySelector('#adicionar').classList.remove('sumiu');
+                
 
               
 
@@ -855,7 +843,6 @@ function alterData(){
            });
         }
     else if (document.getElementById('periodo').value == "Bimestral") {
-        console.log(document.getElementById('periodo').value);
         update(ref(db,"users/"+user_final+"/"+nomeMes+"/metas/"+num),{
                 titulo: nome,
                 tipo: tipo,
@@ -872,7 +859,11 @@ function alterData(){
                             tipo: tipo,
                             valor: valor,
                             periodo: periodo
-            })
+            });   
+            mes = parseFloat(mes) - 1;
+              document.getElementById('guardaOmes').textContent = mes;
+              nomeMes = datas(mes);
+
                 }
                 else{
                     mes = parseFloat(mes) - 2;
@@ -884,10 +875,21 @@ function alterData(){
                             valor: valor,
                             periodo: periodo
                     });
+                    mes = parseFloat(mes) + 1;
+              document.getElementById('guardaOmes').textContent = mes;
+              nomeMes = datas(mes);
+                    
                 }
             });
     });
-           
+                document.getElementById('titulo').value = "";
+                document.getElementById('categoria').value = "";
+                document.getElementById('valor').value = "";
+                document.getElementById('periodo').style.pointerEvents = "auto";
+                document.getElementById('periodo').value = "";
+                document.querySelector('#editar').classList.add('sumiu');
+                document.querySelector('#adicionar').classList.remove('sumiu');
+                datas(mes)   
     }
 }
 
