@@ -66,7 +66,7 @@
             margin-top: 15%;
             border-radius: 2%;
             height: 120%;
-            width: 95%;
+            width: 120%;
             margin-left: 2%;
             margin-right: 2%;
         }
@@ -452,17 +452,6 @@ switch(mes){
             type: 'bar',
             data: createBarChartData(),
             options: {
-                scales: {
-                    yAxes: {
-                        display: true,
-                        ticks: {
-                            beginAtZero: true,
-                            steps: 10,
-                            stepValue: 5,
-                            max: 100
-                        }
-                    },
-                },
                 plugins: {
                     legend: {
                         display: false
@@ -519,7 +508,7 @@ switch(mes){
                 datasets: [{
                     label: "Balanços Mensais",
                     data: balancos,
-                    borderColor: 'rgb(245, 193, 22)',
+                    borderColor: '#f5c116',
                     tension: 0.2
                 },
                 {
@@ -578,7 +567,8 @@ switch(mes){
                 labels: arrayTitulo,
                 datasets: [{
                     data: arrayValor,
-                    backgroundColor: ["#ccf6ec", "#ff6654", "#009784", "#009784", "#009784"],
+                    backgroundColor: ["#f5c116", "#202020"],
+                    maxBarThickness: 120,
                 }]
                     
             }
@@ -656,14 +646,11 @@ switch(mes){
                 labels: ["Gastos", "Metas"],
                 datasets: [{
                     data: [valor, metas],
-                    backgroundColor: ["#0ae90a", "#ff0000"]
+                    backgroundColor: ["#ff0000", "#0ae90a"]
                 }],
             }
             return data;
         }
-        
-                
- 
 
         DoughnutChart1.config.data = createDoughnutChartData("Receita");
         setTimeout(function() {  DoughnutChart1.update(); },800);
@@ -673,12 +660,21 @@ switch(mes){
 
         LineChart.config.data = createLineChartData();
         setTimeout(function() { LineChart.update(); },800);
-        window.lineResetZoom = function() {
-            LineChart.resetZoom();
-        }
-
+            
         BarChart.config.data = createBarChartData();
         setTimeout(function() { BarChart.update(); },800);
+        
+        MetaChart.config.data = createMetaChartData();
+        setTimeout(function() { MetaChart.update(); },800);               
+
+        const selectElement2 = document.querySelector('#selectBoxBar2')
+        selectElement2.addEventListener('change', (event) => {
+            getSelectBoxBarValue2();
+            MetaChart.config.data = createMetaChartData();
+            MetaChart.update();
+            selectElement2.value = "Entretenimento";
+            
+        });
 
         const selectElement = document.querySelector('#selectBoxBar');
         selectElement.addEventListener('change', (event) => {
@@ -686,17 +682,10 @@ switch(mes){
             BarChart.config.data = createBarChartData();
             BarChart.update();
         });
-    
-        MetaChart.config.data = createMetaChartData();
-        setTimeout(function() { MetaChart.update(); },800);       
 
-        const selectElement2 = document.querySelector('#selectBoxBar2')
-        selectElement2.addEventListener('change', (event) => {
-            getSelectBoxBarValue2();
-            MetaChart.config.data = createMetaChartData();
-            MetaChart.update();
-        });
-
+        window.lineResetZoom = function() {
+            LineChart.resetZoom();
+        }
     </script>
     <script src="menu.js"></script>
 </html>
