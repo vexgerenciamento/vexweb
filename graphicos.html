@@ -671,9 +671,7 @@ switch(mes){
         selectElement2.addEventListener('change', (event) => {
             getSelectBoxBarValue2();
             MetaChart.config.data = createMetaChartData();
-            MetaChart.update();
-            selectElement2.value = "Entretenimento";
-            
+            MetaChart.update();            
         });
 
         const selectElement = document.querySelector('#selectBoxBar');
