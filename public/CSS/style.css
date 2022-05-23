@@ -589,6 +589,7 @@ header
 }
 
 @media(max-width:900px){
+    
     /*IMPORTANDO ALGUMAS FONTES*/
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Dosis:wght@200&family=Licorice&family=Parisienne&family=Poppins:wght@100;200;300;600&family=Ubuntu:wght@300;400;500;700&display=swap');
 
@@ -765,6 +766,9 @@ body{
 	height: 100vh;
 }
 @media only screen and (max-width: 767px) {
+    #sobreMenu{
+        visibility: hidden;
+    }
 	.navbar-nav.ml-auto {
 		background: rgba(0, 0, 0, 0.5);
 	}
@@ -928,7 +932,8 @@ header
         }
 /*FAZENDO O RESPONSIVO*/
 @media(max-width:991px)
-{
+{    
+    
     .main
     {
         padding: 40px;
@@ -1034,9 +1039,20 @@ header
     {
         transform: translateY(0px) rotate(-45deg);
     }
+    .servico 
+    {
+        padding: 20px;
+    }
+    #sobreMenu{
+        visibility: hidden;
+    }
 }
 @media(max-width:480px)
 {
+    .video {
+        width: 350px;
+        height: 300px;
+    }
     header, 
     .main
     {
@@ -1053,6 +1069,9 @@ header
     .btn
     {
         padding:15px 30px ;
+    }
+    #sobreMenu{
+        visibility: hidden;
     }
 }
 /*INICIO DO SOBRE*/

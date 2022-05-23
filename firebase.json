@@ -1,0 +1,9 @@
+{
+  "hosting": {
+    "site": "vexgerenciamento",
+    "public": "public",
+    "ignore": [
+      "firebase.json"
+    ]
+  }
+}
