@@ -43,8 +43,24 @@
               
               
 
+<<<<<<< HEAD
               <a id="logout" href="#"><span class="material-symbols-rounded">logout</span><p>Sair</p></a>
           </nav>
+=======
+        .meta-chart {
+            background-color: white;
+            margin-top: 15%;
+            border-radius: 2%;
+            height: 120%;
+            width: 120%;
+            margin-left: 2%;
+            margin-right: 2%;
+        }
+
+    </style>
+    <body>
+        <div class="corpo" style="background: black;margin-bottom: -90px;">
+>>>>>>> 52d34513c845af5cc0fc0e99779521f4dceb6b8c
 
     <section id="contents">      
 
@@ -99,7 +115,11 @@
                     <option value="Seguros">Seguros</option>
                     <option value="Transportes">Transportes</option>                
                     <option value="Outros">Outros</option>                        
+<<<<<<< HEAD
                 </select>                 
+=======
+                </select> 
+>>>>>>> 52d34513c845af5cc0fc0e99779521f4dceb6b8c
             <br>
         
         </div>
@@ -243,6 +263,7 @@ tbody.innerHTML="";
 users.forEach(element => {
     AddItemTb(element.titulo, element.tipo, element.periodo, element.valor, element.id);
 
+<<<<<<< HEAD
 });
 
 }
@@ -256,6 +277,96 @@ users.forEach(element => {
     snapshot.forEach(childSnapshot =>{
     ganhos.push(childSnapshot.val());
     document.getElementById('ganhoInicial').textContent = `R$ ${ganhos}`;      
+=======
+    BarChart.config.data = createBarChartData();
+    setTimeout(function() { BarChart.update(); },800);
+    DoughnutChart1.config.data = createDoughnutChartData("Receita");
+    setTimeout(function() {  DoughnutChart1.update(); },800);
+    DoughnutChart2.config.data = createDoughnutChartData("Despesa");
+    setTimeout(function() {  DoughnutChart2.update(); },800);
+    MetaChart.config.data = createMetaChartData();
+    setTimeout(function() { MetaChart.update(); },800);
+    datas(mes);
+}
+function mesPosterior(){
+    var mes = parseInt(document.getElementById('guardaOmes').textContent);
+    mes = mes+1;
+    mes = parseInt(mes);
+    if(mes>12){ mes = 1}
+    document.getElementById('guardaOmes').textContent = mes;
+
+    BarChart.config.data = createBarChartData();
+    setTimeout(function() { BarChart.update(); },800);
+    DoughnutChart1.config.data = createDoughnutChartData("Receita");
+    setTimeout(function() {  DoughnutChart1.update(); },800);
+    DoughnutChart2.config.data = createDoughnutChartData("Despesa");
+    setTimeout(function() {  DoughnutChart2.update(); },800);
+    MetaChart.config.data = createMetaChartData();
+    setTimeout(function() { MetaChart.update(); },800);
+    datas(mes);
+}
+
+function datas(mes){
+   
+    if(mes == undefined){
+    var data = new Date()
+var mes = String(data.getMonth() + 1);
+document.getElementById('guardaOmes').textContent = `${mes}`;
+}
+mes = document.getElementById('guardaOmes').textContent
+switch(mes){
+    case '1':
+        nomeMes = "jan";
+        document.getElementById('mes').textContent = "Janeiro de 2022";
+  
+
+    return nomeMes;
+
+    break;
+    case '2':
+    nomeMes = "fev"; 
+    document.getElementById('mes').textContent = "Fevereiro de 2022";
+
+    return nomeMes;
+
+    break;
+    case '3':
+    nomeMes = "mar"; 
+    document.getElementById('mes').textContent = "Março de 2022";
+
+        return nomeMes;
+    break;
+    case '4':
+    nomeMes = "abril"; 
+    document.getElementById('mes').textContent = "Abril de 2022";
+
+        return nomeMes;
+    break;
+    case '5':
+    nomeMes = "maio"; 
+    document.getElementById('mes').textContent = "Maio de 2022";
+
+        return nomeMes;
+    break;
+    case '6':
+    nomeMes = "jun"; 
+    document.getElementById('mes').textContent = "Junho de 2022";
+
+        
+    return nomeMes;
+    break;
+    case '7':
+    nomeMes = "jul"; 
+    document.getElementById('mes').textContent = "Julho de 2022";
+
+       
+    return nomeMes;
+    break;
+    case '8':
+    nomeMes = "ago"; 
+    document.getElementById('mes').textContent = "Agosto de 2022";
+
+>>>>>>> 52d34513c845af5cc0fc0e99779521f4dceb6b8c
  
     });
     });
@@ -311,6 +422,7 @@ var nomeMes = datas();
     
         return nomeMes;
     
+<<<<<<< HEAD
         break;
         case '2':
         nomeMes = "fev"; 
@@ -397,6 +509,14 @@ var nomeMes = datas();
         document.getElementById('proximo').addEventListener('click', mesPosterior);
 
         var nomeMes = datas();
+=======
+}
+}
+
+    var nomeMes = datas();
+    document.getElementById('anterior').addEventListener('click', mesAnterior);
+    document.getElementById('proximo').addEventListener('click', mesPosterior);
+>>>>>>> 52d34513c845af5cc0fc0e99779521f4dceb6b8c
         var biscu = [];
         var tbody = document.getElementById('tbody');
         function AddItemTb(titulo, valor){          
@@ -704,6 +824,7 @@ var nomeMes = datas();
         window.lineResetZoom = function() {
             LineChart.resetZoom();
         }
+<<<<<<< HEAD
 
 
 
@@ -946,4 +1067,8 @@ var nomeMes = datas();
         
 
 
+=======
+    </script>
+    <script src="menu.js"></script>
+>>>>>>> 52d34513c845af5cc0fc0e99779521f4dceb6b8c
 </html>
