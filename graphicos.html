@@ -3,140 +3,103 @@
     <head>
         <meta charset="utf-8">
         <title>Gráficos</title>
-        <link rel="stylesheet" href="CSS/main2.css">
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="CSS/stylegraph.css">
         <script src="autenticar.js"></script>
         <sscript src="logout.js"></sscript>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-     
+  <link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet" href="https://fonts.sandbox.google.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     </head>
-    <style>
-        .chart-wrapper{
-            height: 70%;
-            width: 70%;
-            margin-right: 200%;
-            padding-top: 3%;
-        }
 
-        .line-bar-chart-wrapper{
-            display: flex;
-        }
+    
 
-        .line-bar-chart-wrapper .line-chart {
-            height: 30%;
-            width: 40%;
-            margin-right: 2%;
-            border-radius: 2%;
-        }
+   
+    
+    <body id="body">
 
-        .line-bar-chart-wrapper .bar-chart {
-            height: 40%;
-            width: 40%;
-            margin-left: 2%;
-            border-radius: 2%;
-        }
+        
+          <nav id="nav">
+              <img id="icon" src="img/vex dourado.png" width="40px" height="40px" ><p id="icontext">Seus Gráficos</p><span class="material-symbols-rounded" id="closing">close</span>
 
-        .doughnut-chart-wrapper {            
-            display: flex;
-        }
+              <span class="material-symbols-rounded" id="opening">menu</span>
 
-        .doughnut-chart1 {
-            background-color: white;
-            margin-top: 15%;
-            border-radius: 2%;
-            height: 95%;
-            width: 95%;
-            margin-right: 2%;
-            margin-left: 2%;
-        }
 
-        .doughnut-chart2 {
-            background-color: white;
-            margin-top: 15%;
-            border-radius: 2%;
-            height: 95%;
-            width: 95%;
-            margin-left: 2%;
-            margin-right: 2%;
-        }
+              <ul id="links">
+                  <div id="metas"><a href="metas.html" id="line1"><li><span class="material-symbols-outlined" style="position:relative; left: -40px; top: 5px;">add_task</span>Metas</li></a></div>
+                  <div id="graph"><a href="graphicos.html" id="line2"><li><span class="material-symbols-outlined" style="position:relative; left: -40px; top: 5px;">touch_app</span>Gráficos</li></a></div>
+                  <div id="control"><a href="controle.html" id="line3"><li><span class="material-symbols-outlined" style="position:relative; left: -40px; top: 5px;">monitoring</span>Controle</li></a></div>
+              </ul>
+              <p id="between">______________________________________________</p>
+              <br>
+              <br>
+              
+              
 
-    </style>
-    <body>
-        <div class="corpo" style="background: black;margin-bottom: -90px;">
+              <a id="logout" href="#"><span class="material-symbols-rounded">logout</span><p>Sair</p></a>
+          </nav>
 
-            
-            
-            <div class="inner body" style="min-width: 500px;">
-                <nav id="more">
-                    
+    <section id="contents">      
+
+        <header id="content">
+            <h1>Olá, Luiz.</h1>
+            <p>Seja Bem-vindo!</p>
+        </header>
+
+
+        <div class="sc-kEjbQP fuVdYh" id="mesiusz">
+            <div class="sc-iqHYmW jklSBJ setleft" id="anterior"><span class="material-symbols-outlined unselectable">
+                arrow_forward_ios
+                </span></div>
+            <div class="sc-crrszt cPfwyB" id="mes">Abril de 2022</div>
+            <div class="sc-iqHYmW jklSBJ setright" id="proximo"><span class="material-symbols-outlined unselectable">
+                arrow_back_ios
+                </span></div>
+        </div>
+        
+
+      
+    <div class="chart-wrapper" id="graphs">
+        <div class="line-bar-chart-wrapper" id="firstline">
+                <canvas class="line-chart" style="background-color: white;" id="firstgraph" ></canvas>                
+                <canvas class="bar-chart" style="background-color: white;" id="secondgraph"></canvas>    
+
+                <select class="selectBox" id="selectBoxBar" name="selectBoxBar">
                 
-                <span id="pontin" class="material-symbols-outlined" style="opacity: 0; font-size: 32px;">menu</span>
-                
-             
-                <img src="img/vex dourado.png" width="40px" height="40px" id="iconvex"><span id="closy" class="material-symbols-outlined">close</span>
-                <h1 style="color: white; position: relative; bottom: 9%; left: 5%;" id="meter">Vex</h1>
-                
-
-                <ul id="links">
-                    <a href="metas.html"><li id="metaspc"><p id="metas"><span class="material-symbols-outlined" id="icmetas">add_task</span>Metas</p></li></a>
-                    <li id="gestaopc"><a href="index.html"><p id="gestao"><span class="material-symbols-outlined" id="icgestao">inventory</span>Gestão</p></a></li>
-                    <li id="controlepc"><a href="main2.html"><p id="controle"><span class="material-symbols-outlined" id="iccontrole">touch_app</span>Controle</p></a></li>
-                    <li id="graphicpc"><a href="graphicos.html"><p id="graphic"><span class="material-symbols-outlined" id="icgraphic">monitoring</span>Gráficos</p></a></li>
-                </ul>
-
-                                <br>
-                
-                <p style="text-align:center; color: #f5c116;" id="liniy" class="unselectable">_________________________</p>
-                
-                                <br>
-
-                <button id="logoff" onclick="logout();" style="background-color: transparent; border:none;"><span class="material-symbols-outlined" id="iclogout">logout</span><p style="display: inline-table; text-align: center;" id="sairir">Sair</p></button></div><br><br>
-
-                
-                
-
-               <!-- <img id="icon" src="vex dourado.png" style="padding-top: 5%;">-->
-                </nav>
-
-                
-                
-
+                    <option value="Alimentação">Alimentação</option>
+                    <option value="Entretenimento">Entretenimento</option>
+                    <option value="Habitação">Habitação</option>
+                    <option value="Salário">Salário</option>
+                    <option value="Saúde">Saúde</option>
+                    <option value="Seguros">Seguros</option>
+                    <option value="Transportes">Transportes</option>                
+                    <option value="Outros">Outros</option>                  
+                </select>
             </div>
-            
-            <div class="sc-hKgJUU frdCTY">
-                <div class="sc-jrAFXE eqoOME" style="flex-direction: column; flex-wrap: wrap; align-content: stretch; justify-content: space-evenly; align-items: stretch;">
-                    <div class="sc-kEjbQP fuVdYh">
-                        <div class="sc-iqHYmW jklSBJ setleft" id="anterior"><span class="material-symbols-outlined unselectable">
-                            arrow_forward_ios
-                            </span></div>
-                        <div class="sc-crrszt cPfwyB" id="mes">Abril de 2022</div>
-                        <div class="sc-iqHYmW jklSBJ setright" id="proximo"><span class="material-symbols-outlined unselectable">
-                            arrow_back_ios
-                            </span></div>
-                    </div>
-                    
-                </div>
-        <div class="chart-wrapper">
-            <div class="line-bar-chart-wrapper">
-                    <canvas class="line-chart" style="background-color: white;"></canvas>                    
-                    <canvas class="bar-chart" style="background-color: white;"></canvas>      
-                    <select class="selectBox" id="selectBoxBar" name="selectBoxBar" style="height: 25px;">
-                        <option value="Alimentação">Alimentação</option>
-                        <option value="Entretenimento">Entretenimento</option>
-                        <option value="Habitação">Habitação</option>
-                        <option value="Salário">Salário</option>
-                        <option value="Saúde">Saúde</option>
-                        <option value="Seguros">Seguros</option>
-                        <option value="Transportes">Transportes</option>                
-                        <option value="Outros">Outros</option>                        
-                    </select>      
-                </div>
-                <button onclick="lineResetZoom()">Reset</button>
-                <div class="doughnut-chart-wrapper">
+
+            <button onclick="lineResetZoom()" type="button" class="rein">Reiniciar Gráfico</button> 
+                <div class="doughnut-chart-wrapper" id="secondline">
                     <canvas class="doughnut-chart1"></canvas>
-                    <canvas class="doughnut-chart2"></canvas>
+                    <canvas class="doughnut-chart2"></canvas>                    
                 </div>
+                <canvas class="meta-chart"></canvas>
+                <select class="selectBox" id="selectBoxBar2" name="selectBoxBar2" style="height: 25px;">
+                    <option value="Alimentação">Alimentação</option>
+                    <option value="Entretenimento">Entretenimento</option>
+                    <option value="Habitação">Habitação</option>
+                    <option value="Salário">Salário</option>
+                    <option value="Saúde">Saúde</option>
+                    <option value="Seguros">Seguros</option>
+                    <option value="Transportes">Transportes</option>                
+                    <option value="Outros">Outros</option>                        
+                </select>                 
             <br>
         
         </div>
@@ -152,14 +115,37 @@
                 <tbody id="tbody"></tbody>
             </table>
         </section>
-        <div id="guardaOmes" style="color: white; display: none;" ></div>
+
+    
+    </div>
+</section>
+
+<div id="IdVerdadeiro"></div>
+<div id="guardaOmes" style="color: white;"></div>
+
     </body>
+
+
         <script src="node_modules/chart.js/dist/chart.min.js"></script>
         <script src="node_modules/chart.js/dist/chart.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
         <script src="node_modules/chartjs-plugin-zoom/dist/chartjs-plugin-zoom.min.js"></script>
         <script src="node_modules/chartjs-plugin-zoom/dist/chartjs-plugin-zoom.js"></script>
+
+        <script>
+
+            //------------------------------DECLARANDO VÁRIAVEIS GLOBAIS------------------------------//
+ 
+   
+        </script>
+
+
         <script type="module">
+
+
+            
+
+
             const usuario = "teste";
             var user_final = localStorage.getItem('valueText');
             
@@ -193,172 +179,224 @@
             import{getDatabase, ref, get, set, child, update, remove, onValue}
             from "https://www.gstatic.com/firebasejs/9.6.8/firebase-database.js";
             const db = getDatabase();
-        
-            function autenticar(){
-            const dbref = ref(db);
-get(child(dbref,"users/"+user_final)).then((snapshot)=>{
 
-                var nome = snapshot.val().fullname;
-                var senha = snapshot.val().password;
-                if ((localStorage.getItem('nome') == nome) && (localStorage.getItem('senha') == senha))
-                {   
-                }
-                else
-                {
 
-                    window.location.href = 'index.html';
-                } 
-                
-                
-        }).catch((error)=>{
-            window.location.href = 'index.html';
-        });
+            
+            function mesAnterior(){
+        var mes = parseInt(document.getElementById('guardaOmes').textContent);
+        mes = mes-1;
+        mes = parseInt(mes);
+        if(mes<1){ mes = 12}
+        document.getElementById('guardaOmes').textContent = mes;
+
+        BarChart.config.data = createBarChartData();
+        setTimeout(function() { BarChart.update(); },800);
+        DoughnutChart1.config.data = createDoughnutChartData("Receita");
+        setTimeout(function() {  DoughnutChart1.update(); },800);
+        DoughnutChart2.config.data = createDoughnutChartData("Despesa");
+        setTimeout(function() {  DoughnutChart2.update(); },800);
+        MetaChart.config.data = createMetaChartData();
+        setTimeout(function() { MetaChart.update(); },800);
+
+        GetAllDataRT();
+        datas(mes);
+    }
+    function mesPosterior(){
+        var mes = parseInt(document.getElementById('guardaOmes').textContent);
+        mes = mes+1;
+        mes = parseInt(mes);
+        if(mes>12){ mes = 1}
+        document.getElementById('guardaOmes').textContent = mes;
+
+        BarChart.config.data = createBarChartData();
+        setTimeout(function() { BarChart.update(); },800);
+        DoughnutChart1.config.data = createDoughnutChartData("Receita");
+        setTimeout(function() {  DoughnutChart1.update(); },800);
+        DoughnutChart2.config.data = createDoughnutChartData("Despesa");
+        setTimeout(function() {  DoughnutChart2.update(); },800);
+        MetaChart.config.data = createMetaChartData();
+        setTimeout(function() { MetaChart.update(); },800);
+
+        GetAllDataRT();
+        datas(mes);
+    }
+    
+    function GetAllDataRT(){
+
+    var num = document.getElementById('guardaOmes').textContent;
+    var nomeMes = datas(num);
+
+    const dbRef = ref(db,"users/"+user_final+"/"+nomeMes+"/metas/");
+
+    onValue(dbRef,(snapshot)=>{
+    var metas = [];
+    snapshot.forEach(childSnapshot =>{
+    metas.push(childSnapshot.val());
+    });
+    AddAll(metas);
+    });
         }
-        window.onload = autenticar;
-        
 
-//------------------------------DECLARANDO VÁRIAVEIS GLOBAIS------------------------------//
-var btn_adicionar = document.getElementById("adicionar");
+        function AddAll(users){
 
-function mesAnterior(){
-    var mes = parseInt(document.getElementById('guardaOmes').textContent);
-    mes = mes-1;
-    mes = parseInt(mes);
-    if(mes<1){ mes = 12}
-    document.getElementById('guardaOmes').textContent = mes;
+tbody.innerHTML="";
+users.forEach(element => {
+    AddItemTb(element.titulo, element.tipo, element.periodo, element.valor, element.id);
 
-    BarChart.config.data = createBarChartData();
-    setTimeout(function() { BarChart.update(); },800);
-    DoughnutChart1.config.data = createDoughnutChartData("Receita");
-    setTimeout(function() {  DoughnutChart1.update(); },800);
-    DoughnutChart2.config.data = createDoughnutChartData("Despesa");
-    setTimeout(function() {  DoughnutChart2.update(); },800);
-    datas(mes);
-}
-function mesPosterior(){
-    var mes = parseInt(document.getElementById('guardaOmes').textContent);
-    mes = mes+1;
-    mes = parseInt(mes);
-    if(mes>12){ mes = 1}
-    document.getElementById('guardaOmes').textContent = mes;
+});
 
-    BarChart.config.data = createBarChartData();
-    setTimeout(function() { BarChart.update(); },800);
-    DoughnutChart1.config.data = createDoughnutChartData("Receita");
-    setTimeout(function() {  DoughnutChart1.update(); },800);
-    DoughnutChart2.config.data = createDoughnutChartData("Despesa");
-    setTimeout(function() {  DoughnutChart2.update(); },800);
-
-    datas(mes);
 }
 
-
-
-function datas(mes){
-
-   
-    if(mes == undefined){
-    var data = new Date()
-var mes = String(data.getMonth() + 1);
-document.getElementById('guardaOmes').textContent = `${mes}`;
-}
-mes = document.getElementById('guardaOmes').textContent
-switch(mes){
-    case '1':
-        nomeMes = "jan";
-        document.getElementById('mes').textContent = "Janeiro de 2022";
-  
-
-    return nomeMes;
-
-    break;
-    case '2':
-    nomeMes = "fev"; 
-    document.getElementById('mes').textContent = "Fevereiro de 2022";
-
-    return nomeMes;
-
-    break;
-    case '3':
-    nomeMes = "mar"; 
-    document.getElementById('mes').textContent = "Março de 2022";
-
-        return nomeMes;
-    break;
-    case '4':
-    nomeMes = "abril"; 
-    document.getElementById('mes').textContent = "Abril de 2022";
-
-        return nomeMes;
-    break;
-    case '5':
-    nomeMes = "maio"; 
-    document.getElementById('mes').textContent = "Maio de 2022";
-
-        return nomeMes;
-    break;
-    case '6':
-    nomeMes = "jun"; 
-    document.getElementById('mes').textContent = "Junho de 2022";
-
-        
-    return nomeMes;
-    break;
-    case '7':
-    nomeMes = "jul"; 
-    document.getElementById('mes').textContent = "Julho de 2022";
-
-       
-    return nomeMes;
-    break;
-    case '8':
-    nomeMes = "ago"; 
-    document.getElementById('mes').textContent = "Agosto de 2022";
-
+        function GetGanho(){
+    var num = document.getElementById('guardaOmes').textContent;
+    var nomeMes = datas(num);
+    const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/ganhoMensal/");
+    onValue(dbRef,(snapshot)=>{    
+        var ganhos = [];
+    snapshot.forEach(childSnapshot =>{
+    ganhos.push(childSnapshot.val());
+    document.getElementById('ganhoInicial').textContent = `R$ ${ganhos}`;      
  
-    return nomeMes;
-    break;
+    });
+    });
+   
+}
 
-        case '9':
-    nomeMes = "set"; 
-    document.getElementById('mes').textContent = "Setembro de 2022";
+function GetBalanco(){
+    var num = document.getElementById('guardaOmes').textContent;
+    var nomeMes = datas(num);
+const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/balancoMensal/");
+
+    onValue(dbRef,(snapshot)=>{    
+        var balanco = [];
+        snapshot.forEach(childSnapshot =>{
+            balanco.push(childSnapshot.val());
+    document.getElementById('balanco').textContent = `R$ ${balanco}`;      
+ 
+    });
+ 
+    });
+}
+function GetDespesa(){
+    var num = document.getElementById('guardaOmes').textContent;
+    var nomeMes = datas(num);
+const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/despesaMensal/");
+
+    onValue(dbRef,(snapshot)=>{    
+        var despesas = [];
+    snapshot.forEach(childSnapshot =>{
+    despesas.push(childSnapshot.val());
+    document.getElementById('despesaInicial').textContent = `R$ ${despesas}`;        
+    });
+ 
+    });
+}
 
 
-    return nomeMes;
-    break;
-
-        case '10':
-    nomeMes = "out"; 
-    document.getElementById('mes').textContent = "Outubro de 2022";
-
+var nomeMes = datas();
     
-    return nomeMes;
-    break;
-
-        case '11':
-    nomeMes = "nov"; 
-    document.getElementById('mes').textContent = "Novembro de 2022";
-
+    function datas(mes){
     
-    return nomeMes;
-    break;
-
-        case '12':
-    nomeMes = "dez"; 
-    document.getElementById('mes').textContent = "Dezembro de 2022";
-
+       
+        if(mes == undefined){
+        var data = new Date()
+    var mes = String(data.getMonth() + 1);
+    document.getElementById('guardaOmes').textContent = `${mes}`;
+    }
+    mes = document.getElementById('guardaOmes').textContent
+    switch(mes){
+        case '1':
+            nomeMes = "jan";
+            document.getElementById('mes').textContent = "Janeiro de 2022";
+    
         return nomeMes;
-    break;
     
-}
-}
-
-
-
+        break;
+        case '2':
+        nomeMes = "fev"; 
+        document.getElementById('mes').textContent = "Fevereiro de 2022";
+    
+        return nomeMes;
+    
+        break;
+        case '3':
+        nomeMes = "mar"; 
+        document.getElementById('mes').textContent = "Março de 2022";
+    
+            return nomeMes;
+        break;
+        case '4':
+        nomeMes = "abril"; 
+        document.getElementById('mes').textContent = "Abril de 2022";
+    
+            return nomeMes;
+        break;
+        case '5':
+        nomeMes = "maio"; 
+        document.getElementById('mes').textContent = "Maio de 2022";
+    
+            return nomeMes;
+        break;
+        case '6':
+        nomeMes = "jun"; 
+        document.getElementById('mes').textContent = "Junho de 2022";
+    
+            
+        return nomeMes;
+        break;
+        case '7':
+        nomeMes = "jul"; 
+        document.getElementById('mes').textContent = "Julho de 2022";
+    
+           
+        return nomeMes;
+        break;
+        case '8':
+        nomeMes = "ago"; 
+        document.getElementById('mes').textContent = "Agosto de 2022";
+    
+     
+        return nomeMes;
+        break;
+    
+            case '9':
+        nomeMes = "set"; 
+        document.getElementById('mes').textContent = "Setembro de 2022";
+    
+    
+        return nomeMes;
+        break;
+    
+            case '10':
+        nomeMes = "out"; 
+        document.getElementById('mes').textContent = "Outubro de 2022";
+    
+        
+        return nomeMes;
+        break;
+    
+            case '11':
+        nomeMes = "nov"; 
+        document.getElementById('mes').textContent = "Novembro de 2022";
+    
+        
+        return nomeMes;
+        break;
+    
+            case '12':
+        nomeMes = "dez"; 
+        document.getElementById('mes').textContent = "Dezembro de 2022";
+    
+            return nomeMes;
+        break;
+        
+    }
+    }
+       
+    document.getElementById('anterior').addEventListener('click', mesAnterior);
+        document.getElementById('proximo').addEventListener('click', mesPosterior);
 
         var nomeMes = datas();
-        document.getElementById('anterior').addEventListener('click', mesAnterior);
-    document.getElementById('proximo').addEventListener('click', mesPosterior);
         var biscu = [];
         var tbody = document.getElementById('tbody');
         function AddItemTb(titulo, valor){          
@@ -434,17 +472,6 @@ switch(mes){
             type: 'bar',
             data: createBarChartData(),
             options: {
-                scales: {
-                    yAxes: {
-                        display: true,
-                        ticks: {
-                            beginAtZero: true,
-                            steps: 10,
-                            stepValue: 5,
-                            max: 100
-                        }
-                    },
-                },
                 plugins: {
                     legend: {
                         display: false
@@ -452,6 +479,19 @@ switch(mes){
                 }
             }
         });
+
+        var meta_chart = document.getElementsByClassName("meta-chart");
+        var MetaChart = new Chart(meta_chart , {
+            type: 'bar',
+            data: createMetaChartData(),
+            options: {
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        })
 
         function createLineChartData(){
             var meses = ["jan", "fev", "mar", "abril", "maio", "jun"];
@@ -488,7 +528,7 @@ switch(mes){
                 datasets: [{
                     label: "Balanços Mensais",
                     data: balancos,
-                    borderColor: 'rgb(245, 193, 22)',
+                    borderColor: '#f5c116',
                     tension: 0.2
                 },
                 {
@@ -511,7 +551,13 @@ switch(mes){
         window.getSelectBoxBarValue = function(){
             selectBoxBar = document.getElementById('selectBoxBar').value;
             return selectBoxBar;
-        }      
+        }  
+        
+        var selectBoxBar2;
+        window.getSelectBoxBarValue2 = function(){
+            selectBoxBar2 = document.getElementById('selectBoxBar2').value;
+            return selectBoxBar2;
+        }  
 
         function createBarChartData(){   
             var num = document.getElementById('guardaOmes').textContent;
@@ -528,7 +574,8 @@ switch(mes){
                     if(element.tipo != getSelectBoxBarValue()){
                         return;
                     }else{
-                    var valor = parseInt(element.valor);
+                        // SE DER MERDA FOI ISSO
+                    var valor = parseFloat(element.valor);
                     var titulo = element.titulo;
                     arrayValor.push(valor);
                     arrayTitulo.push(titulo);
@@ -540,11 +587,11 @@ switch(mes){
                 labels: arrayTitulo,
                 datasets: [{
                     data: arrayValor,
-                    backgroundColor: ["#ccf6ec", "#ff6654", "#009784", "#009784", "#009784"],
+                    backgroundColor: ["#f5c116", "#202020"],
+                    maxBarThickness: 120,
                 }]
                     
             }
-            console.log("Função do BarChart foi")
                 return data;
         }  
 
@@ -578,8 +625,51 @@ switch(mes){
                     hoverOffset: 7
                 }]     
             }
-            console.log("Função do DoughnutChart foi")
-                return data;
+            return data;
+        }
+
+        function createMetaChartData() {
+            var num = document.getElementById('guardaOmes').textContent;
+            var nomeMes = datas(num);
+            var gastos = [];
+            var metas_ = [];
+            var valor = 0.0;
+            var metas = 0.0;
+            const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/gastos/");
+            onValue(dbRef,(snapshot)=>{    
+                snapshot.forEach(childSnapshot =>{
+                    gastos.push(childSnapshot.val());
+                });                
+                gastos.forEach(element => {
+                    if(element.tipo != getSelectBoxBarValue2()){
+                        return;
+                    }else{
+                    valor = valor + parseFloat(element.valor);
+                    }                                    
+                });
+            });
+            const dbRef1 = ref(db, "users/"+user_final+"/"+nomeMes+"/metas/");
+            onValue(dbRef1,(snapshot)=>{
+                snapshot.forEach(childSnapshot =>{
+                    metas_.push(childSnapshot.val());
+                });
+                metas_.forEach(element => {
+                    if(element.tipo != getSelectBoxBarValue2()){
+                        return;
+                    }else{
+                        metas = metas + parseFloat(element.valor);
+                    }
+                });
+            });
+            
+            var data = {
+                labels: ["Gastos", "Metas"],
+                datasets: [{
+                    data: [valor, metas],
+                    backgroundColor: ["#ff0000", "#0ae90a"]
+                }],
+            }
+            return data;
         }
 
         DoughnutChart1.config.data = createDoughnutChartData("Receita");
@@ -588,16 +678,22 @@ switch(mes){
         DoughnutChart2.config.data = createDoughnutChartData("Despesa");
         setTimeout(function() {  DoughnutChart2.update(); },800);
 
-
         LineChart.config.data = createLineChartData();
         setTimeout(function() { LineChart.update(); },800);
-        window.lineResetZoom = function() {
-            LineChart.resetZoom();
-        }
-
+            
         BarChart.config.data = createBarChartData();
-        setTimeout(function() { BarChart.update(); },800); 
+        setTimeout(function() { BarChart.update(); },800);
         
+        MetaChart.config.data = createMetaChartData();
+        setTimeout(function() { MetaChart.update(); },800);               
+
+        const selectElement2 = document.querySelector('#selectBoxBar2')
+        selectElement2.addEventListener('change', (event) => {
+            getSelectBoxBarValue2();
+            MetaChart.config.data = createMetaChartData();
+            MetaChart.update();            
+        });
+
         const selectElement = document.querySelector('#selectBoxBar');
         selectElement.addEventListener('change', (event) => {
             getSelectBoxBarValue();
@@ -605,6 +701,249 @@ switch(mes){
             BarChart.update();
         });
 
+        window.lineResetZoom = function() {
+            LineChart.resetZoom();
+        }
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+        
+//SCRIPT/// 
+//QUANDO O/ 
+//MENU///// 
+//ESTIVER//
+//ABERTO///
+
+    var firstline = document.getElementById("firstline");
+    var firstgraph = document.getElementById("firstgraph");
+    var secondgraph = document.getElementById("secondgraph");
+    var graphs = document.getElementById("graphs");
+    var secondline = document.getElementById("secondline");
+    var titulo = document.getElementById("titulo");
+    var contents = document.getElementById("contents");
+    var body = document.getElementById("body");
+    var selectBoxBar = document.getElementById("selectBoxBar");
+
+   
+    
+ 
+    
+
+      if(nav = 300){
+      
+            contents.style.position = "relative";
+            contents.style.left = "22%";
+            graphs.style.position = "relative";
+            graphs.style.width = "60%";
+            graphs.style.bottom = "100px";
+            firstline.style.display = "list-item";
+            secondline.style.display = "list-item";
+            secondgraph.style.position = "relative";
+            secondgraph.style.right = "2%";
+            secondgraph.style.marginTop = "10%";
+
+
+            selectBoxBar.style.bottom = "630px";
+            selectBoxBar.style.position = "relative";
+            selectBoxBar.style.backgroundColor = "#3b3b3b";
+            selectBoxBar.style.border = "none";
+            selectBoxBar.style.height = "60px";
+            selectBoxBar.style.width = "400px";   
+    }
+   
+
+
+      
+    body.addEventListener("mouseover", function(){
+    body.style.transition = "2s";
+    body.style.opacity = "100";
+            });
+
+   
+   
+
+        
+
+
+        //SCRIPT DO MENU E//// 
+        //ACOES CONDICIONAIS// 
+        //&VISUAIS///////////// 
+        //DOS GRAFICOS////////
+
+
+
+        var nav = document.getElementById("nav");
+        var links = document.getElementById("links");
+        var closing = document.getElementById("closing");
+        var icon = document.getElementById("icon");
+        var icontext = document.getElementById("icontext");
+        var saida = document.getElementById("saida");
+        var between = document.getElementById("between");
+        var opening = document.getElementById("opening");
+        var metas = document.getElementById("metas");
+        var control = document.getElementById("control");
+        var graph = document.getElementById("graph");
+        var line1 = document.getElementById("line1");
+        var line2 = document.getElementById("line2");
+        var line3 = document.getElementById("line3");
+        var logout = document.getElementById("logout");
+        var selectBoxBar = document.getElementById("selectBoxBar");
+        var mesiusz = document.getElementById("mesiusz");
+        var proximo = document.getElementById("proximo");
+        var anterior = document.getElementById("anterior");
+        var mes = document.getElementById("mes");
+
+
+
+        proximo.addEventListener("click", function(){
+            mes.style.opacity = "0";
+            mes.style.transition = "1s";
+        });
+
+        mesiusz.addEventListener("mouseover", function(){
+            mes.style.opacity = "100";
+            mes.style.transition = "1s";
+        });
+        
+
+        
+
+
+
+
+
+
+
+
+
+
+
+        closing.addEventListener("click", function(){
+            nav.style.marginLeft = "-12.1%";
+            nav.style.transition = "1s";
+            closing.style.left = "-5%";
+            closing.style.transition = "2s";
+            opening.style.opacity = "100";
+            opening.style.marginLeft = "71%";
+            opening.style.top = "-12%";
+            opening.style.position = "relative";
+            opening.style.transition = "1.5s";
+            between.style.marginLeft = "-50%";
+            between.style.transition = "1s";
+            graphs.style.position = "relative";
+            graphs.style.width = "70%";
+            graphs.style.right = "11.5%";
+            graphs.style.bottom = "100px";
+            graphs.style.transition = "1s";
+            titulo.style.right = "10%";
+            selectBoxBar.style.position = "relative";
+            selectBoxBar.style.top = "-770px";
+        });
+
+        
+
+        opening.addEventListener("click", function(){
+            nav.style.marginLeft = "-0%";
+            nav.style.width = "300px";
+            opening.style.opacity = "0";
+            closing.style.left = "83%";
+            between.style.marginLeft = "-0%";
+            between.style.transition = "1s";
+        });
+
+       
+        metas.addEventListener("mouseover", function(){
+            metas.style.backgroundColor = "#f5c116";
+            line1.style.color = "#000";
+            metas.style.transition = "0.5s";
+        });
+
+        metas.addEventListener("mouseout", function(){
+            metas.style.backgroundColor = "transparent";
+            line1.style.color = "#fff";
+            metas.style.transition = "0.3s";
+        });
+
+
+
+
+
+        graph.addEventListener("mouseover", function(){
+            graph.style.backgroundColor = "#f5c116";
+            line2.style.color = "#000";
+            graph.style.transition = "0.5s";
+        });
+
+        graph.addEventListener("mouseout", function(){
+            graph.style.backgroundColor = "transparent";
+            line2.style.color = "#fff";
+            graph.style.transition = "0.3s";
+        });
+
+
+
+
+        control.addEventListener("mouseover", function(){
+            control.style.backgroundColor = "#f5c116";
+            line3.style.color = "#000";
+            control.style.transition = "0.5s";
+        });
+
+        control.addEventListener("mouseout", function(){
+            control.style.backgroundColor = "transparent";
+            line3.style.color = "#fff";
+            control.style.transition = "0.3s";
+        });
+       
+
+
+
+        logout.addEventListener("mouseover", function(){
+            logout.style.backgroundColor = "#f5c116";
+            logout.style.color = "#000";
+            logout.style.transition = "0.5s";
+        });
+
+        logout.addEventListener("mouseout", function(){
+            logout.style.backgroundColor = "transparent";
+            logout.style.color = "#fff";
+            logout.style.transition = "0.3s";
+        });
+
+
+        
+
+     
+
+        //TERMINA SCRIPT DO MENU//
+
+
+
+         
+
+
     </script>
-                          <script src="menu.js"></script>
+
+    
+        
+
+
 </html>
