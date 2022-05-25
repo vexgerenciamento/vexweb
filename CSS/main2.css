@@ -200,88 +200,6 @@ ul div a li{
   background-color: rgb(245, 193, 22);
 }
 
-<<<<<<< HEAD
-=======
-* {
-  scrollbar-width: thin;
-  scrollbar-color: rgb(19, 18, 18);
-  border-radius: 5px;
-}
-
-/* Works on Chrome, Edge, and Safari */
-*::-webkit-scrollbar {
-  width: 12px;
-  border-radius: 10px;
-}
-
-*::-webkit-scrollbar-track {
-  background: rgb(19, 18, 18);
-  border-radius: 10px;
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: #f5c116;
-  border-radius: 20px;
-  border: 3px solid #333;
-  border-radius: 10px;
-}
-
-body {
-background-color: #202020;
-margin: 0;
-font-family: 'Sora', sans-serif;
--webkit-font-smoothing: antialiased;
--moz-osx-font-smoothing: grayscale;
-position: absolute;
-min-width: 1000px;
-width: 100%;
-
-}
-
-.alignTransf{
-  right: 15px;
-  position:relative;
-  padding-left: 50px;
-  }
-
-#more{
-  position: fixed;
-  height:1000px;
-  width: 300px;
-  background-color: #3b3b3b;
-}
-
-
-#icmetas{
-  transform: rotate(1deg);
-  right: 25%;
-}
-
-#icgestao{
-  transform: rotate(1deg);
-  right: 23%;
-}
-
-#iccontrole{
-  transform: rotate(1deg);
-  right: 20%;
-}
-
-#icgraphic{
-  transform: rotate(1deg);
-  right: 20%;
-}
-
-#iconvex{
-  margin-right: 73%;
-  padding-top: 15%;
-}
-
-#iclogout{
-  right: 20%;
-  padding-top: 5px;
-}
->>>>>>> 52d34513c845af5cc0fc0e99779521f4dceb6b8c
 
 
 
@@ -665,7 +583,7 @@ size: fixed;
 alignData foi criado para alinhar "Período" e os valores correspondentes a Período quando é feito o registro
 */
 .alignData{
-  right: 60px;
+  right: 77px;
   position:relative;
   }
   
@@ -674,7 +592,7 @@ alignData foi criado para alinhar "Período" e os valores correspondentes a Per�
   alignCategoria foi criado para alinhar "Categoria" e os valores correspondentes a Categoria quando é feito o registro
   */
   .alignCategoria{
-  margin-left: 2px;
+  margin-left: 29px;
   position: static;
   }
   
@@ -1009,8 +927,6 @@ margin-right: 0;
   position:relative;
   padding-left: 50px;
   }
-
-
 
   .alignValor {
     padding-left: 50px;
