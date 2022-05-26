@@ -365,19 +365,25 @@ document.getElementById('ganhoInicial').textContent = `R$ ${ganhos}`;
 }
 
 function GetBalanco(){
-var num = document.getElementById('guardaOmes').textContent;
-var nomeMes = datas(num);
+    var num = document.getElementById('guardaOmes').textContent;
+    var nomeMes = datas(num);
 const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/balancoMensal/");
 
-onValue(dbRef,(snapshot)=>{    
-var balanco = [];
-snapshot.forEach(childSnapshot =>{
-    balanco.push(childSnapshot.val());
-document.getElementById('balanco').textContent = `R$ ${balanco}`;      
+    onValue(dbRef,(snapshot)=>{    
+        var balanco = [];
+        snapshot.forEach(childSnapshot =>{
+            balanco.push(childSnapshot.val());
+    document.getElementById('balanco').textContent = `R$ ${balanco}`;  
+    if (parseFloat(document.getElementById('balanco').textContent) >= 0){
+        document.getElementById('balanco').style.color = 'green';
 
-});
-
-});
+    }    else {
+        document.getElementById('balanco').style.color = 'red';
+    }
+ 
+    });
+ 
+    });
 }
 function GetDespesa(){
 var num = document.getElementById('guardaOmes').textContent;
@@ -399,55 +405,57 @@ document.getElementById('despesaInicial').textContent = `R$ ${despesas}`;
 
 function balanco()
 {
-{
-
-var num = document.getElementById('guardaOmes').textContent;
-var nomeMes = datas(num);
+    
+    
+    var num = document.getElementById('guardaOmes').textContent;
+    var nomeMes = datas(num);
 //-----------RECEBENDO O VALOR DAS DIVS-----------//
 
-var ganhoInicial = document.getElementById('ganhoInicial').textContent;
-var despesaInicial = document.getElementById('despesaInicial').textContent;
+    var ganhoInicial = document.getElementById('ganhoInicial').textContent;
+    var despesaInicial = document.getElementById('despesaInicial').textContent;
 
 //-----------RECEBENDO APENAS OS NÚMEROS DAS VARIÁVEIS-----------//
 
-var ganhoInicialNum = ganhoInicial.replace(',', '.').replace('R$', '');
-var despesaInicialNum = despesaInicial.replace(',', '.').replace('R$', '');
+    var ganhoInicialNum = ganhoInicial.replace(',', '.').replace('R$', '');
+    var despesaInicialNum = despesaInicial.replace(',', '.').replace('R$', '');
 
 //-----------PASSANDO PARA FLOAT-----------//
 
-var ganhoInicialFloat = parseFloat(ganhoInicialNum);
-var despesaInicialFloat = parseFloat(despesaInicialNum);
+    var ganhoInicialFloat = parseFloat(ganhoInicialNum);
+    var despesaInicialFloat = parseFloat(despesaInicialNum);
 
 //-----------CONTA FINAL-----------//
 
-var balanco = ganhoInicialFloat - despesaInicialFloat;
+    var balanco = ganhoInicialFloat - despesaInicialFloat;
 
-balanco = parseFloat(balanco).toFixed(2);
-
-
-set(ref(db, "users/"+user_final+"/"+nomeMes+"/balancoMensal/"),
-    {
-        balancoMensal: balanco
-    }
-    )
-    .then(()=>{
-        
-    });
+    balanco = parseFloat(balanco).toFixed(2);
 
 
+    set(ref(db, "users/"+user_final+"/"+nomeMes+"/balancoMensal/"),
+            {
+                balancoMensal: balanco
+            }
+            )
+            .then(()=>{
+                
+            });
 
 
+
+    
 //-----------MUDANÇA DE VALORES E CORES NA TELA-----------//
 
-if (balanco<0){
-document.getElementById('balanco').style = 'color: red;';
-document.getElementById('balanco').textContent = `R$${balanco}`;
-}else{
-document.getElementById('balanco').style = 'color: rgb(10, 233, 10);';
-document.getElementById('balanco').textContent = `R$${balanco}`;
+    if (balanco<0){
+        document.getElementById('balanco').style = 'color: red;';
+        document.getElementById('balanco').textContent = `R$${balanco}`;
+    }else{
+        document.getElementById('balanco').style = 'color: rgb(10, 233, 10);';
+        document.getElementById('balanco').textContent = `R$${balanco}`;
+    }
+
 }
-}
-}
+
+
 
 function calculos()
 {

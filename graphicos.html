@@ -49,8 +49,8 @@
     <section id="contents">      
 
         <header id="content">
-            <h1>Olá, Luiz.</h1>
-            <p>Seja Bem-vindo!</p>
+            <h1 style="visibility: hidden;">Olá, Luiz.</h1>
+            <p  style="visibility: hidden;">Seja Bem-vindo!</p>
         </header>
 
 
@@ -68,8 +68,12 @@
       
     <div class="chart-wrapper" id="graphs">
         <div class="line-bar-chart-wrapper" id="firstline">
-                <canvas class="line-chart" style="background-color: white;" id="firstgraph" ></canvas>                
+                <canvas class="line-chart" style="background-color: white;" id="firstgraph" ></canvas>   
+                
+                <button onclick="lineResetZoom()" type="button" class="rein">Reiniciar Gráfico</button> <br/><br/><br/>
+                
                 <canvas class="bar-chart" style="background-color: white;" id="secondgraph"></canvas>    
+   
 
                 <select class="selectBox" id="selectBoxBar" name="selectBoxBar">
                 
@@ -84,7 +88,7 @@
                 </select>
             </div>
 
-            <button onclick="lineResetZoom()" type="button" class="rein">Reiniciar Gráfico</button> 
+           
                 <div class="doughnut-chart-wrapper" id="secondline">
                     <canvas class="doughnut-chart1"></canvas>
                     <canvas class="doughnut-chart2"></canvas>                    
@@ -271,7 +275,13 @@ const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/balancoMensal/");
         var balanco = [];
         snapshot.forEach(childSnapshot =>{
             balanco.push(childSnapshot.val());
-    document.getElementById('balanco').textContent = `R$ ${balanco}`;      
+    document.getElementById('balanco').textContent = `R$ ${balanco}`;  
+    if (parseFloat(document.getElementById('balanco').textContent) >= 0){
+        document.getElementById('balanco').style.color = 'green';
+
+    }    else {
+        document.getElementById('balanco').style.color = 'red';
+    }
  
     });
  
