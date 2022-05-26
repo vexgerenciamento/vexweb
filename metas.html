@@ -218,14 +218,9 @@
                                 closing.style.opacity = "0";
                                 opening.style.position = "relative";
                                 opening.style.opacity = "100";
-                                opening.style.marginRight = "-160px";
-                                opening.style.bottom = "20px";
-                                closing.style.display = "none";
-                                counteuld.style.marginTop = "25px";
-                                
-
-                                
-
+                                opening.style.marginRight = "-220px";
+                                opening.style.bottom = "40px";
+                                closing.style.display = "none";                            
 
                                 opening.addEventListener("click", function(){
                                     nav.style.left = "-0px";
@@ -244,13 +239,12 @@
                                     nav.style.transition = "1s";
                                     closing.style.opacity = "0";
                                     opening.style.opacity = "100";
-                                    opening.style.marginRight = "-270px";
+                                    opening.style.marginRight = "-150px";
                                     opening.style.position = "relative";
                                     counteuld.style.filter = "blur(0px)";
-                                });
-
-                                
-
+                                    opening.style.display = "inline-table";
+                                closing.style.display = "inline-table";
+                                });                               
 
                               } else {
                                document.body.style.backgroundColor = "202020";
@@ -260,6 +254,146 @@
                             var x = window.matchMedia("(max-width: 414px)")
                             myFunction(x) // chama o listener na hora
                             x.addListener(myFunction) // seta a função em relação as mudanças
+
+
+                            
+
+
+
+
+
+
+
+
+
+                            var counteuld = document.getElementById("counteuld");
+
+                            function myFunction(y) {
+                              if (y.matches) { // If media query matches
+                                document.body.style.backgroundColor = "202020";
+                                nav.style.zIndex = "1";
+                                nav.style.left = "-300px";
+                                nav.style.backgroundColor = "transparent";
+                                closing.style.opacity = "0";
+                                opening.style.position = "relative";
+                                opening.style.opacity = "100";
+                                opening.style.marginRight = "-250px";
+                                opening.style.bottom = "40px";
+                                closing.style.display = "none";    
+                                                      
+
+                                opening.addEventListener("click", function(){
+                                    nav.style.left = "-0px";
+                                    nav.style.backgroundColor = "2b2b2b";
+                                    nav.style.transition = "1s";
+                                    closing.style.opacity = "100";
+                                    closing.style.position = "relative";
+                                    counteuld.style.filter = "blur(1px)";
+                                    closing.style.display = "flex";
+                                    closing.style.marginLeft = "110px";
+                                    
+                                });
+
+                                closing.addEventListener("click", function(){
+                                    nav.style.left = "-300px";
+                                    nav.style.backgroundColor = "transparent";
+                                    nav.style.transition = "1s";
+                                    closing.style.opacity = "0";
+                                    opening.style.opacity = "100";
+                                    opening.style.marginLeft = "-100px";
+                                    opening.style.position = "relative";
+                                    counteuld.style.filter = "blur(0px)";
+                                    opening.style.display = "inline-table";
+                                    closing.style.display = "inline-table";
+                                });     
+                                
+                                
+
+                              } else {
+                               document.body.style.backgroundColor = "202020";
+                              }
+                            }
+                            
+                            var y = window.matchMedia("(max-width: 412px)")
+                            myFunction(y) // chama o listener na hora
+                            y.addListener(myFunction) // seta a função em relação as mudanças
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            var counteuld = document.getElementById("counteuld");
+
+                            function myFunction(ipad) {
+                              if (ipad.matches) { // If media query matches
+                                document.body.style.backgroundColor = "202020";
+                                nav.style.zIndex = "1";
+                                nav.style.left = "-300px";
+                                nav.style.backgroundColor = "transparent";
+                                closing.style.opacity = "0";
+                                opening.style.position = "relative";
+                                opening.style.opacity = "100";
+                                opening.style.marginRight = "-250px";
+                                opening.style.bottom = "40px";
+                                closing.style.display = "none";    
+                                                      
+
+                                opening.addEventListener("click", function(){
+                                    nav.style.left = "-0px";
+                                    nav.style.backgroundColor = "2b2b2b";
+                                    nav.style.transition = "1s";
+                                    closing.style.opacity = "100";
+                                    closing.style.position = "relative";
+                                    counteuld.style.filter = "blur(1px)";
+                                    closing.style.display = "flex";
+                                    closing.style.marginLeft = "110px";
+                                    
+                                });
+
+                                closing.addEventListener("click", function(){
+                                    nav.style.left = "-300px";
+                                    nav.style.backgroundColor = "transparent";
+                                    nav.style.transition = "1s";
+                                    closing.style.opacity = "0";
+                                    opening.style.opacity = "100";
+                                    opening.style.marginLeft = "-100px";
+                                    opening.style.position = "relative";
+                                    counteuld.style.filter = "blur(0px)";
+                                    opening.style.display = "inline-table";
+                                    closing.style.display = "inline-table";
+                                });     
+                                
+                                
+
+                              } else {
+                               document.body.style.backgroundColor = "202020";
+                              }
+                            }
+                            
+                            var ipad = window.matchMedia("(max-width: 820px)")
+                            myFunction(ipad) // chama o listener na hora
+                            ipad.addListener(myFunction) // seta a função em relação as mudanças
+
+
+
+
                             </script>
 
 
@@ -1073,10 +1207,12 @@ document.getElementById('modalCloseExcluir').addEventListener('click', closemoda
 
 var body = document.getElementById("body");
 
-        body.addEventListener("mouseover", function(){
+        function opacidade(){
             body.style.transition = "2s";
             body.style.opacity = "100";
-        });
+        };
+
+        setTimeout(opacidade, "700");
 
 
     var nav = document.getElementById("nav");
