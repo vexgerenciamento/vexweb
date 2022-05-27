@@ -851,7 +851,7 @@ select{
     display: inline-grid;
     width: 330px;
     position: relative;
-    left: 5px;
+    left: 25px;
   }
   .bkasyz{
     max-width: 370px;
@@ -893,25 +893,7 @@ select{
   } 
 
 
-  @media(max-width:390px){ /*IPHONE 12 PRO*/
-    .bkasyz{
-      position: relative;
-      left: 15px;
-      max-width: 330px;
-    }
-
-    .fgloXw{
-      position: relative;
-      left: 15px;
-      width: 290px;
-    }
-
-    .eqoOME{
-     position: relative;
-     width: 289px;
-     left: 35px;
-    }
-  }
+ 
 
   @media(max-width:393px){/*PIXEL 5*/
     .bkasyz{
@@ -921,13 +903,13 @@ select{
 
     .fgloXw{
       position: relative;
-      left: 13px;
-      width: 290px;
+      left: 33px;
+      width: 295px;
     }
 
     .eqoOME{
      position: relative;
-     width: 289px;
+     width: 295px;
      left: 33px;
     }
 
@@ -941,7 +923,39 @@ select{
   } 
 
 
-  @media(max-width:360px){
+
+ 
+
+
+
+
+
+
+  @media(max-width:360px){/*SAMSUNG GALAXY S8+*/
+
+    .bkasyz{
+      margin-left: -20px;
+      max-width: 300px;
+    }
+
+    .fgloXw{
+      margin-left: -20px;
+      width: 260px;
+    }
+
+    .eqoOME{
+      left: 33px;
+      width: 260px;
+    }
+  } 
+
+
+
+
+
+
+
+  @media(max-width:375px){/*SAMSUNG GALAXY S8+*/
 
     .bkasyz{
       margin-left: -20px;
@@ -958,8 +972,29 @@ select{
       width: 260px;
     }
 
+   #links{
+     top: -150px;
+     position: relative;
+   }
 
-  } /*SAMSUNG GALAXY S8+*/
+   #between{
+     top: -100px;
+     position: relative;
+   }
+
+   #logoff{
+     top: -120px;
+     position: relative;
+   }
+  } 
+
+
+
+
+
+
+
+
 
   @media(max-width:820px){ /*IPAD*/
 

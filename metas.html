@@ -394,6 +394,86 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            var counteuld = document.getElementById("counteuld");
+
+                            function myFunction(c) {
+                              if (c.matches) { // If media query matches
+                                document.body.style.backgroundColor = "202020";
+                                nav.style.zIndex = "1";
+                                nav.style.left = "-300px";
+                                nav.style.backgroundColor = "transparent";
+                                closing.style.opacity = "0";
+                                opening.style.position = "relative";
+                                opening.style.opacity = "100";
+                                opening.style.marginRight = "-220px";
+                                opening.style.bottom = "40px";
+                                closing.style.display = "none";                            
+
+                                opening.addEventListener("click", function(){
+                                    nav.style.left = "-0px";
+                                    nav.style.backgroundColor = "2b2b2b";
+                                    nav.style.transition = "1s";
+                                    closing.style.opacity = "100";
+                                    closing.style.position = "relative";
+                                    counteuld.style.filter = "blur(1px)";
+                                    closing.style.display = "flex";
+                                    closing.style.marginLeft = "110px";
+                                });
+
+                                closing.addEventListener("click", function(){
+                                    nav.style.left = "-300px";
+                                    nav.style.backgroundColor = "transparent";
+                                    nav.style.transition = "1s";
+                                    closing.style.opacity = "0";
+                                    opening.style.opacity = "100";
+                                    opening.style.marginRight = "-150px";
+                                    opening.style.position = "relative";
+                                    counteuld.style.filter = "blur(0px)";
+                                    opening.style.display = "inline-table";
+                                closing.style.display = "inline-table";
+                                });                               
+
+                              } else {
+                               document.body.style.backgroundColor = "202020";
+                              }
+                            }
+                            
+                            var c = window.matchMedia("(max-width: 912px)")
+                            myFunction(c) // chama o listener na hora
+                            c.addListener(myFunction) // seta a função em relação as mudanças
+
+
+
+
+
+
+
+
+
+
                             </script>
 
 
