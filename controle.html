@@ -63,7 +63,7 @@
 
         <a id="logout" href="#"><span class="material-symbols-rounded">logout</span><p>Sair</p></a>
     </nav>
-    <div class="sc-hKgJUU frdCTY" style="padding-top: 7%;">
+    <div class="sc-hKgJUU frdCTY" style="padding-top: 7%;" id="counteuld">
         <div class="sc-jrAFXE eqoOME" style="flex-direction: column; flex-wrap: wrap; align-content: stretch; justify-content: space-evenly; align-items: stretch;">
             <div class="sc-kEjbQP fuVdYh">
                 <div class="sc-iqHYmW jklSBJ setleft" id="anterior"><span class="material-symbols-outlined unselectable">
@@ -134,6 +134,9 @@
                 </div>
                 <table class="bkasyz">
                         <thead>
+
+                            <th width=""class="fgyv">Para ver mais informações, arraste para o lado</th>
+
                             <tr>
                                 <th class="sc-jSgvzq fouaSj alignTitulo">Título</th>
                                 <th width="130" class="fcmwIe alignCategoria">Categoria</th>
@@ -153,6 +156,259 @@
                     <div id="IdVerdadeiro"></div>
                     <div id="guardaOmes" style="color: white; display: none;" ></div>
                 </div>
+
+
+
+<script>
+
+
+                var counteuld = document.getElementById("counteuld");
+
+                            function myFunction(x) {
+                              if (x.matches) { // If media query matches
+                                document.body.style.backgroundColor = "202020";
+                                counteuld.style.position = "relative";
+                                counteuld.style.height = "100%";
+                                nav.style.zIndex = "1";
+                                nav.style.left = "-300px";
+                                nav.style.backgroundColor = "transparent";
+                                closing.style.opacity = "0";
+                                opening.style.position = "relative";
+                                opening.style.opacity = "100";
+                                opening.style.left = "330px";
+                                opening.style.bottom = "140px";
+                                closing.style.display = "none";    
+                                
+                                                      
+
+                                opening.addEventListener("click", function(){
+                                    nav.style.left = "-0px";
+                                    nav.style.backgroundColor = "#2b2b2b";
+                                    nav.style.transition = "1s";
+                                    closing.style.opacity = "100";
+                                    closing.style.position = "relative";
+                                    counteuld.style.filter = "blur(1px)";
+                                    closing.style.display = "flex";
+                                    closing.style.marginLeft = "110px";
+                                    
+                                });
+
+                                closing.addEventListener("click", function(){
+                                    nav.style.left = "-300px";
+                                    nav.style.backgroundColor = "transparent";
+                                    nav.style.transition = "1s";
+                                    closing.style.opacity = "0";
+                                    opening.style.opacity = "100";
+                                    opening.style.marginLeft = "-100px";
+                                    opening.style.position = "relative";
+                                    counteuld.style.filter = "blur(0px)";
+                                    opening.style.display = "inline-table";
+                                    closing.style.display = "inline-table";
+                                });     
+                                
+                                
+
+                              } else {
+                               document.body.style.backgroundColor = "202020";
+                              }
+                            }
+                            
+                            var x = window.matchMedia("(max-width: 414px)")
+                            myFunction(x) // chama o listener na hora
+                            x.addListener(myFunction) // seta a função em relação as mudanças
+
+
+
+
+
+
+
+
+
+                            var counteuld = document.getElementById("counteuld");
+
+                            function myFunction(y) {
+                              if (y.matches) { // If media query matches
+                                document.body.style.backgroundColor = "202020";
+                                counteuld.style.position = "relative";
+                                nav.style.zIndex = "1";
+                                nav.style.left = "-300px";
+                                nav.style.backgroundColor = "transparent";
+                                closing.style.opacity = "0";
+                                opening.style.position = "relative";
+                                opening.style.opacity = "100";
+                                opening.style.left = "330px";
+                                opening.style.bottom = "140px";
+                                closing.style.display = "none";    
+                                
+                                                      
+
+                                opening.addEventListener("click", function(){
+                                    nav.style.left = "-0px";
+                                    nav.style.backgroundColor = "#2b2b2b";
+                                    nav.style.transition = "1s";
+                                    closing.style.opacity = "100";
+                                    closing.style.position = "relative";
+                                    counteuld.style.filter = "blur(1px)";
+                                    closing.style.display = "flex";
+                                    closing.style.marginLeft = "110px";
+                                    
+                                });
+
+                                closing.addEventListener("click", function(){
+                                    nav.style.left = "-300px";
+                                    nav.style.backgroundColor = "transparent";
+                                    nav.style.transition = "1s";
+                                    closing.style.opacity = "0";
+                                    opening.style.opacity = "100";
+                                    opening.style.marginLeft = "-100px";
+                                    opening.style.position = "relative";
+                                    counteuld.style.filter = "blur(0px)";
+                                    opening.style.display = "inline-table";
+                                    closing.style.display = "inline-table";
+                                });     
+                                
+                                
+
+                              } else {
+                               document.body.style.backgroundColor = "202020";
+                              }
+                            }
+                            
+                            var y = window.matchMedia("(max-width: 393px)")
+                            myFunction(y) // chama o listener na hora
+                            y.addListener(myFunction) // seta a função em relação as mudanças
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            var counteuld = document.getElementById("counteuld");
+
+                            function myFunction(pd) {
+                              if (pd.matches) { // If media query matches
+                                document.body.style.backgroundColor = "202020";
+                                counteuld.style.position = "relative";
+                                counteuld.style.height = "100%";
+                                nav.style.zIndex = "1";
+                                nav.style.left = "-300px";
+                                nav.style.backgroundColor = "transparent";
+                                closing.style.opacity = "0";
+                                opening.style.position = "relative";
+                                opening.style.opacity = "100";
+                                opening.style.left = "330px";
+                                opening.style.bottom = "140px";
+                                closing.style.display = "none";    
+                                
+                                                      
+
+                                opening.addEventListener("click", function(){
+                                    nav.style.left = "-0px";
+                                    nav.style.backgroundColor = "#2b2b2b";
+                                    nav.style.transition = "1s";
+                                    closing.style.opacity = "100";
+                                    closing.style.position = "relative";
+                                    counteuld.style.filter = "blur(1px)";
+                                    closing.style.display = "flex";
+                                    closing.style.marginLeft = "110px";
+                                    
+                                });
+
+                                closing.addEventListener("click", function(){
+                                    nav.style.left = "-300px";
+                                    nav.style.backgroundColor = "transparent";
+                                    nav.style.transition = "1s";
+                                    closing.style.opacity = "0";
+                                    opening.style.opacity = "100";
+                                    opening.style.marginLeft = "-100px";
+                                    opening.style.position = "relative";
+                                    counteuld.style.filter = "blur(0px)";
+                                    opening.style.display = "inline-table";
+                                    closing.style.display = "inline-table";
+                                });     
+                                
+                                
+
+                              } else {
+                               document.body.style.backgroundColor = "202020";
+                              }
+                            }
+                            
+                            var pd = window.matchMedia("(max-width: 820px)")
+                            myFunction(pd) // chama o listener na hora
+                            pd.addListener(myFunction) // seta a função em relação as mudanças
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <script src="menu.js"></script>
                 <script type="module">
 
