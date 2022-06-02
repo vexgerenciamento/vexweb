@@ -630,10 +630,9 @@ const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/balancoMensal/");
         snapshot.forEach(childSnapshot =>{
             balanco.push(childSnapshot.val());
     document.getElementById('balanco').textContent = `R$ ${balanco}`;  
-    if (parseFloat(document.getElementById('balanco').textContent) >= 0){
-        document.getElementById('balanco').style.color = 'green';
-
-    }    else {
+    if (balanco >= 0){
+        document.getElementById('balanco').style.color = '#0AE90A';
+    }else{
         document.getElementById('balanco').style.color = 'red';
     }
  
@@ -701,13 +700,6 @@ function balanco()
     
 //-----------MUDANÇA DE VALORES E CORES NA TELA-----------//
 
-    if (balanco<0){
-        document.getElementById('balanco').style = 'color: red;';
-        document.getElementById('balanco').textContent = `R$${balanco}`;
-    }else{
-        document.getElementById('balanco').style = 'color: rgb(10, 233, 10);';
-        document.getElementById('balanco').textContent = `R$${balanco}`;
-    }
 
 }
 

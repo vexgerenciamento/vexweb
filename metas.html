@@ -708,12 +708,18 @@ const dbRef = ref(db, "users/"+user_final+"/"+nomeMes+"/balancoMensal/");
         var balanco = [];
         snapshot.forEach(childSnapshot =>{
             balanco.push(childSnapshot.val());
-    document.getElementById('balanco').textContent = `R$ ${balanco}`;      
+    document.getElementById('balanco').textContent = `R$ ${balanco}`;  
+    if (balanco >= 0){
+        document.getElementById('balanco').style.color = '#0AE90A';
+    }else{
+        document.getElementById('balanco').style.color = 'red';
+    }
  
     });
  
     });
 }
+
 function GetDespesa(){
     var num = document.getElementById('guardaOmes').textContent;
     var nomeMes = datas(num);
