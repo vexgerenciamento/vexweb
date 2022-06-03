@@ -252,8 +252,9 @@ font-family: 'Saira Condensed', cursive;
 }
 .frdCTY {
   margin: auto;
-  max-width: 1300px;
+  max-width: 1000px;
   padding-left: 5%;
+  padding-top: 12%;
 }
 .eqoOME {
   background-color: #202020;
@@ -707,7 +708,10 @@ alignData foi criado para alinhar "Per√≠odo" e os valores correspondentes a Per√
     box-shadow: 0px 0px 30px 0px black;
   }
 
+  #conteuld
+  {
   
+  }
 
   
 
@@ -777,11 +781,16 @@ select{
 
     .frdCTY{
       margin-left: 53px;
+      padding-top: 13%;
     }
 
     body{
       overflow-y: scroll;
       position: fixed;
+    }
+    #counteuld
+    {
+      padding-top: 53%;
     }
    
   

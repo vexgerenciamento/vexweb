@@ -1,3 +1,6 @@
+
+
+
 #menu
 {
     position: fixed;
@@ -49,6 +52,9 @@
         }
         @media(max-width:991px)
         {
+            #conteudold{
+                padding-top: 53%;
+            }
             
             #menu
             {
@@ -145,6 +151,9 @@
         }
         @media(max-width:480px)
         {
+            #conteudold{
+                padding-top: 53%;
+            }
             #header, 
             .main
             {
