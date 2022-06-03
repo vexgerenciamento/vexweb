@@ -17,29 +17,6 @@ import { firebaseConfig, firebaseApp, app, analytics, db} from "./chaveFirebase.
 import{getDatabase, ref, get, set, child, update, remove, onValue}
 from "https://www.gstatic.com/firebasejs/9.6.8/firebase-database.js";
 
-function autenticar(){
-    const dbref = ref(db);
-get(child(dbref,"users/"+user_final)).then((snapshot)=>{
-
-        var nome = snapshot.val().fullname;
-        var senha = snapshot.val().password;
-        if ((localStorage.getItem('nome') == nome) && (localStorage.getItem('senha') == senha))
-        {   
-        }
-        else
-        {
-
-            window.location.href = 'index.html';
-        } 
-        
-        
-}).catch((error)=>{
-    window.location.href = 'index.html';
-});
-}
-window.onload = autenticar;
-
-
 //------------------------------DECLARANDO VÁRIAVEIS GLOBAIS------------------------------//
 var btn_adicionar = document.getElementById("adicionar");
 
