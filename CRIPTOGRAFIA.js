@@ -1,4 +1,3 @@
-dados = 'Vinicius'
 function Encripta(dados){
 	var mensx="";
 	var l;

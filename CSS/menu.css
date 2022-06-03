@@ -1,0 +1,162 @@
+#menu
+{
+    position: initial;
+    background: #242323;
+    top: 0;
+    left: 0;
+    width: 90%;
+    padding: 30px 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: #000000 5px 5px 5px 5px;
+}
+
+
+
+        /*ESSA É A IMAGEM DO LOGO*/
+        .logo
+        {
+            max-width: 40px;
+        }
+        /*AQUI FICA O MENU*/
+        .menu
+        {
+            display: flex;
+        }
+        /*AQUI TIRAMOS O SUBLINHADO E AS MARCAÇÕES DO MENU*/
+        .menu li
+        {
+            list-style: none;
+        }
+        /*AQUI MODIFICAMOS DIRETAMENTE OS ITENS DO MENU*/
+        .menu li a
+        {
+            position: relative;
+            color: #fff;
+            text-decoration: none;
+            margin-left: 40px;
+        }
+        /*AQUI MODIFICAMOS COMO O ITEM DO MENU FICA APÓS O MOUSE PASSAR SOBRE ELE*/
+        .menu li a:hover
+        {
+            color: #f5c116;
+            transition: 0.3s;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        @media(max-width:991px)
+        {
+            
+            #menu
+            {
+                padding: 20px 40px;
+            }
+            .logo
+            {
+                max-width: 70px;
+            }
+            .content
+            {
+                flex-direction: column;
+                margin: 120px 0 40px;
+            }
+            .content .text
+            {
+                max-width: 100%;
+            }
+            .content .text h2
+            {
+                font-size: 40px;
+            }
+            .menu
+            {
+                display: none;
+            }
+            .menu.active
+            {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: radial-gradient(#0a0a0a, #1a1a1a);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+            .menu li a
+            {
+                font-size: 1.5em;
+                margin: 10px 0;
+                display: inline-block;
+            }
+            .toggle
+            {
+                position: relative;
+                width: 32px;
+                height: 40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 100000;
+                cursor: pointer;
+            }
+            .toggle.active 
+            {
+                position: fixed;
+                right: 40px;
+            }
+            .toggle::before
+            {
+                content: ' ';
+                position: absolute;
+                width: 100%;
+                height: 2px;
+                background-color: #fff;
+                transform: translateY(-10px);
+                box-shadow: 0 10px 0 white;
+                transition: 0.25s;
+            }
+            .toggle.active::before
+            {
+                transform: translateY(0px) rotate(45deg);
+                box-shadow: 0 0 0 white;
+            }
+            .toggle::after
+            {
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 2px;
+                background-color: #fff;
+                transform: translateY(10px);
+                transition: 0.25s;
+            }
+            .toggle.active::after
+            {
+                transform: translateY(0px) rotate(-45deg);
+            }
+        }
+        @media(max-width:480px)
+        {
+            #header, 
+            .main
+            {
+                padding: 20px;
+            }
+            .toggle.active 
+            {
+                right: 20px;
+            }
+            .content .text h2
+            {
+                font-size: 3em;
+            }
+            .btn
+            {
+                padding:15px 30px ;
+            }
+        }

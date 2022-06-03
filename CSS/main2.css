@@ -410,6 +410,7 @@ option {
   box-shadow: 0px 0px 5px rgb(0, 0, 0);
   border-radius: 10px;
   margin-top: 20px;
+  margin-bottom: 50px;
 }
 thead {
   display: table-header-group;

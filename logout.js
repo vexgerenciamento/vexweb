@@ -1,4 +1,4 @@
-function logout(){
+function sair(){
 
 var senha = '';
 var nome = '';
