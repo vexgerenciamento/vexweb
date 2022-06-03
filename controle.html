@@ -57,17 +57,17 @@
             <!--MENU-->
         <ul class="menu">
 
-        <li><a id="#controle" class="controle_menu" style="overflow-y: hidden;" onclick="ControleRota();">Constrole</a></li>
-        <li><a id= "#metas" class="sobre_menu" style="overflow-y: hidden;" onclick="MetaRota();">Metas</a></li>
-        <li><a id="#graficos" class="servico_menu" style="overflow-y: hidden;" onclick="GraphicoRota();">Gráficos</a></li>
+        <li><a id="#controle" class="controle_menu" style="overflow-y: hidden;" href="controle.html">Controle</a></li>
+        <li><a id= "#metas" class="sobre_menu" style="overflow-y: hidden;" href="metas.html">Metas</a></li>
+        <li><a id="#graficos" class="servico_menu" style="overflow-y: hidden;" href="graphicos.html">Gráficos</a></li>
         <li><a id="#sair"class="servico_menu" style="overflow-y: hidden;" onclick="sair();">Sair</a></li>
        
         </ul>
     <!--MENU-->
     </header>
     <script src="menu.js"></script>
-    <div class="sc-hKgJUU frdCTY" style="padding-top: 7%;" id="counteuld">
-        <div class="sc-jrAFXE eqoOME" style="flex-direction: column; flex-wrap: wrap; align-content: stretch; justify-content: space-evenly; align-items: stretch;">
+    <div class="sc-hKgJUU frdCTY" style="padding-top: 13%;" id="counteuld">
+        <div class="sc-jrAFXE eqoOME" style="flex-direction: column; flex-wrap: wrap; align-content: stretch; justify-content: space-evenly; align-items: stretch; z-index: 1000;">
             <div class="sc-kEjbQP fuVdYh">
                 <div class="sc-iqHYmW jklSBJ setleft" id="anterior"><span class="material-symbols-outlined unselectable">
                     arrow_forward_ios
@@ -128,7 +128,7 @@
         </label>
                 <label class="sc-fFucqa hmyJIQ">
                     <div class="sc-bkzYnD kLxSip">Valor</div>
-                    <input type="number" class="sc-idOiZg rwnMw" value="" id="valor"></label>
+                    <input type="number" class="sc-idOiZg rwnMw  myInput" value="" id="valor" min="1" onkeypress="return event.charCode != 45"></label>
                     <label class="sc-fFucqa hmyJIQ">
                         <div class="sc-bkzYnD kLxSip">&nbsp;</div>
                         <button class="sc-hHfuMS dcAQVR" id="adicionar">Adicionar</button>
@@ -163,3 +163,22 @@
         <script type="module" src="controle.js"></script>
         <script src="modalExcluir.js"></script>
         <script src="opacida.js"></script>
+        <script>  
+
+var input = document.querySelector(".myInput");
+input.addEventListener("keypress", function(e) {
+    if(!checkChar(e)) {
+      e.preventDefault();
+  }
+});
+function checkChar(e) {
+    var char = String.fromCharCode(e.keyCode);
+  
+  console.log(char);
+    var pattern = '[,-a-zA-Z0-9]';
+    if (char.match(pattern)) {
+      return true;
+  }
+}
+
+        </script>

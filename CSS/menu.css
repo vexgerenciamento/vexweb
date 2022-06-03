@@ -1,6 +1,6 @@
 #menu
 {
-    position: initial;
+    position: fixed;
     background: #242323;
     top: 0;
     left: 0;
@@ -9,7 +9,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 1000;
+    z-index: 2000;
     box-shadow: #000000 5px 5px 5px 5px;
 }
 
@@ -37,13 +37,14 @@
             color: #fff;
             text-decoration: none;
             margin-left: 40px;
+            font-size: 23px;
         }
         /*AQUI MODIFICAMOS COMO O ITEM DO MENU FICA APÓS O MOUSE PASSAR SOBRE ELE*/
         .menu li a:hover
         {
             color: #f5c116;
             transition: 0.3s;
-            font-size: 18px;
+            font-size: 27px;
             cursor: pointer;
         }
         @media(max-width:991px)
@@ -86,6 +87,7 @@
                 justify-content: center;
                 align-items: center;
                 flex-direction: column;
+                
             }
             .menu li a
             {
@@ -96,6 +98,7 @@
             .toggle
             {
                 position: relative;
+                margin-right: 10px;
                 width: 32px;
                 height: 40px;
                 display: flex;
@@ -158,5 +161,8 @@
             .btn
             {
                 padding:15px 30px ;
+            }
+            #header {
+                margin-bottom: 20px;
             }
         }
