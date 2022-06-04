@@ -11,33 +11,36 @@ body, html{
     overflow-x: hidden;
 }
 
-#firstline{
-    list-style-type: none;
-}
-
-
-
-
-
-
 .fuVdYh {
-    color: white;
-    position: relative;
+
+    flex: 1;
+    display: flex;
+    align-items: center;
+    margin-left: 0;
+  }
+
+
+#setleft{
+    display: inline-table;
 }
+
+#setright{
+    display: inline-table;
+}
+
+#mes{
+    display: inline-table;
+    padding: 3%;
+}
+
 
 .setleft{
-    position: relative;
-    left: 350px;
-    top: 110px;
-    cursor: pointer;
-}
-
+    margin-left: 320px;
+    }
+    
 .setright{
-    position: relative;
-    bottom: 95px;
-    right: 50px;
-    cursor: pointer;
-}
+    margin-right: 320px;
+    }
 
 .cPfwyB {
     -webkit-flex: 1;
@@ -45,60 +48,18 @@ body, html{
     flex: 1;
     width: 120px;
     text-align: center;
-  }
+    }
 
-  .cPfwyB {
+.cPfwyB {
     color: white;
     font-size: x-large;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 body{
     background-color: #202020;
     font-family: 'Saira Condensed', sans-serif;
     opacity: 0;
 }
-
-#content{
-    color: white;
-    padding-left: 62%;
-    padding-top: 2%;
-    text-align: center;
-}
-
-
-#content h1{
-    font-size: 47px;
-    display: flex;
-    text-align: center;
-}
-
-#content p{
-    font-size: 21px;
-    display: flex;
-    text-align: center;
-}
-
-
-
 
 .selectBox{
     color: white;
@@ -113,12 +74,10 @@ body{
   font-size: 28px;
   
 }
-
 .rein {
     --color: #fff;
     --hover: #f5c116;
 }
-
 .rein {
     background: none;
     border: 2px solid;
@@ -130,7 +89,6 @@ body{
     transition: 0.25s;
     cursor: pointer;
     font-size: 25px;
-    position: absolute;
     width: 500px;
 }
 
@@ -141,49 +99,51 @@ body{
 #setright{
     display: inline-table;
 }
+
 .eqoOME {
-    background-color: #202020;
-    box-shadow: 0px 0px 5px rgb(0 0 0);
-    border-radius: 10px;
     padding: 20px;
     margin-top: 40px;
     display: flex;
+    max-width: 400px;
  }
+ .fuVdYh {
 
-.chart-wrapper{
-    height: 43%;
-    width: 40%;
-    margin-left: 7%;
-    
-}
+    background-color: #202020;
+  box-shadow: 0px 0px 5px rgb(0, 0, 0);
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: -40px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  flex-direction: row-reverse;
+  align-items: center;
+  }
 
-.line-bar-chart-wrapper{
+  #body{
     display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+  }
 
-}
-
-.line-bar-chart-wrapper .line-chart {
-    height: 30%;
-    width: 40%;
-    margin-right: 2%;
+  #selectBoxBar2{
+    color: black;
     border-radius: 5px;
-    z-index: -1;
- 
+    margin-top: 2%;
 }
-
-.line-bar-chart-wrapper .bar-chart {
-    height: 40%;
-    width: 40%;
-    margin-left: 2%;
+.meta-chart{
+    background-color: white;
+    margin-top: 20%;
     border-radius: 5px;
-
 }
-
-.doughnut-chart-wrapper {            
-    display: flex;
-    list-style-type: none;
+#meta-chart{
+    width: 300px;
 }
-
 .doughnut-chart1 {
     background-color: white;
     margin-top: 15%;
@@ -206,34 +166,6 @@ body{
     margin-right: 2%;
     
 }
-
-
-.meta-chart{
-    background-color: white;
-    margin-top: 20%;
-    border-radius: 5px;
+.teste {
+    background-color: #f5c116;
 }
-
-#selectBoxBar2{
-    color: black;
-    border-radius: 5px;
-    margin-top: 2%;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

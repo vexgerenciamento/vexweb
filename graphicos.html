@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <title>Gráficos</title>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="CSS/stylegraph.css">
+       <link rel="stylesheet" href="graficos.css">
         <link rel="stylesheet" href="CSS/menu.css">
         <script src="autenticar.js"></script>
         <script src="logout.js"></script>
@@ -22,44 +22,40 @@
 
     
 
+    <header id="menu">
+        <!--LOGO-->
+<a><img src="img/vex dourado.png" class="logo"></a>
+        <!--FIM DO LOGO-->
+<div class="toggle"></div>
+        <!--MENU-->
+    <ul class="menu">
+
+    <li><a id="#controle" class="controle_menu" style="overflow-y: hidden;" href="controle.html">Controle</a></li>
+    <li><a id= "#metas" class="sobre_menu" style="overflow-y: hidden;" href="metas.html">Metas</a></li>
+    <li><a id="#graficos" class="servico_menu" style="overflow-y: hidden;" href="graphicos.html">Gráficos</a></li>
+    <li><a id="#sair"class="servico_menu" style="overflow-y: hidden;" onclick="sair();">Sair</a></li>
    
-    
-    <body id="body">
-
-        
-        <header id="header">
-            <!--LOGO-->
-<img src="img/vex dourado.png" class="logo"><a class="loc">Seus Gráficos</a>
-            <!--FIM DO LOGO-->
-            <div class="toggle"></div>
-            <!--MENU-->
-<ul class="menu" id="menum">
-
-    <li><a href="#home" class="home_menu" style="overflow-y: hidden;">Metas</a></li>
-    <li><a href="#sobre" class="sobre_menu" style="overflow-y: hidden;">Gráficos</a></li>
-    <li><a href="#servico" class="servico_menu" style="overflow-y: hidden;">Controle</a></li>
-
-</ul>
+    </ul>
 <!--MENU-->
 </header>
-
-    <section id="contents">      
-
-       
-
-
-        <div class="sc-kEjbQP fuVdYh" id="mesiusz">
-            <div class="sc-iqHYmW jklSBJ setleft" id="anterior"><span class="material-symbols-outlined unselectable">
+  <body id="body">
+<script src="menu.js"></script>
+<div class="sc-hKgJUU frdCTY" style="padding-top: 13%;" id="counteuld">
+    <div class="sc-jrAFXE eqoOME" style="flex-direction: column; flex-wrap: wrap; align-content: stretch; justify-content: space-evenly; align-items: stretch; z-index: 1000;">
+        <div class="sc-kEjbQP fuVdYh">
+            <div class="sc-iqHYmW jklSBJ setleft" id="proximo"><span class="material-symbols-outlined unselectable">
                 arrow_forward_ios
                 </span></div>
             <div class="sc-crrszt cPfwyB" id="mes">Abril de 2022</div>
-            <div class="sc-iqHYmW jklSBJ setright" id="proximo"><span class="material-symbols-outlined unselectable">
+            <div class="sc-iqHYmW jklSBJ setright" id="anterior"><span class="material-symbols-outlined unselectable">
                 arrow_back_ios
                 </span></div>
         </div>
-        
+    </div>
+    
+  
 
-      
+    
     <div class="chart-wrapper" id="graphs">
         <div class="line-bar-chart-wrapper" id="firstline">
                 <canvas class="line-chart" style="background-color: white;" id="firstgraph" ></canvas>   
@@ -87,7 +83,7 @@
                     <canvas class="doughnut-chart1"></canvas>
                     <canvas class="doughnut-chart2"></canvas>                    
                 </div>
-                <canvas class="meta-chart"></canvas>
+                <canvas class="meta-chart" style="width: 20px"></canvas>
                 <select class="selectBox" id="selectBoxBar2" name="selectBoxBar2" style="height: 25px;">
                     <option value="Alimentação">Alimentação</option>
                     <option value="Entretenimento">Entretenimento</option>
@@ -120,252 +116,20 @@
 
 <div id="IdVerdadeiro"></div>
 <div id="guardaOmes" style="color: white;"></div>
+<script type="module" src="graphicos.js"></script>
+
 
     </body>
 
 
 
        <!--SCRIPTS-->
-       <script src="script..js"> </script>
         <script src="node_modules/chart.js/dist/chart.min.js"></script>
         <script src="node_modules/chart.js/dist/chart.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
         <script src="node_modules/chartjs-plugin-zoom/dist/chartjs-plugin-zoom.min.js"></script>
         <script src="node_modules/chartjs-plugin-zoom/dist/chartjs-plugin-zoom.js"></script>
-
-        <script>
-
-            //------------------------------DECLARANDO VÁRIAVEIS GLOBAIS------------------------------//
- 
-   
-        </script>
-<script>
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-        
-//SCRIPT/// 
-//QUANDO O/ 
-//MENU///// 
-//ESTIVER//
-//ABERTO///
-
-    var firstline = document.getElementById("firstline");
-    var firstgraph = document.getElementById("firstgraph");
-    var secondgraph = document.getElementById("secondgraph");
-    var graphs = document.getElementById("graphs");
-    var secondline = document.getElementById("secondline");
-    var titulo = document.getElementById("titulo");
-    var contents = document.getElementById("contents");
-    var body = document.getElementById("body");
-    var selectBoxBar = document.getElementById("selectBoxBar");
-
-   
-    
- 
-    
-
-      if(nav = 300){
-      
-            contents.style.position = "relative";
-            contents.style.left = "22%";
-            graphs.style.position = "relative";
-            graphs.style.width = "60%";
-            graphs.style.bottom = "100px";
-            firstline.style.display = "list-item";
-            secondline.style.display = "list-item";
-            secondgraph.style.position = "relative";
-            secondgraph.style.right = "2%";
-            secondgraph.style.marginTop = "10%";
-
-
-            selectBoxBar.style.bottom = "630px";
-            selectBoxBar.style.position = "relative";
-            selectBoxBar.style.backgroundColor = "#3b3b3b";
-            selectBoxBar.style.border = "none";
-            selectBoxBar.style.height = "60px";
-            selectBoxBar.style.width = "400px";   
-    }
-   
-
-
-      
-    body.addEventListener("mouseover", function(){
-    body.style.transition = "2s";
-    body.style.opacity = "100";
-            });
-
-   
-   
-
-        
-
-
-        //SCRIPT DO MENU E//// 
-        //ACOES CONDICIONAIS// 
-        //&VISUAIS///////////// 
-        //DOS GRAFICOS////////
-
-
-
-        var nav = document.getElementById("nav");
-        var links = document.getElementById("links");
-        var closing = document.getElementById("closing");
-        var icon = document.getElementById("icon");
-        var icontext = document.getElementById("icontext");
-        var saida = document.getElementById("saida");
-        var between = document.getElementById("between");
-        var opening = document.getElementById("opening");
-        var metas = document.getElementById("metas");
-        var control = document.getElementById("control");
-        var graph = document.getElementById("graph");
-        var line1 = document.getElementById("line1");
-        var line2 = document.getElementById("line2");
-        var line3 = document.getElementById("line3");
-        var logout = document.getElementById("logout");
-        var selectBoxBar = document.getElementById("selectBoxBar");
-        var mesiusz = document.getElementById("mesiusz");
-        var proximo = document.getElementById("proximo");
-        var anterior = document.getElementById("anterior");
-        var mes = document.getElementById("mes");
-
-
-
-        
-
-        mesiusz.addEventListener("mouseover", function(){
-            mes.style.opacity = "100";
-            mes.style.transition = "1s";
-        });
-        
-
-        
-
-
-
-
-
-
-
-
-
-
-
-        closing.addEventListener("click", function(){
-            nav.style.marginLeft = "-12.1%";
-            nav.style.transition = "1s";
-            closing.style.left = "-5%";
-            closing.style.transition = "2s";
-            opening.style.opacity = "100";
-            opening.style.marginLeft = "71%";
-            opening.style.top = "-12%";
-            opening.style.position = "relative";
-            opening.style.transition = "1.5s";
-            between.style.marginLeft = "-50%";
-            between.style.transition = "1s";
-            graphs.style.position = "relative";
-            graphs.style.width = "70%";
-            graphs.style.right = "11.5%";
-            graphs.style.bottom = "100px";
-            graphs.style.transition = "1s";
-            titulo.style.right = "10%";
-            selectBoxBar.style.position = "relative";
-            selectBoxBar.style.top = "-770px";
-        });
-
-        
-
-        opening.addEventListener("click", function(){
-            nav.style.marginLeft = "-0%";
-            nav.style.width = "300px";
-            opening.style.opacity = "0";
-            closing.style.left = "83%";
-            between.style.marginLeft = "-0%";
-            between.style.transition = "1s";
-        });
+        <script src="opacida.js"></script>
 
        
-        metas.addEventListener("mouseover", function(){
-            metas.style.backgroundColor = "#f5c116";
-            line1.style.color = "#000";
-            metas.style.transition = "0.5s";
-        });
-
-        metas.addEventListener("mouseout", function(){
-            metas.style.backgroundColor = "transparent";
-            line1.style.color = "#fff";
-            metas.style.transition = "0.3s";
-        });
-
-
-
-
-
-        graph.addEventListener("mouseover", function(){
-            graph.style.backgroundColor = "#f5c116";
-            line2.style.color = "#000";
-            graph.style.transition = "0.5s";
-        });
-
-        graph.addEventListener("mouseout", function(){
-            graph.style.backgroundColor = "transparent";
-            line2.style.color = "#fff";
-            graph.style.transition = "0.3s";
-        });
-
-
-
-
-        control.addEventListener("mouseover", function(){
-            control.style.backgroundColor = "#f5c116";
-            line3.style.color = "#000";
-            control.style.transition = "0.5s";
-        });
-
-        control.addEventListener("mouseout", function(){
-            control.style.backgroundColor = "transparent";
-            line3.style.color = "#fff";
-            control.style.transition = "0.3s";
-        });
-       
-
-
-
-        logout.addEventListener("mouseover", function(){
-            logout.style.backgroundColor = "#f5c116";
-            logout.style.color = "#000";
-            logout.style.transition = "0.5s";
-        });
-
-        logout.addEventListener("mouseout", function(){
-            logout.style.backgroundColor = "transparent";
-            logout.style.color = "#fff";
-            logout.style.transition = "0.3s";
-        });
-
-
-        
-
-     
-
-        //TERMINA SCRIPT DO MENU//
-
-    </script>
-    <script type="module" sreferrerpolicy=""
 </html>

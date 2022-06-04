@@ -236,7 +236,6 @@ font-family: 'Saira Condensed', cursive;
 }
 .eqoOME {
   background-color: #202020;
-  margin-top: 50px;
   box-shadow: 0px 0px 5px rgb(0, 0, 0);
   border-radius: 10px;
   padding: 20px;
@@ -441,7 +440,6 @@ tr {
 }
 .gZUaaB {
   padding: 10px 0;
- 
 }
 .kuaJPV {
   display: inline-block;
@@ -949,7 +947,6 @@ margin-right: 0;
 .frdCTY{
   padding-left: 25%;
   margin-top: -15%;
-  padding-top: 20%;
 }
 
 .setleft{
@@ -1109,7 +1106,7 @@ margin-right: 0;
   }
 
   .bkasyz{
-    width: 86%;
+    width: 100%;
   }
 
   #more{
@@ -1119,7 +1116,7 @@ margin-right: 0;
 
 @media (max-width: 400px) {
   .frdCTY{
-    padding-top: 20%;
+    margin-top: -33%;
   }
 }
 .unselectable {

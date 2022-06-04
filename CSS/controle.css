@@ -5,6 +5,15 @@
     margin: 0;
 }
 
+
+.frdCTY {
+  margin: auto;
+  max-width: 1000px;
+  padding-left: 5%;
+}
+
+
+
 .fgyv{  color: white;  position: absolute;  display: none;}
 
 
