@@ -1,4 +1,4 @@
-function Encripta(dados){
+export function Encripta(dados){
 	var mensx="";
 	var l;
 	var i;
@@ -18,7 +18,7 @@ function Encripta(dados){
 	}
 	return mensx;
 }
-function Descripta(dados){
+export function Descripta(dados){
 	var mensx="";
 	var l;
 	var i;
@@ -38,10 +38,10 @@ function Descripta(dados){
 	}
 	return mensx;
 }
-function Asc(String){
+export function Asc(String){
 	return String.charCodeAt(0);
 }
 
-function Chr(AsciiNum){
+export function Chr(AsciiNum){
 	return String.fromCharCode(AsciiNum)
 }

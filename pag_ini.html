@@ -72,6 +72,7 @@
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-analytics.js";
+        import {Encripta, Asc, Chr} from "./CRIPTOGRAFIA.js" 
 
         // TODO: Add SDKs for Firebase products that you want to use
         // https://firebase.google.com/docs/web/setup#available-libraries
@@ -114,9 +115,12 @@ get(child(dbref,"users/"+nome_login.value)).then((snapshot)=>{
                 if ((senha_login.value == senha) && (nome_login.value == nome))
                 {   
                         var text = nome_login.value;
-                        localStorage.setItem('valueText', text);
-                        localStorage.setItem('nome', text);
-                        localStorage.setItem('senha', senha_login.value);
+                        var senha = senha_login.value;
+                        text = Encripta(text);
+                        senha = Encripta(senha);
+                        localStorage.setItem('JaM902#', text);
+                        localStorage.setItem('JaM903#', text);
+                        localStorage.setItem('JaM904#', senha);
                         window.location.href = 'controle.html';
 
                 }

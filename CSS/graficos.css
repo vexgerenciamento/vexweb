@@ -1,8 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@200&display=swap');
 
+
+
+/* Works on Firefox */* {    scrollbar-width: thin;    scrollbar-color: rgb(19, 18, 18);    border-radius: 5px;  }    
+/* Works on Chrome, Edge, and Safari */  *::-webkit-scrollbar {    width: 12px;    border-radius: 10px;  }    
+*::-webkit-scrollbar-track {    background: rgb(19, 18, 18);    border-radius: 10px;  }    
+*::-webkit-scrollbar-thumb {    background-color: #f5c116;    border-radius: 20px;    border: 3px solid #333;    border-radius: 10px;  }
+
+
+
+
+
+
+
+
+
 *{
     padding: 0;
     margin: 0;
+}
+
+.frdCTY{width:70%;
+}
+
+.doughnut-chart1{
+    height: 50px;
 }
 
 body, html{
@@ -11,36 +33,34 @@ body, html{
     overflow-x: hidden;
 }
 
-.fuVdYh {
-
-    flex: 1;
-    display: flex;
-    align-items: center;
-    margin-left: 0;
-  }
-
-
-#setleft{
-    display: inline-table;
+.graphalign{
+    display: flex;;
 }
 
-#setright{
+
+
+
+.setleft{
     display: inline-table;
+    color: white;
+    padding-right: 500px;
+    cursor: pointer;
+}
+
+.setright{
+    display: inline-table;
+    color: white;
+    cursor: pointer;
 }
 
 #mes{
     display: inline-table;
     padding: 3%;
+    font-size: 42px;
 }
 
 
-.setleft{
-    margin-left: 320px;
-    }
-    
-.setright{
-    margin-right: 320px;
-    }
+
 
 .cPfwyB {
     -webkit-flex: 1;
@@ -58,13 +78,19 @@ body, html{
 body{
     background-color: #202020;
     font-family: 'Saira Condensed', sans-serif;
-    opacity: 0;
 }
 
 .selectBox{
     color: white;
     font-family: 'Saira Condensed', cursive;
     font-size: 19px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    stroke-dasharray: none;
+    left: 20px;
+    position: relative;
 }
 
 .rein:hover,
@@ -92,13 +118,6 @@ body{
     width: 500px;
 }
 
-#setleft{
-    display: inline-table;
-}
-
-#setright{
-    display: inline-table;
-}
 
 .eqoOME {
     padding: 20px;
@@ -108,11 +127,11 @@ body{
  }
  .fuVdYh {
 
-    background-color: #202020;
-  box-shadow: 0px 0px 5px rgb(0, 0, 0);
-  border-radius: 10px;
+width: 1000px;
   padding: 20px;
-  margin-top: -40px;
+bottom: 80px;
+right: 120px;
+position: relative;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -132,7 +151,7 @@ body{
   }
 
   #selectBoxBar2{
-    color: black;
+    color: white;
     border-radius: 5px;
     margin-top: 2%;
 }
@@ -144,6 +163,45 @@ body{
 #meta-chart{
     width: 300px;
 }
+
+/* alterações fora do media*/
+#firstgraph.line-chart{
+    background-color: white;
+    margin-top: 15%;
+    border-radius: 5px;
+    height: 95%;
+    width: 95%;
+    margin-right: 2%;
+    margin-left: 2%;
+    z-index: -1;
+    
+}
+
+#secondgraph.bar-chart{
+    background-color: white;
+    margin-top: 15%;
+    border-radius: 5px;
+    height: 95%;
+    width: 95%;
+    margin-right: 2%;
+    margin-left: 2%;
+    z-index: -1;
+    
+}
+
+.meta-chart{
+    background-color: white;
+    margin-top: 15%;
+    border-radius: 5px;
+    height: 95%;
+    width: 95%;
+    margin-right: 2%;
+    margin-left: 2%;
+    z-index: -1;
+    
+}
+/*alterações fora do media*/
+
 .doughnut-chart1 {
     background-color: white;
     margin-top: 15%;
@@ -168,4 +226,20 @@ body{
 }
 .teste {
     background-color: #f5c116;
+}
+
+
+
+@media (max-width:1024px) {
+    .menu{
+        right: 100px;
+        position: relative;
+    }
+}
+
+@media (max-width:1280px) {
+    .menu{
+        right: 100px;
+        position: relative;
+    }
 }

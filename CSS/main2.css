@@ -586,6 +586,7 @@ alignData foi criado para alinhar "Per√≠odo" e os valores correspondentes a Per√
 .alignData{
   right: 77px;
   position:relative;
+  text-align-last: center;
   }
   
   

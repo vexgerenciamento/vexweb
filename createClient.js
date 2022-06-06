@@ -8,7 +8,15 @@ import {GetGanho} from "./getsHeader.js";
 
 import { balanco } from "./balanco.js";
 
-var user_final = localStorage.getItem('valueText');
+
+import {Descripta, Asc, Chr} from "./CRIPTOGRAFIA.js"
+
+var user_final = localStorage.getItem('JaM902#');
+user_final = Descripta(user_final);
+var nome = localStorage.getItem('JaM903#');
+nome = Descripta(nome);
+var senha = localStorage.getItem('JaM904#');
+senha = Descripta(senha);
 
 export const createClient = (client) => {
     var nome = document.getElementById('titulo').value;

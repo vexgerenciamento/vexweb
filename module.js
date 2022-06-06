@@ -1,6 +1,14 @@
     
         
-        var user_final = localStorage.getItem('valueText');
+
+import {Descripta, Asc, Chr} from "./CRIPTOGRAFIA.js"
+
+var user_final = localStorage.getItem('JaM902#');
+user_final = Descripta(user_final);
+var nome = localStorage.getItem('JaM903#');
+nome = Descripta(nome);
+var senha = localStorage.getItem('JaM904#');
+senha = Descripta(senha);
         
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";

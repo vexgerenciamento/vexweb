@@ -1,7 +1,7 @@
+var user_final = localStorage.getItem('JaM902#');
+var nome = localStorage.getItem('JaM903#');
+var senha_local = localStorage.getItem('JaM904#');
 
-var user_final = localStorage.getItem('valueText');
-var nome = localStorage.getItem('nome');
-var senha = localStorage.getItem('senha');
 if((user_final== null) || (user_final=="")){
     window.location.href = 'pag_ini.html';
 } else if((senha==null) || (senha==null)){

@@ -7,7 +7,7 @@
     background: #242323;
     top: 0;
     left: 0;
-    width: 90%;
+    width: 92%;
     padding: 30px 100px;
     display: flex;
     justify-content: space-between;
@@ -93,7 +93,7 @@
                 justify-content: center;
                 align-items: center;
                 flex-direction: column;
-                
+                font-size: xx-large;
             }
             .menu li a
             {

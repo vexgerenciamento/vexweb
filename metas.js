@@ -1,4 +1,11 @@
-        var user_final = localStorage.getItem('valueText');
+import {Descripta, Asc, Chr} from "./CRIPTOGRAFIA.js"
+
+var user_final = localStorage.getItem('JaM902#');
+user_final = Descripta(user_final);
+var nome = localStorage.getItem('JaM903#');
+nome = Descripta(nome);
+var senha_local = localStorage.getItem('JaM904#');
+senha_local = Descripta(senha_local); 
         
         // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
@@ -44,7 +51,7 @@ get(child(dbref,"users/"+user_final)).then((snapshot)=>{
 
                 var nome = snapshot.val().fullname;
                 var senha = snapshot.val().password;
-                if ((localStorage.getItem('nome') == nome) && (localStorage.getItem('senha') == senha))
+                if ((user_final == nome) && (senha_local == senha))
                 {   
                 }
                 else
@@ -59,6 +66,7 @@ get(child(dbref,"users/"+user_final)).then((snapshot)=>{
         });
         }
         window.onload = autenticar;
+        
 
 //------------------------------DECLARANDO VÁRIAVEIS GLOBAIS------------------------------//
 var btn_adicionar = document.getElementById("adicionar");

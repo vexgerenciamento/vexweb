@@ -1,35 +1,19 @@
-var user_final = localStorage.getItem('valueText');
+
+import {Descripta, Asc, Chr} from "./CRIPTOGRAFIA.js"
+
+var user_final = localStorage.getItem('JaM902#');
+user_final = Descripta(user_final);
+var nome = localStorage.getItem('JaM903#');
+nome = Descripta(nome);
+var senha = localStorage.getItem('JaM904#');
+senha = Descripta(senha);
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-analytics.js";
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyCd8BHepAbgzsZF0Ig8NRgsnTPRKvYkO4g",
-  authDomain: "vexv1-adc55.firebaseapp.com",
-  databaseURL: "https://vexv1-adc55-default-rtdb.firebaseio.com",
-  projectId: "vexv1-adc55",
-  storageBucket: "vexv1-adc55.appspot.com",
-  messagingSenderId: "827882444760",
-  appId: "1:827882444760:web:3b65498f6fe2161d1244ad",
-  measurementId: "G-FBJX3WSQDX"
-};
-
-
-
- const firebaseApp = initializeApp(firebaseConfig);
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+import { firebaseConfig, firebaseApp, app, analytics, db} from "./chaveFirebase.js";
 import{getDatabase, ref, get, set, child, update, remove, onValue}
 from "https://www.gstatic.com/firebasejs/9.6.8/firebase-database.js";
-const db = getDatabase();
 
 
 
@@ -351,7 +335,7 @@ options: {
 })
 
 function createLineChartData(){
-var meses = ["jan", "fev", "mar", "abril", "maio", "jun"];
+var meses = ["jan", "fev", "mar", "abril", "maio", "jun", "jul", "ago", "set", "out", "nov", "dez"];
 var balancos = []; 
 var ganhos = [];
 var despesas = [];
